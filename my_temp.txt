@@ -1,0 +1,3 @@
+search key: regex replace only capture group
+"img/(?<test>.*).jpg"
+"{{ asset('front/img/$1.jpg') }}"
