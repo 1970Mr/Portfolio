@@ -36,3 +36,7 @@ Route::get('/blog', function () {
 Route::get('/blog-post', function () {
     return view('blog-post');
 })->name('blog-post');
+
+Route::get('/admin-panel', function () {
+    return view('admin.admin');
+})->name('admin.panel');

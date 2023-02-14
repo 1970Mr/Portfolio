@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace( '_', '-', app()->getLocale() ) }}">
+<html dir="{{ app()->getLocale() == 'fa' ? 'rtl' : 'ltr' }}" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
   <meta charset="utf-8">
-  <title>{{ env('APP_NAME') . ( (isset($title) && !empty($title)) ? " - $title" : '' ) }}</title>
+  <title>{{ env('APP_NAME') . (isset($title) && !empty($title) ? " - $title" : '') }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Template Google Fonts -->
@@ -21,6 +21,8 @@
 
   <!-- CSS Skin File -->
   <link rel="stylesheet" type="text/css" title="red" href="{{ asset('front/css/skins/red.css') }}" />
+
+  @stack('styles')
 
   <!-- Modernizr JS File -->
   <script src="{{ asset('front/js/modernizr.custom.js') }}"></script>
@@ -44,6 +46,8 @@
   <script src="{{ asset('front/js/popper.min.js') }}"></script>
   <script src="{{ asset('front/js/bootstrap.js') }}"></script>
   <script src="{{ asset('front/js/custom.js') }}"></script>
+
+  @stack('scripts')
 
 </body>
 
