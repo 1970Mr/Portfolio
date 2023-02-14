@@ -15,7 +15,7 @@
             دوستانه و تمیز و کاربر پسند تمرکز دارم ، من علاقه زیادی به ساخت نرم افزار عالی دارم که زندگی
             اطرافیانم را بهبود می بخشد.</p>
           <a class="button" href="{{ route('about') }}">
-            <span class="button-text">بیشتر درباره من ؟!</span>
+            <span class="button-text">اطلاعات بیشتر درباره من...</span>
             <span class="button-icon fa fa-arrow-left"></span>
           </a>
         </div>
