@@ -16,3 +16,8 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+/.vagrant
+
+my_temp.txt
+product_temp.txt
