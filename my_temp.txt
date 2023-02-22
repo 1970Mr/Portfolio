@@ -12,3 +12,7 @@ blog: 1 table
 other tables:
 users
 categories
+
+images sizes:
+262, 262
+746,1020

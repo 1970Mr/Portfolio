@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{{ env('APP_NAME') . (isset($title) && !empty($title) ? " - $title" : '') }}</title>
+  <title>{{ env('APP_NAME') . (isset($title) && !empty($title) ? " | $title" : '') }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Template Google Fonts -->

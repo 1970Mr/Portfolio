@@ -5,45 +5,52 @@
   </div>
   <div class="mt-4">
     <ul class="list-unstyled">
-      <li class="sidebar-item active">
-        <a class="sidebar-link" href="./index.html">
+      <li class="sidebar-item {{ active_route('admin.panel.dashboard') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.dashboard') }}">
           <i class="me-2 bi bi-grid-fill"></i>
           <span>داشبورد</span>
         </a>
       </li>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="./index.html">
+      <li class="sidebar-item {{ active_route(['admin.panel.home', 'admin.panel.home.create', 'admin.panel.home.edit']) }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.home') }}">
           <i class="me-2 bi bi-house-door"></i>
           <span>تنظیمات خانه</span>
         </a>
       </li>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="./index.html">
+      <li class="sidebar-item {{ active_route('admin.panel.about') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.about') }}">
           <i class="bi bi-file-earmark-person me-2"></i>
           <span>تنظیمات درباره من</span>
         </a>
       </li>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="./index.html">
+      <li class="sidebar-item {{ active_route('admin.panel.portfolio') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.portfolio') }}">
           <i class="bi bi-diagram-3 me-2"></i>
           <span>تنظیمات نمونه کار</span>
         </a>
       </li>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="./index.html">
+      <li class="sidebar-item {{ active_route('admin.panel.contact') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.contact') }}">
           <i class="bi bi-envelope me-2"></i>
           <span>تنظیمات ارتباط</span>
         </a>
       </li>
 
-      <li class="sidebar-item">
-        <a class="sidebar-link" href="./index.html">
+      <li class="sidebar-item {{ active_route('admin.panel.blog') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.blog') }}">
           <i class="bi bi-file-earmark-richtext me-2"></i>
           <span>تنظیمات مقالات</span>
+        </a>
+      </li>
+
+      <li class="sidebar-item {{ active_route('admin.panel.profile') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.profile') }}">
+          <i class="bi bi-person me-2"></i>
+          <span>پروفایل</span>
         </a>
       </li>
 
