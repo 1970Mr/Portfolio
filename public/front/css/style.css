@@ -551,7 +551,6 @@ body.light hr.separator {
 }
 
 .home .bg {
-    background-image: url(../img/2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;

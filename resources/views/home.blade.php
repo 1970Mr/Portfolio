@@ -8,12 +8,10 @@
       <div class="col-lg-4 bg position-fixed d-none d-lg-block"></div>
       <div class="col-12 col-lg-8 offset-lg-4 home-details text-left text-sm-center text-lg-left">
         <div>
-          <img src="{{ asset('front/img/img-mobile.jpg') }}" class="img-fluid main-img-mobile d-none d-sm-block d-lg-none"
-            alt="my picture" />
-          <h1 class="text-uppercase poppins-font">من استیو میلنر هستم<span>طراح سایت</span></h1>
-          <p class="open-sans-font">من یک طراح وب و توسعه دهنده مقدماتی تونسی هستم و در ساخت تجربه های
-            دوستانه و تمیز و کاربر پسند تمرکز دارم ، من علاقه زیادی به ساخت نرم افزار عالی دارم که زندگی
-            اطرافیانم را بهبود می بخشد.</p>
+          <img src="{{ asset($homeData->photo['mobile']['relative_path']) }}"
+            class="img-fluid main-img-mobile d-none d-sm-block d-lg-none" alt="my picture" />
+          <h1 class="text-uppercase poppins-font">{{ $homeData->title }}</h1><span>{{ $homeData->sub_title }}</span></span></h1>
+          <p class="open-sans-font">{{ $homeData->description }}</p>
           <a class="button" href="{{ route('about') }}">
             <span class="button-text">اطلاعات بیشتر درباره من...</span>
             <span class="button-icon fa fa-arrow-left"></span>
@@ -24,3 +22,11 @@
   </section>
   <!-- Main Content Ends -->
 @endsection
+
+@push('styles')
+  <style>
+    .home .bg {
+      background-image: url({{ asset($homeData->photo['relative_path']) }});
+    }
+  </style>
+@endpush
