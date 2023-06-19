@@ -1,4 +1,4 @@
-<nav aria-label="breadcrumb">
+<nav>
   <ol class="breadcrumb">
     @foreach ($routes as $text => $route)
       <li class="breadcrumb-item @if(count($routes) == $loop->iteration || $route == '') 'active' @endif">

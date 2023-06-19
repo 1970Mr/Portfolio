@@ -45,7 +45,6 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td class="text-muted">{{ $item->title }}</td>
-                      </td>
                       <td class="text-muted">{{ $item->sub_title }}</td>
                       <td class="text-muted">{{ text_limitation($item->description) }}</td>
                       <td class="text-muted">{{ $item->photo['relative_path'] }}</td>

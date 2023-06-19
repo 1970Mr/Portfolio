@@ -17,19 +17,23 @@ class AboutFactory extends Factory
     public function definition()
     {
         return [
-            'name' => 'test',
-            'family' => 'test',
-            'age' => 'test',
-            'country' => 'test',
-            'job' => 'test',
-            'address' => 'test',
-            'phone_number' => 'test',
-            'email' => 'test',
-            'github' => 'test',
-            'language' => 'test',
-            'experiences' => 'test',
-            'projects' => 'test',
-            'awards' => 'test',
+            'name' => fake()->name(),
+            'family' => fake()->lastName(),
+            'age' => fake()->numberBetween(10, 50),
+            'country' => fake()->country(),
+            'job' => fake()->jobTitle(),
+            'address' => fake()->address(),
+            'phone_number' => fake()->phoneNumber(),
+            'email' => fake()->email(),
+            'github' => [
+                'username' => fake()->name(),
+                'url' => fake()->url()
+            ],
+            'language' => fake()->languageCode(),
+            'experiences' => fake()->numberBetween(1, 10),
+            'projects' => fake()->numberBetween(10, 100),
+            'awards' => fake()->numberBetween(0, 10),
+            'status' => fake()->numberBetween(0, 1),
         ];
     }
 }

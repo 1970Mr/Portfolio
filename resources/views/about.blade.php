@@ -23,30 +23,36 @@
             <div class="col-6">
               <ul class="about-list list-unstyled open-sans-font">
                 <li> <span class="title">نام :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">امیر حسین</span> </li>
-                <li> <span class="title">نام خاوادگی :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">دامن دریا</span> </li>
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->name }}</span> </li>
+                <li> <span class="title">نام خانوادگی :</span> <span
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->family }}</span> </li>
                 <li> <span class="title">سن :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">20 سال</span> </li>
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->age }}</span> </li>
                 <li> <span class="title">ملیت :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block" style="color: gold">ایران</span>
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block" style="color: gold">{{ $aboutData->country }}</span>
                 </li>
                 <li> <span class="title">شغل :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">طراح سایت</span> </li>
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->job }}</span> </li>
               </ul>
             </div>
             <div class="col-6">
               <ul class="about-list list-unstyled open-sans-font">
                 <li> <span class="title">آدرس :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">یزد</span> </li>
-                <li> <span class="title">تلفن :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">+98013234324</span> </li>
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->address }}</span> </li>
+                <li> <span class="title">شماره تماس :</span> <span
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">
+                    <a href="tel:{{ $aboutData->phone_number }}">{{ $aboutData->phone_number }}</a>
+                    </span> </li>
                 <li> <span class="title">ایمیل :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">you@mail.com</span> </li>
-                <li> <span class="title">اسکایپ :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">steve.milner</span> </li>
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">
+                    <a class="email" href="mailto:{{ $aboutData->email }}">{{ $aboutData->email }}</a>
+                    </span> </li>
+                <li> <span class="title">گیت‌هاب :</span> <span
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">
+                    <a target="_blank" href="{{ $aboutData->github['url'] }}">{{ $aboutData->github['username'] }}</a>
+                </span> </li>
                 <li> <span class="title">زبان :</span> <span
-                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">فارسی ، انگلیسی</span> </li>
+                    class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->language }}</span> </li>
               </ul>
             </div>
             <div class="col-12 mt-3">
@@ -63,20 +69,20 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-6">
               <div class="box-stats with-margin">
-                <h3 class="poppins-font position-relative">12</h3>
+                <h3 class="poppins-font position-relative">{{ $aboutData->experiences }}</h3>
                 <p class="open-sans-font m-0 position-relative text-uppercase">سال <span class="d-block">تجربه</span></p>
               </div>
             </div>
             <div class="col-6">
               <div class="box-stats with-margin">
-                <h3 class="poppins-font position-relative">97</h3>
+                <h3 class="poppins-font position-relative">{{ $aboutData->projects }}</h3>
                 <p class="open-sans-font m-0 position-relative text-uppercase">پروژه<span class="d-block">تکمیل شده</span>
                 </p>
               </div>
             </div>
             <div class="col-6">
               <div class="box-stats">
-                <h3 class="poppins-font position-relative">0</h3>
+                <h3 class="poppins-font position-relative">{{ $aboutData->awards }}</h3>
                 <p class="open-sans-font m-0 position-relative text-uppercase">جایزه <span class="d-block">برنده
                     شده</span></p>
               </div>
@@ -252,3 +258,15 @@
   </section>
   <!-- Main Content Ends -->
 @endsection
+
+@push('styles')
+  <style>
+    a {
+        color: inherit;
+    }
+
+    .email {
+        font-size: .913rem;
+    }
+  </style>
+@endpush

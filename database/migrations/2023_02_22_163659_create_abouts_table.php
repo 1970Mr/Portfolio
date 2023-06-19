@@ -28,6 +28,7 @@ return new class extends Migration
             $table->integer('experiences');
             $table->integer('projects');
             $table->integer('awards');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
