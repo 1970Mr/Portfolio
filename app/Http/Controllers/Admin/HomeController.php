@@ -38,13 +38,8 @@ class HomeController extends Controller
    */
   public function store(HomeRequest $request)
   {
-    $file = $request->file('photo');
-    $destinationPath = public_path('images/home');
-    $photoInfo = image_upload($file, $destinationPath);
-
-    $mobilePhoto = $request->file('mobilePhoto');
-    $destinationPathMobile = public_path('images/home/mobile');
-    $mobilePhotoInfo = image_upload($mobilePhoto, $destinationPathMobile);
+    $photoInfo = $this->imageUpload(file: $request->file('photo'), path: 'images/home');
+    $mobilePhotoInfo = $this->imageUpload(file: $request->file('mobilePhoto'), path: 'images/home/mobile');
 
     $status = $request->has('status') ? $request->has('status') : false;
 
@@ -84,7 +79,7 @@ class HomeController extends Controller
    */
   public function edit($id)
   {
-    $homeDetails = Home::findOrfail($id);
+    $homeDetails = Home::findOrFail($id);
     return view('admin.home.edit', compact('homeDetails'));
   }
 
@@ -149,6 +144,7 @@ class HomeController extends Controller
     }
   }
 
+  // photo field upload for update data
   private function photoUpload($request, $data, $home)
   {
     $file = $request->file('photo');
@@ -162,6 +158,7 @@ class HomeController extends Controller
     return $data;
   }
 
+  // mobilePhoto field upload for update data
   private function mobilePhotoUpload($request, $data, $home)
   {
     $mobilePhoto = $request->file('mobilePhoto');
@@ -187,5 +184,12 @@ class HomeController extends Controller
         ],
       ],
     ];
+  }
+
+  private function imageUpload($file, $path)
+  {
+    // $file = $request->file('photo');
+    $destinationPath = public_path($path);
+    return image_upload($file, $destinationPath);
   }
 }

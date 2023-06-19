@@ -1,4 +1,23 @@
-@extends('admin.layouts.app', ['title' => 'خانه | ویرایش'])
+@extends('admin.layouts.app', ['title' => 'درباره من | ویرایش'])
+
+@php
+  $names = [
+      ['name' => 'name', 'title' => 'نام', 'type' => 'text'],
+      ['name' => 'family', 'title' => 'نام خانوادگی', 'type' => 'text'],
+      ['name' => 'age', 'title' => 'سن', 'type' => 'text'],
+      ['name' => 'country', 'title' => 'ملیت', 'type' => 'text'],
+      ['name' => 'job', 'title' => 'شغل', 'type' => 'text'],
+      ['name' => 'address', 'title' => 'آدرس', 'type' => 'text'],
+      ['name' => 'phoneNumber', 'title' => 'شماره تماس', 'type' => 'text'],
+      ['name' => 'email', 'title' => 'ایمیل', 'type' => 'email'],
+      ['name' => 'githubUsername', 'title' => 'نام کاربری گیت‌هاب', 'type' => 'text'],
+      ['name' => 'githubUrl', 'title' => 'آدرس گیت‌هاب', 'type' => 'url'],
+      ['name' => 'language', 'title' => 'زبان', 'type' => 'text'],
+      ['name' => 'experiences', 'title' => 'تجربه‌ها', 'type' => 'number'],
+      ['name' => 'projects', 'title' => 'پروژه‌ها', 'type' => 'number'],
+      ['name' => 'awards', 'title' => 'جایزه‌ها', 'type' => 'number'],
+  ];
+@endphp
 
 @section('content')
   <div class="content p-2 p-lg-4">
@@ -6,84 +25,40 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'خانه' => route('admin.panel.home'),
+            'درباره من' => route('admin.panel.about'),
             'ویرایش' => '',
-            ]"></x-breadcrumbs>
+        ]"></x-breadcrumbs>
       </div>
 
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ویرایش تنظیمات خانه</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.home') }}">
+            <h3>ویرایش تنظیمات درباره من</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.home.update', $homeDetails->id) }}" class="row justify-content-center" method="post"
-              enctype="multipart/form-data">
+            <form action="{{ route('admin.panel.about.update', $aboutDetails->id) }}" class="row justify-content-center" method="post">
               @csrf
               @method('put')
-              <div class="mb-3 col-6">
-                <label for="title" class="form-label">عنوان</label>
-                <input type="text" name="title" class="form-control" id="title" value="{{ old('title') ? old('title') : $homeDetails->title }}">
-                @error('title')
-                  <div class="text-danger fs-7">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
-
-              <div class="mb-3 col-6">
-                <label for="subTitle" class="form-label">زیرعنوان</label>
-                <input type="text" name="subTitle" class="form-control" id="subTitle" value="{{ old('subTitle') ? old('subTitle') : $homeDetails->sub_title }}">
-                @error('subTitle')
-                  <div class="text-danger fs-7">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
-
-              <div class="mb-3">
-                <label for="description" class="form-label">توضیحات</label>
-                <textarea name="description" class="form-control" id="description">{{ old('description') ? old('description') : $homeDetails->description }}</textarea>
-                @error('description')
-                  <div class="text-danger fs-7">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
-
-              <div class="mb-3">
-                <label for="photo" class="form-label">تصویر دسکتاپ</label>
-                <input class="form-control" name="photo" type="file" id="photo">
-                <div class="text-info fs-7 mt-1">
-                    {{ $homeDetails->photo['relative_path'] }}
+              @foreach ($names as $item)
+                <div class="mb-3 col-6">
+                  <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
+                  <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
+                    value="{{ old($item['name']) ? old($item['name']) : $aboutDetails->{$item['name']} }}">
+                  @error($item['name'])
+                    <div class="text-danger fs-7">
+                      {{ $message }}
+                    </div>
+                  @enderror
                 </div>
-                @error('photo')
-                  <div class="text-danger fs-7">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
-
-              <div class="mb-3">
-                <label for="mobilePhoto" class="form-label">تصویر موبایل</label>
-                <input class="form-control" name="mobilePhoto" type="file" id="mobilePhoto">
-                <div class="text-info fs-7 mt-1">
-                    {{ $homeDetails->photo['mobile']['relative_path'] }}
-                </div>
-                @error('mobilePhoto')
-                  <div class="text-danger fs-7">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
+              @endforeach
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                  {{ old('status') || $homeDetails->status == 1 ? 'checked' : '' }}>
+                {{ old('status') || $aboutDetails->status == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')
@@ -91,6 +66,7 @@
                   {{ $message }}
                 </div>
               @enderror
+
               <button type="submit" class="btn btn-primary w-25">ارسال</button>
             </form>
           </div>

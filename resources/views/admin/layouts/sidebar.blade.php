@@ -5,25 +5,44 @@
   </div>
   <div class="mt-4">
     <ul class="list-unstyled">
-      <li class="sidebar-item {{ active_route('admin.panel.dashboard') }}">
+      <li class="sidebar-item {{ active_route( route('admin.panel.dashboard') ) }}">
         <a class="sidebar-link" href="{{ route('admin.panel.dashboard') }}">
           <i class="me-2 bi bi-grid-fill"></i>
           <span>داشبورد</span>
         </a>
       </li>
 
-      <li class="sidebar-item {{ active_route(['admin.panel.home', 'admin.panel.home.create', 'admin.panel.home.edit']) }}">
+      <li class="sidebar-item {{ active_route( route('admin.panel.home') ) }}">
         <a class="sidebar-link" href="{{ route('admin.panel.home') }}">
           <i class="me-2 bi bi-house-door"></i>
           <span>تنظیمات خانه</span>
         </a>
       </li>
 
-      <li class="sidebar-item {{ active_route('admin.panel.about') }}">
+      <li class="sidebar-item {{ active_route( route('admin.panel.about') ) }}">
         <a class="sidebar-link" href="{{ route('admin.panel.about') }}">
           <i class="bi bi-file-earmark-person me-2"></i>
           <span>تنظیمات درباره من</span>
         </a>
+      </li>
+
+      <li x-data="dropdown" class="sidebar-item">
+        <div @click="toggle" class="sidebar-link">
+          <i class="me-2 bi bi-shop"></i>
+          <span>فروشگاه</span>
+          <i class="ms-auto bi bi-chevron-down"></i>
+        </div>
+        <ul x-show="open" x-transition class="submenu">
+          <li class="submenu-item">
+            <a href="#">لیست فروشگاه ها</a>
+          </li>
+          <li class="submenu-item">
+            <a href="#">ایجاد فروشگاه</a>
+          </li>
+          <li class="submenu-item">
+            <a href="#">ویرایش فروشگاه</a>
+          </li>
+        </ul>
       </li>
 
       <li class="sidebar-item {{ active_route('admin.panel.portfolio') }}">
