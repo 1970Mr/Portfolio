@@ -14,7 +14,7 @@
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ایجاد تنظیمات خانه</h3>
+            <h3>ایجاد خانه</h3>
             <a class="btn btn-light-primary" href="{{ route('admin.panel.home') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>

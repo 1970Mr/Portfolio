@@ -14,7 +14,7 @@
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ویرایش تنظیمات خانه</h3>
+            <h3>ویرایش خانه</h3>
             <a class="btn btn-light-primary" href="{{ route('admin.panel.home') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
@@ -91,7 +91,7 @@
                   {{ $message }}
                 </div>
               @enderror
-              
+
               <button type="submit" class="btn btn-primary w-25">ارسال</button>
             </form>
           </div>

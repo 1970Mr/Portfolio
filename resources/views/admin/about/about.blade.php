@@ -13,7 +13,7 @@
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>تنظیمات درباره من</h3>
+            <h3>درباره من</h3>
             <a class="btn btn-light-primary" href="{{ route('admin.panel.about.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>

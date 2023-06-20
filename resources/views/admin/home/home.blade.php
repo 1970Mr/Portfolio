@@ -20,7 +20,7 @@
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>تنظیمات خانه</h3>
+            <h3>خانه</h3>
             <a class="btn btn-light-primary" href="{{ route('admin.panel.home.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>

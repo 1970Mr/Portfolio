@@ -33,7 +33,7 @@
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ایجاد تنظیمات درباره من</h3>
+            <h3>ایجاد درباره من</h3>
             <a class="btn btn-light-primary" href="{{ route('admin.panel.about') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
