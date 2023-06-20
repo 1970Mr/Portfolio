@@ -1,3 +1,7 @@
+@php
+    $mobilePhoto = App\Models\Home::where('status', true)->first()->photo['mobile']['relative_path']
+@endphp
+
 <header class="header d-flex justify-content-between p-3 align-items-center">
   <div>
     <a href="#">
@@ -27,10 +31,10 @@
 
     <div class="dropdown" style="cursor: pointer;">
       <div class="dropdown-toggle profile d-flex align-items-center " data-bs-toggle="dropdown" aria-expanded="false">
-        <img width="45" class="img-fluid rounded-circle me-2" src="{{ asset('admin/images/7.jpg') }}"
+        <img width="45" class="img-fluid rounded-circle me-2" src="{{ asset($mobilePhoto) }}"
           alt="">
         <div>
-          <h6 class="fs-6 fw-bold text-gray-600 mb-0">رسول مرشدی</h6></h6>
+          <h6 class="fs-6 fw-bold text-gray-600 mb-0">رسول مرشدی</h6>
           <p class="fs-8 text-gray-600 mb-0">سوپر ادمین</p>
         </div>
       </div>
