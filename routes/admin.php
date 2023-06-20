@@ -30,9 +30,9 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
     Route::get('/skill', [SkillController::class, 'index'])->name('skill');
     Route::get('/skill/create', [SkillController::class, 'create'])->name('skill.create');
     Route::post('/skill', [SkillController::class, 'store'])->name('skill.store');
-    Route::get('/skill/edit/{id}', [SkillController::class, 'edit'])->name('skill.edit');
+    Route::get('/skill/edit/{skill}', [SkillController::class, 'edit'])->name('skill.edit');
     Route::put('/skill/{skill}', [SkillController::class, 'update'])->name('skill.update');
-    Route::delete('/skill/{id}', [SkillController::class, 'destroy'])->name('skill.destroy');
+    Route::delete('/skill/{skill}', [SkillController::class, 'destroy'])->name('skill.destroy');
   });
   Route::get('/about', fn () => to_route('admin.panel.about.personal'))->name('about');
 

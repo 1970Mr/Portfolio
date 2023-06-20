@@ -1,21 +1,10 @@
-@extends('admin.layouts.app', ['title' => 'درباره من | ویرایش'])
+@extends('admin.layouts.app', ['title' => 'مهارت‌های من | ویرایش'])
 
 @php
-  $names = [
+  $inputs = [
       ['name' => 'name', 'title' => 'نام', 'type' => 'text'],
-      ['name' => 'family', 'title' => 'نام خانوادگی', 'type' => 'text'],
-      ['name' => 'age', 'title' => 'سن', 'type' => 'text'],
-      ['name' => 'country', 'title' => 'ملیت', 'type' => 'text'],
-      ['name' => 'job', 'title' => 'شغل', 'type' => 'text'],
-      ['name' => 'address', 'title' => 'آدرس', 'type' => 'text'],
-      ['name' => 'phoneNumber', 'title' => 'شماره تماس', 'type' => 'text'],
-      ['name' => 'email', 'title' => 'ایمیل', 'type' => 'email'],
-      ['name' => 'githubUsername', 'title' => 'نام کاربری گیت‌هاب', 'type' => 'text'],
-      ['name' => 'githubUrl', 'title' => 'آدرس گیت‌هاب', 'type' => 'url'],
-      ['name' => 'language', 'title' => 'زبان', 'type' => 'text'],
-      ['name' => 'experiences', 'title' => 'تجربه‌ها', 'type' => 'number'],
-      ['name' => 'projects', 'title' => 'پروژه‌ها', 'type' => 'number'],
-      ['name' => 'awards', 'title' => 'جایزه‌ها', 'type' => 'number'],
+      ['name' => 'value', 'title' => 'مقدار مهارت (بین 0 تا 100)', 'type' => 'number'],
+      ['name' => 'category', 'title' => 'دسته بندی', 'type' => 'text'],
   ];
 @endphp
 
@@ -25,7 +14,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'درباره من' => route('admin.panel.about'),
+            'مهارت‌های من' => route('admin.panel.about.skill'),
             'ویرایش' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -33,21 +22,21 @@
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ویرایش درباره من</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about') }}">
+            <h3>ویرایش مهارت‌</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skill') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.update', $aboutDetails->id) }}" class="row justify-content-center" method="post">
+            <form action="{{ route('admin.panel.about.skill.update', $skill->id) }}" class="row justify-content-center" method="post">
               @csrf
               @method('put')
-              @foreach ($names as $item)
+              @foreach ($inputs as $item)
                 <div class="mb-3 col-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
                   <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
-                    value="{{ old($item['name']) ? old($item['name']) : $aboutDetails->{$item['name']} }}">
+                    value="{{ old($item['name']) ? old($item['name']) : $skill->{$item['name']} }}">
                   @error($item['name'])
                     <div class="text-danger fs-7">
                       {{ $message }}
@@ -58,7 +47,7 @@
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                {{ old('status') || $aboutDetails->status == 1 ? 'checked' : '' }}>
+                {{ old('status') || $skill->status == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')

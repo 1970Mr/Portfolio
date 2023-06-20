@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\SkillRequest;
 use App\Models\Skill;
 use Illuminate\Http\Request;
 
@@ -16,31 +17,35 @@ class SkillController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.skill.create');
     }
 
-    public function store(Request $request)
+    public function store(SkillRequest $request)
     {
-        //
+        $request['status'] = $request->has('status');
+
+        Skill::create($request->all());
+
+		return to_route('admin.panel.about.skill')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
-    public function show($id)
+    public function edit(Skill $skill)
     {
-        //
+        return view('admin.skill.edit', compact('skill'));
     }
 
-    public function edit($id)
+    public function update(Request $request, Skill $skill)
     {
-        //
+        $request['status'] = $request->has('status');
+        $skill->updateOrFail($request->all());
+
+		return to_route('admin.panel.about.skill')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
-    public function update(Request $request, $id)
+    public function destroy(Skill $skill)
     {
-        //
-    }
+        $skill->delete();
 
-    public function destroy($id)
-    {
-        //
+		return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     }
 }

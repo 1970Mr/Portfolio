@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
 
         // Skill::factory(10)->state(['status' => 0])->create();
 
-        // Skill::factory(15)->sequence(
+        // Skill::factory(14)->sequence(
         //     [
         //         'name' => 'php',
         //         'value' => 90,
@@ -121,12 +121,6 @@ class DatabaseSeeder extends Seeder
         //         'name' => 'seo content',
         //         'value' => 80,
         //         'category' => 'seo',
-        //         'status' => 1,
-        //     ],
-        //     [
-        //         'name' => 'security programming',
-        //         'value' => 70,
-        //         'category' => 'security',
         //         'status' => 1,
         //     ],
         //     [
