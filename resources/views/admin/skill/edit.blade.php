@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => 'اطلاعات شخصی | ایجاد'])
+@extends('admin.layouts.app', ['title' => 'درباره من | ویرایش'])
 
 @php
   $names = [
@@ -25,28 +25,29 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'اطلاعات شخصی' => route('admin.panel.about.personal'),
-            'ایجاد' => '',
+            'درباره من' => route('admin.panel.about'),
+            'ویرایش' => '',
         ]"></x-breadcrumbs>
       </div>
 
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ایجاد اطلاعات شخصی</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.personal') }}">
+            <h3>ویرایش درباره من</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.personal.store') }}" class="row justify-content-center" method="post">
+            <form action="{{ route('admin.panel.about.update', $aboutDetails->id) }}" class="row justify-content-center" method="post">
               @csrf
+              @method('put')
               @foreach ($names as $item)
                 <div class="mb-3 col-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
                   <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
-                    value="{{ old($item['name']) }}">
+                    value="{{ old($item['name']) ? old($item['name']) : $aboutDetails->{$item['name']} }}">
                   @error($item['name'])
                     <div class="text-danger fs-7">
                       {{ $message }}
@@ -57,7 +58,7 @@
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                  {{ old('status') ? 'checked' : '' }}>
+                {{ old('status') || $aboutDetails->status == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')

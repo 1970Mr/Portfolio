@@ -7,7 +7,7 @@ function active_route($route_path, $exactly = false)
         if  ( $route_path == url()->current() ) return 'active';
         return;
     }
-
+    // dump($route_path);
     $route_path = str_replace('.', '\.', $route_path);
     $route_path = str_replace('/', '\/', $route_path);
     if  ( preg_match("/$route_path/", url()->current()) ) return 'active';
