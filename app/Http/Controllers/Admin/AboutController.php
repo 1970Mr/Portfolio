@@ -60,7 +60,7 @@ class AboutController extends Controller
 			'status' => $status,
 		]);
 
-		return to_route('admin.panel.about')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+		return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class AboutController extends Controller
 
 		$about->updateOrFail($data);
 
-		return to_route('admin.panel.about')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+		return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
 	}
 
 	/**
@@ -109,7 +109,7 @@ class AboutController extends Controller
 
 			return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
 		} catch (\Exception $e) {
-			return redirect()->back()->with('admin.panel.about')->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+			return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
 		}
 	}
 }

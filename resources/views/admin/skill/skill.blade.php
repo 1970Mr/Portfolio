@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => 'اطلاعات شخصی'])
+@extends('admin.layouts.app', ['title' => 'درباره من'])
 
 @section('content')
   <div class="content p-2 p-lg-4">
@@ -6,15 +6,15 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'اطلاعات شخصی' => '',
+            'مهارت‌های من' => '',
             ]"></x-breadcrumbs>
       </div>
 
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>اطلاعات شخصی</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.personal.create') }}">
+            <h3>مهارت‌های من</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skill.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>
             </a>
@@ -26,39 +26,19 @@
                   <tr>
                     <th>#</th>
                     <th>نام</th>
-                    <th class="family">نام خاوادگی</th>
-                    <th>سن</th>
-                    <th>ملیت</th>
-                    <th>شغل</th>
-                    <th>آدرس</th>
-                    <th>شماره تماس</th>
-                    <th>ایمیل</th>
-                    <th>گیت‌هاب</th>
-                    <th>زبان</th>
-                    <th>تجربه</th>
-                    <th>پروژه</th>
-                    <th>جایزه</th>
+                    <th>مقدار</th>
+                    <th>دسته بندی</th>
                     <th>وضعیت</th>
                     <th>عملیات</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($aboutsData as $item)
+                  @foreach ($skillsData as $item)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td class="text-muted">{{ $item->name }}</td>
-                      <td class="text-muted">{{ $item->family }}</td>
-                      <td class="text-muted">{{ $item->age }}</td>
-                      <td class="text-muted">{{ $item->country }}</td>
-                      <td class="text-muted">{{ $item->job }}</td>
-                      <td class="text-muted">{{ $item->address }}</td>
-                      <td class="text-muted">{{ $item->phone_number }}</td>
-                      <td class="text-muted">{{ $item->email }}</td>
-                      <td class="text-muted">{{ $item->github['url'] }}</td>
-                      <td class="text-muted">{{ $item->language }}</td>
-                      <td class="text-muted">{{ $item->experiences }}</td>
-                      <td class="text-muted">{{ $item->projects }}</td>
-                      <td class="text-muted">{{ $item->awards }}</td>
+                      <td class="text-muted">{{ $item->value }}</td>
+                      <td class="text-muted">{{ $item->category }}</td>
                       <td class="text-muted">{{ $item->status }}</td>
                       <td>
                         <div class="dropdown">
@@ -68,10 +48,10 @@
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.about.personal.edit', ['id' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.about.skill.edit', ['id' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.about.personal.destroy', ['id' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.about.skill.destroy', ['id' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
@@ -89,7 +69,7 @@
             </div>
 
             <div class="mt-3">
-                {{ $aboutsData->links() }}
+                {{ $skillsData->links() }}
             </div>
           </div>
         </div>

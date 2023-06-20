@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => 'درباره من | ویرایش'])
+@extends('admin.layouts.app', ['title' => 'اطلاعات شخصی | ویرایش'])
 
 @php
   $names = [
@@ -25,7 +25,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'درباره من' => route('admin.panel.about'),
+            'اطلاعات شخصی' => route('admin.panel.about.personal'),
             'ویرایش' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -33,14 +33,14 @@
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ویرایش درباره من</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about') }}">
+            <h3>ویرایش اطلاعات شخصی</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.personal') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.update', $aboutDetails->id) }}" class="row justify-content-center" method="post">
+            <form action="{{ route('admin.panel.about.personal.update', $aboutDetails->id) }}" class="row justify-content-center" method="post">
               @csrf
               @method('put')
               @foreach ($names as $item)
