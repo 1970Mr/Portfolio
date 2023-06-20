@@ -38,7 +38,7 @@ class AboutController extends Controller
 	 */
 	public function store(AboutRequest $request)
 	{
-		$status = $request->has('status') ? $request->has('status') : false;
+		$status = $request->has('status');
 
 		About::create([
 			'name' => $request->name,
@@ -87,7 +87,7 @@ class AboutController extends Controller
             'username' => $request->githubUsername,
             'url' => $request->githubUrl
         ];
-		$data['status'] = $request->has('status') ? $request->has('status') : false;
+		$data['status'] = $request->has('status');
         $data = [...$request->all(), ...$data];
 
 
@@ -105,7 +105,7 @@ class AboutController extends Controller
 	{
 		try {
 			$aboutDetails = About::findOrfail($id);
-			$aboutDetails->delete($id);
+			$aboutDetails->delete();
 
 			return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
 		} catch (\Exception $e) {

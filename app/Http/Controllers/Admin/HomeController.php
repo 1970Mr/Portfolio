@@ -41,7 +41,7 @@ class HomeController extends Controller
     $photoInfo = $this->imageUpload(file: $request->file('photo'), path: 'images/home');
     $mobilePhotoInfo = $this->imageUpload(file: $request->file('mobilePhoto'), path: 'images/home/mobile');
 
-    $status = $request->has('status') ? $request->has('status') : false;
+    $status = $request->has('status');
 
     Home::create([
       'title' => $request->title,
@@ -92,7 +92,7 @@ class HomeController extends Controller
    */
   public function update(HomeUpdateRequest $request, Home $home)
   {
-    $status = $request->has('status') ? $request->has('status') : false;
+    $status = $request->has('status');
     $data = $this->initialUpdateData($home);
 
     if ($request->has('title')) {
@@ -136,7 +136,7 @@ class HomeController extends Controller
       image_delete($imagePath);
       $mobileImagePath = public_path($homeDetails->photo['mobile']['relative_path']);
       image_delete($mobileImagePath);
-      $homeDetails->delete($id);
+      $homeDetails->delete();
 
       return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     } catch (\Exception $e) {

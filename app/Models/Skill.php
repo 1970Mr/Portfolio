@@ -13,5 +13,6 @@ class Skill extends Model
         'name',
         'value',
         'category',
+        'status',
     ];
 }
