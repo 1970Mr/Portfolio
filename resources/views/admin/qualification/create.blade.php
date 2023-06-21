@@ -45,7 +45,7 @@
                 <label class="form-label" for="status">نوع</label>
                 <select name="type" class="form-select form-select">
                   @foreach ($types as $type)
-                    <option {{ old('type') ? 'selected' : '' }} value="{{ $type }}">{{ $type }}</option>
+                    <option {{ old('type') == $type ? 'selected' : '' }} value="{{ $type }}">{{ $type }}</option>
                   @endforeach
                 </select>
                 @error('type')
