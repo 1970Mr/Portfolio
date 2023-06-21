@@ -83,7 +83,7 @@
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                  {{ old('status') || $homeDetails->status == 1 ? 'checked' : '' }}>
+                  {{ old('status') || !request()->old() && $homeDetails->status == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')

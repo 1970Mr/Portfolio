@@ -34,7 +34,7 @@ class SkillController extends Controller
         return view('admin.skill.edit', compact('skill'));
     }
 
-    public function update(Request $request, Skill $skill)
+    public function update(SkillRequest $request, Skill $skill)
     {
         $request['status'] = $request->has('status');
         $skill->updateOrFail($request->all());

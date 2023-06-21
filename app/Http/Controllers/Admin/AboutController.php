@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AboutRequest;
-use App\Http\Requests\Admin\AboutUpdateRequest;
 use App\Models\About;
 use Illuminate\Contracts\View\View;
 
@@ -81,7 +80,7 @@ class AboutController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(AboutUpdateRequest $request, About $about)
+	public function update(AboutRequest $request, About $about)
 	{
         $data['github'] = [
             'username' => $request->githubUsername,
