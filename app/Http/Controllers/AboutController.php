@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Qualification;
 use App\Models\Skill;
 
 class AboutController extends Controller
@@ -11,6 +12,7 @@ class AboutController extends Controller
     {
         $aboutData = About::where('status', true)->first();
         $skills = Skill::where('status', true)->get();
-        return view('about', compact('aboutData', 'skills'));
+        $qualifications = Qualification::where('status', true)->get();
+        return view('about', compact('aboutData', 'skills', 'qualifications'));
     }
 }

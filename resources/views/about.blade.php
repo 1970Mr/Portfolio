@@ -47,7 +47,7 @@
                 </li>
                 <li> <span class="title">شماره تماس :</span> <span
                     class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">
-                    <a href="tel:{{ $aboutData->phone_number }}">{{ $aboutData->phone_number }}</a>
+                    <a href="tel:{{ $aboutData->phone_number }}" dir="ltr">{{ $aboutData->phone_number }}</a>
                   </span> </li>
                 <li> <span class="title">ایمیل :</span> <span
                     class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">
@@ -106,7 +106,6 @@
             من </h3>
         </div>
         @foreach ($skills as $skill)
-
           <div class="col-6 col-md-3 mb-3 mb-sm-5">
             <div class="c100 p{{ $skill->value }}">
               <span>{{ $skill->value }}%</span>
@@ -117,7 +116,6 @@
             </div>
             <h6 class="text-uppercase open-sans-font text-center mt-2 mt-sm-4">{{ $skill->name }}</h6>
           </div>
-
         @endforeach
       </div>
       <!-- Skills Ends -->
@@ -131,65 +129,37 @@
         <div class="col-lg-6 m-15px-tb">
           <div class="resume-box">
             <ul>
-              <li>
-                <div class="icon">
-                  <i class="fa fa-briefcase"></i>
-                </div>
-                <span class="time open-sans-font text-uppercase">1400 - شخصی</span>
-                <h5 class="poppins-font text-uppercase">طراحی سایت <span class="place open-sans-font">راستچین</span>
-                </h5>
-                <p class="open-sans-font">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ </p>
-              </li>
-              <li>
-                <div class="icon">
-                  <i class="fa fa-briefcase"></i>
-                </div>
-                <span class="time open-sans-font text-uppercase">1399 - 1400</span>
-                <h5 class="poppins-font text-uppercase">UI/UX طراح <span class="place open-sans-font">راستچین</span>
-                </h5>
-                <p class="open-sans-font">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
-              </li>
-              <li>
-                <div class="icon">
-                  <i class="fa fa-briefcase"></i>
-                </div>
-                <span class="time open-sans-font text-uppercase">1398 - 1399</span>
-                <h5 class="poppins-font text-uppercase">مشاور <span class="place open-sans-font">راستچین</span></h5>
-                <p class="open-sans-font">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
-              </li>
+              @foreach ($qualifications as $qualification)
+                @if ($qualification->type == 'experience')
+                  <li>
+                    <div class="icon">
+                      <i class="fa fa-briefcase"></i>
+                    </div>
+                    <span class="time open-sans-font text-uppercase">{{ $qualification->period }}</span>
+                    <h5 class="poppins-font text-uppercase">{{ $qualification->title }}</h5>
+                    <p class="open-sans-font">{{ $qualification->descriptions }}</p>
+                  </li>
+                @endif
+              @endforeach
             </ul>
           </div>
         </div>
+
         <div class="col-lg-6 m-15px-tb">
           <div class="resume-box">
             <ul>
-              <li>
-                <div class="icon">
-                  <i class="fa fa-graduation-cap"></i>
-                </div>
-                <span class="time open-sans-font text-uppercase">1400</span>
-                <h5 class="poppins-font text-uppercase">مدرک مهندسی <span class="place open-sans-font">دانشگاه.
-                    ...</span></h5>
-                <p class="open-sans-font">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
-              </li>
-              <li>
-                <div class="icon">
-                  <i class="fa fa-graduation-cap"></i>
-                </div>
-                <span class="time open-sans-font text-uppercase">1400</span>
-                <h5 class="poppins-font text-uppercase">مدرک مهندسی<span class="place open-sans-font">دانشگاه.
-                    ...</span></h5>
-                <p class="open-sans-font">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
-              </li>
-              <li>
-                <div class="icon">
-                  <i class="fa fa-graduation-cap"></i>
-                </div>
-                <span class="time open-sans-font text-uppercase">1400</span>
-                <h5 class="poppins-font text-uppercase">مدرک مهندسی<span class="place open-sans-font">دانشگاه.
-                    ...</span></h5>
-                <p class="open-sans-font">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ</p>
-              </li>
+              @foreach ($qualifications as $qualification)
+                @if ($qualification->type == 'education')
+                  <li>
+                    <div class="icon">
+                      <i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <span class="time open-sans-font text-uppercase">{{ $qualification->period }}</span>
+                    <h5 class="poppins-font text-uppercase">{{ $qualification->title }}</h5>
+                    <p class="open-sans-font">{{ $qualification->descriptions }}</p>
+                  </li>
+                @endif
+              @endforeach
             </ul>
           </div>
         </div>
