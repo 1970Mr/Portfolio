@@ -1,11 +1,7 @@
-@extends('admin.layouts.app', ['title' => 'مهارت‌های من | ویرایش'])
+@extends('admin.layouts.app', ['title' => 'تجربه و تحصیلات من | ایجاد'])
 
 @php
-  $inputs = [
-      ['name' => 'name', 'title' => 'نام', 'type' => 'text'],
-      ['name' => 'value', 'title' => 'مقدار مهارت (بین 0 تا 100)', 'type' => 'number'],
-      ['name' => 'category', 'title' => 'دسته بندی', 'type' => 'text'],
-  ];
+  $inputs = [['name' => 'period', 'title' => 'دوره زمانی', 'type' => 'text'], ['name' => 'title', 'title' => 'عنوان', 'type' => 'text'], ['name' => 'descriptions', 'title' => 'توضیحات', 'type' => 'text']];
 @endphp
 
 @section('content')
@@ -14,29 +10,29 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'مهارت‌های من' => route('admin.panel.about.skill'),
-            'ویرایش' => '',
+            'تجربه و تحصیلات من' => route('admin.panel.about.qualification'),
+            'ایجاد' => '',
         ]"></x-breadcrumbs>
       </div>
 
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ویرایش مهارت‌</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skill') }}">
+            <h3>ایجاد تجربه و تحصیلات</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualification') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.skill.update', $skill->id) }}" class="row justify-content-center" method="post">
+            <form action="{{ route('admin.panel.about.qualification.store') }}" class="row justify-content-center"
+              method="post">
               @csrf
-              @method('put')
               @foreach ($inputs as $item)
                 <div class="mb-3 col-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
-                  <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
-                    value="{{ old($item['name']) ? old($item['name']) : $skill->{$item['name']} }}">
+                  <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control"
+                    id="{{ $item['name'] }}" value="{{ old($item['name']) }}">
                   @error($item['name'])
                     <div class="text-danger fs-7">
                       {{ $message }}
@@ -45,9 +41,23 @@
                 </div>
               @endforeach
 
+              <div class="mb-3 col-6">
+                <label class="form-label" for="status">نوع</label>
+                <select name="type" class="form-select form-select">
+                  @foreach ($types as $type)
+                    <option {{ old('type') ? 'selected' : '' }} value="{{ $type }}">{{ $type }}</option>
+                  @endforeach
+                </select>
+                @error('type')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                {{ old('status') || !request()->old() && $skill->status == 1 ? 'checked' : '' }}>
+                  {{ old('status') ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')

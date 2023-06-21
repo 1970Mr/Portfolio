@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => 'مهارت‌های من'])
+@extends('admin.layouts.app', ['title' => 'تجربه و تحصیلات من'])
 
 @section('content')
   <div class="content p-2 p-lg-4">
@@ -6,15 +6,15 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'مهارت‌های من' => '',
+            'تجربه و تحصیلات من' => '',
             ]"></x-breadcrumbs>
       </div>
 
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>مهارت‌های من</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skill.create') }}">
+            <h3>تجربه و تحصیلات من</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualification.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>
             </a>
@@ -25,20 +25,22 @@
                 <thead>
                   <tr>
                     <th>#</th>
+                    <th>دوره زمانی</th>
                     <th>نام</th>
-                    <th>مقدار</th>
-                    <th>دسته بندی</th>
+                    <th>توضیحات</th>
+                    <th>نوع</th>
                     <th>وضعیت</th>
                     <th>عملیات</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($skillsData as $item)
+                  @foreach ($qualifications as $item)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
+                      <td class="text-muted">{{ $item->period }}</td>
                       <td class="text-muted">{{ $item->name }}</td>
-                      <td class="text-muted">{{ $item->value }}</td>
-                      <td class="text-muted">{{ $item->category }}</td>
+                      <td class="text-muted">{{ $item->descriptions }}</td>
+                      <td class="text-muted">{{ $item->type }}</td>
                       <td class="text-muted">{{ $item->status }}</td>
                       <td>
                         <div class="dropdown">
@@ -48,10 +50,10 @@
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.about.skill.edit', ['skill' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.about.qualification.edit', ['qualification' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.about.skill.destroy', ['skill' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.about.qualification.destroy', ['qualification' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
@@ -69,7 +71,7 @@
             </div>
 
             <div class="mt-3">
-                {{ $skillsData->links() }}
+                {{ $qualifications->links() }}
             </div>
           </div>
         </div>

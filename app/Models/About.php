@@ -37,4 +37,16 @@ class About extends Model
             get: fn () => $this->github['url'],
         );
     }
+
+    public function __get($key)
+    {
+        if ($key == 'phoneNumber')
+            return parent::getAttribute(str()->snake($key));
+        return parent::getAttribute($key);
+    }
+
+    public function __set($key, $value)
+    {
+        return parent::setAttribute(str()->snake($key), $value);
+    }
 }

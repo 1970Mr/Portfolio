@@ -38,8 +38,11 @@
               <span>مهارت‌های من</span>
             </a>
           </li>
-          <li class="submenu-item">
-            <a href="#">ویرایش فروشگاه</a>
+          <li class="submenu-item {{ active_route(route('admin.panel.about.qualification')) }}">
+            <a class="sidebar-link" href="{{ route('admin.panel.about.qualification') }}">
+                <i class="bi bi-briefcase me-2"></i>
+              <span>تجربه و تحصیلات من</span>
+            </a>
           </li>
         </ul>
       </li>

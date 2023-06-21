@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Qualification;
 use Illuminate\Foundation\Http\FormRequest;
 
 class QualificationRequest extends FormRequest
@@ -23,10 +24,12 @@ class QualificationRequest extends FormRequest
      */
     public function rules()
     {
+        $types = Qualification::$types;
         return [
             'period' => 'required',
             'title' => 'required',
             'descriptions' => 'required',
+            'type' => "required|in:$types[0],$types[1]",
             'status' => 'nullable',
         ];
     }

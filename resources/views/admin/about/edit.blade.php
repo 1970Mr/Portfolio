@@ -40,7 +40,7 @@
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.personal.update', $aboutDetails->id) }}" class="row justify-content-center" method="post">
+            <form action="{{ route('admin.panel.about.personal.update', ['about' => $aboutDetails->id]) }}" class="row justify-content-center" method="post">
               @csrf
               @method('put')
               @foreach ($names as $item)
@@ -58,7 +58,7 @@
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                {{ old('status') || $aboutDetails->status == 1 ? 'checked' : '' }}>
+                {{ old('status') || !request()->old() && $aboutDetails->status == 1 ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')
