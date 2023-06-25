@@ -15,7 +15,7 @@ class QualificationSeeder extends Seeder
      */
     public function run()
     {
-        Qualification::factory(5)->sequence(
+        Qualification::factory()->createMany([
             [
                 'period' => '1401',
                 'title' => 'طراحی سایت خبری - mohebnews',
@@ -32,8 +32,8 @@ class QualificationSeeder extends Seeder
             ],
             [
                 'period' => '1402',
-                'title' => 'طراحی و توسعه همین سایت portfolio برای خودم',
-                'descriptions' => 'این سایت رو برای ارائه نمونه کارهای خودم ایجاد کردم',
+                'title' => 'طراحی و توسعه یک سایت portfolio برای خودم',
+                'descriptions' => 'یک سایت portfolio برای ارائه نمونه کارهای خودم ایجاد کردم',
                 'type' => Qualification::$types[0],
                 'status' => 1,
             ],
@@ -51,7 +51,7 @@ class QualificationSeeder extends Seeder
                 'type' => Qualification::$types[1],
                 'status' => 1,
             ],
-        )->create();
+        ]);
 
         Qualification::factory(10)->state(['status' => 0])->create();
     }

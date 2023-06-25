@@ -19,5 +19,5 @@ yarn-error.log
 
 /.vagrant
 
-my_temp.txt
-tasks.txt
+/my_temp.txt
+/TODO
