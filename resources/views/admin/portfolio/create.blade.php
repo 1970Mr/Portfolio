@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['title' => 'نمونه کار | ایجاد'])
 
 @php
-  $inputs = [['name' => 'period', 'title' => 'دوره زمانی', 'type' => 'text'], ['name' => 'title', 'title' => 'عنوان', 'type' => 'text'], ['name' => 'descriptions', 'title' => 'توضیحات', 'type' => 'text']];
+  $inputs = [['name' => 'title', 'title' => 'عنوان', 'type' => 'text'], ['name' => 'project_type', 'title' => 'نوع پروژه', 'type' => 'text'], ['name' => 'customer', 'title' => 'مشتری', 'type' => 'text'], ['name' => 'link', 'title' => 'لینک پروژه', 'type' => 'text'], ['name' => 'technology', 'title' => 'تکنولوژی', 'type' => 'text']];
 @endphp
 
 @section('content')
@@ -24,9 +24,10 @@
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
+
+
           <div class="card-body">
-            <form action="{{ route('admin.panel.portfolio.store') }}" class="row justify-content-center"
-              method="post">
+            <form action="{{ route('admin.panel.portfolio.store') }}" class="row justify-content-center" method="post">
               @csrf
               @foreach ($inputs as $item)
                 <div class="mb-3 col-6">
@@ -41,36 +42,94 @@
                 </div>
               @endforeach
 
-              <div class="mb-3 col-6">
-                <label class="form-label" for="status">نوع</label>
-                <select name="type" class="form-select form-select">
-                  @foreach ($types as $type)
-                    <option {{ old('type') == $type ? 'selected' : '' }} value="{{ $type }}">{{ $type }}</option>
-                  @endforeach
-                </select>
-                @error('type')
-                  <div class="text-danger fs-7">
-                    {{ $message }}
-                  </div>
-                @enderror
-              </div>
+              <ul class="nav nav-tabs mt-3">
+                <li class="nav-item">
+                  <a href="#tab1" class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1" tab-number="1">رسانه تصویری</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#tab2" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2" tab-number="2">رسانه اسلایدری</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#tab3" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3" tab-number="3">رسانه ویدئویی</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#tab4" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4" tab-number="4">رسانه ویدئویی (آپلود خارج از
+                    سایت)</a>
+                </li>
+              </ul>
 
-              <div class="mb-3 form-check d-flex justify-content-center">
-                <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                  {{ old('status') ? 'checked' : '' }}>
-                <label class="form-check-label" for="status">وضعیت</label>
-              </div>
-              @error('status')
-                <div class="text-danger fs-7 text-center" style="margin: -1rem 0 1rem 0;">
-                  {{ $message }}
+              <div class="tab-content mt-4">
+                <div class="tab-pane fade show active" id="tab1">
+                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[0] }}">
+                    tab1
                 </div>
-              @enderror
 
-              <button type="submit" class="btn btn-primary w-25">ارسال</button>
-            </form>
+                <div class="tab-pane fade" id="tab2">
+                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[1] }}">
+                    tab2
+                </div>
+                <div class="tab-pane fade" id="tab3">
+                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[2] }}">
+                    tab3
+                </div>
+                <div class="tab-pane fade" id="tab4">
+                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[3] }}">
+                    tab4
+                </div>
+
+                <div class="my-3 form-check d-flex justify-content-center">
+                    <input type="checkbox" name="status" class="form-check-input me-2" id="status"
+                      {{ old('status') ? 'checked' : '' }}>
+                    <label class="form-check-label" for="status">وضعیت</label>
+                  </div>
+                  @error('status')
+                    <div class="text-danger fs-7 text-center" style="margin: -1rem 0 1rem 0;">
+                      {{ $message }}
+                    </div>
+                  @enderror
+
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary w-25">ارسال</button>
+                  </div>
+                </form>
+              </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  </div>
 @endsection
+
+@push('scripts')
+<script>
+    window.onload = function() {
+            let tabs = document.querySelectorAll('.nav-tabs .nav-link');
+            disableInputs();
+            let inputs = document.querySelectorAll('#tab1 *');
+            enableInputs(inputs);
+
+
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].addEventListener('click', function() {
+                    disableInputs();
+                    let inputs = document.querySelectorAll('#tab' + (i+1) + ' *');
+                    enableInputs(inputs);
+                });
+            }
+
+            function disableInputs() {
+                let inputs = document.getElementsByClassName('media');
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].disabled = true;
+                }
+            }
+
+            function enableInputs(inputs) {
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].disabled = false;
+                }
+            }
+        };
+</script>
+@endpush
