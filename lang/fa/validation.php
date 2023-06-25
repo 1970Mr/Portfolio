@@ -218,5 +218,8 @@ return [
         'language'                 => 'زبان',
         'category'                 => "دسته‌بندی",
         'value'                    => "مقدار",
+        'period'                   => "دوره زمانی",
+        'descriptions'             => "توضیحات",
+        'type'                     => "نوع",
     ],
 ];
