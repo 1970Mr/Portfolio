@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SkillController;
 use Illuminate\Support\Facades\Route;
@@ -44,9 +45,12 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
     });
     Route::get('/about', fn () => to_route('admin.panel.about.personal'))->name('about');
 
-    Route::get('/portfolio', function () {
-        return view('admin.portfolio');
-    })->name('portfolio');
+    Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
+    Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
+    Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store');
+    Route::get('/portfolio/edit/{qualification}', [PortfolioController::class, 'edit'])->name('portfolio.edit');
+    Route::put('/portfolio/{qualification}', [PortfolioController::class, 'update'])->name('portfolio.update');
+    Route::delete('/portfolio/{qualification}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');
 
     Route::get('/contact', function () {
         return view('admin.contact');

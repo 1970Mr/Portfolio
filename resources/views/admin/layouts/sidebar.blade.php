@@ -5,40 +5,40 @@
   </div>
   <div class="mt-4">
     <ul class="list-unstyled">
-      <li class="sidebar-item {{ active_route(route('admin.panel.dashboard')) }}">
+      <li class="sidebar-item {{ active_route('admin.panel.dashboard') }}">
         <a class="sidebar-link" href="{{ route('admin.panel.dashboard') }}">
           <i class="me-2 bi bi-grid-fill"></i>
           <span>داشبورد</span>
         </a>
       </li>
 
-      <li class="sidebar-item {{ active_route(route('admin.panel.home')) }}">
+      <li class="sidebar-item {{ active_route('admin.panel.home') }}">
         <a class="sidebar-link" href="{{ route('admin.panel.home') }}">
           <i class="me-2 bi bi-house-door"></i>
           <span>خانه</span>
         </a>
       </li>
 
-      <li x-data="{{ active_route(route('admin.panel.about')) == 'active' ? '{dropdown, open: true}' : 'dropdown' }}" class="sidebar-item">
+      <li x-data="{{ active_route('admin.panel.about') == 'active' ? '{dropdown, open: true}' : 'dropdown' }}" class="sidebar-item">
         <div @click="toggle" class="sidebar-link">
           <i class="bi bi-file-person me-2"></i>
           <span>درباره من</span>
           <i class="ms-auto bi bi-chevron-down"></i>
         </div>
         <ul x-show="open" x-transition class="submenu">
-          <li class="submenu-item {{ active_route( route('admin.panel.about.personal') ) }}">
+          <li class="submenu-item {{ active_route('admin.panel.about.personal') }}">
             <a class="sidebar-link" href="{{ route('admin.panel.about.personal') }}">
               <i class="bi bi-file-earmark-person me-2"></i>
               <span>اطلاعات شخصی</span>
             </a>
           </li>
-          <li class="submenu-item {{ active_route(route('admin.panel.about.skill')) }}">
+          <li class="submenu-item {{ active_route('admin.panel.about.skill') }}">
             <a class="sidebar-link" href="{{ route('admin.panel.about.skill') }}">
               <i class="bi bi-wrench-adjustable-circle me-2"></i>
               <span>مهارت‌های من</span>
             </a>
           </li>
-          <li class="submenu-item {{ active_route(route('admin.panel.about.qualification')) }}">
+          <li class="submenu-item {{ active_route('admin.panel.about.qualification') }}">
             <a class="sidebar-link" href="{{ route('admin.panel.about.qualification') }}">
                 <i class="bi bi-briefcase me-2"></i>
               <span>تجربه و تحصیلات من</span>
