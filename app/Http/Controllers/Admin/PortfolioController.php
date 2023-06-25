@@ -19,7 +19,8 @@ class PortfolioController extends Controller
     public function create()
     {
         $types = Qualification::$types;
-        return view('admin.portfolio.create', compact('types'));
+        $mediaTypes = Portfolio::$mediaTypes;
+        return view('admin.portfolio.create', compact('mediaTypes', 'types'));
     }
 
     public function store(QualificationRequest $request)
@@ -40,13 +41,13 @@ class PortfolioController extends Controller
         $request['status'] = $request->has('status');
         $qualification->updateOrFail($request->all());
 
-		return to_route('admin.panel.about.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+        return to_route('admin.panel.about.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Qualification $qualification)
     {
         $qualification->delete();
 
-		return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+        return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     }
 }
