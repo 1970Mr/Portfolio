@@ -1,0 +1,9 @@
+portfolio:
+
+model (factory, seeder, migration)
+
+controller
+
+view in panel
+
+view in user interface
