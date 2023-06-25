@@ -1,16 +1,17 @@
 <?php
 
 // $special_route for error time (for when route want variables)
-function active_route($route_path, $exactly = false)
+function active_route($route, $exactly = false)
 {
+    $route = route($route);
+
     if ($exactly) {
-        if  ( $route_path == url()->current() ) return 'active';
+        if  ( $route == url()->current() ) return 'active';
         return;
     }
-    // dump($route_path);
-    $route_path = str_replace('.', '\.', $route_path);
-    $route_path = str_replace('/', '\/', $route_path);
-    if  ( preg_match("/$route_path/", url()->current()) ) return 'active';
+
+    $route = str_replace('/', '\/', $route);
+    if  ( preg_match("/$route/", url()->current()) ) return 'active';
 }
 
 // active_route(['admin.panel.home', 'admin.panel.home.create', 'admin.panel.home.edit'], 'home/edit/')
