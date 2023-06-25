@@ -15,7 +15,7 @@ class SkillSeeder extends Seeder
      */
     public function run()
     {
-        Skill::factory(14)->sequence(
+        Skill::factory()->createMany([
             [
                 'name' => 'php',
                 'value' => 90,
@@ -100,7 +100,7 @@ class SkillSeeder extends Seeder
                 'category' => 'devops',
                 'status' => 1,
             ],
-        )->create();
+        ]);
 
         Skill::factory(10)->state(['status' => false])->create();
     }
