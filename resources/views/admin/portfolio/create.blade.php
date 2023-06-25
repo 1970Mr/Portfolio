@@ -44,17 +44,17 @@
 
               <ul class="nav nav-tabs mt-3">
                 <li class="nav-item">
-                  <a href="#tab1" class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1" tab-number="1">رسانه تصویری</a>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه تصویری</button>
                 </li>
                 <li class="nav-item">
-                  <a href="#tab2" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2" tab-number="2">رسانه اسلایدری</a>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2" type="button">رسانه اسلایدری</button>
                 </li>
                 <li class="nav-item">
-                  <a href="#tab3" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3" tab-number="3">رسانه ویدئویی</a>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3" type="button">رسانه ویدئویی</button>
                 </li>
                 <li class="nav-item">
-                  <a href="#tab4" class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4" tab-number="4">رسانه ویدئویی (آپلود خارج از
-                    سایت)</a>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود خارج از
+                    سایت)</button>
                 </li>
               </ul>
 
