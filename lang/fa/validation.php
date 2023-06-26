@@ -221,5 +221,13 @@ return [
         'period'                   => "دوره زمانی",
         'descriptions'             => "توضیحات",
         'type'                     => "نوع",
+        'media_type'               => "نوع رسانه",
+        'project_type'             => "نوع پروژه",
+        'customer'                 => "مشتری",
+        'link'                     => "لینک",
+        'technology'               => "تکنولوژی",
+        'media'                    => "رسانه",
+        'slider'                   => "اسلایدر",
+        'slider.*'                 => "تصویر",
     ],
 ];

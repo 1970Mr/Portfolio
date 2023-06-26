@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\PortfolioRequest;
 use App\Http\Requests\Admin\QualificationRequest;
 use App\Models\Portfolio;
 use App\Models\Qualification;
@@ -22,10 +23,11 @@ class PortfolioController extends Controller
         return view('admin.portfolio.create', compact('mediaTypes'));
     }
 
-    public function store(QualificationRequest $request)
+    public function store(PortfolioRequest $request)
     {
+        dd($request);
         $request['status'] = $request->has('status');
-        Qualification::create($request->all());
+        Portfolio::create($request->all());
         return to_route('admin.panel.about.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
