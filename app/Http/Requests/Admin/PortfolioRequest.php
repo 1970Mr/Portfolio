@@ -9,9 +9,14 @@ class PortfolioRequest extends FormRequest
 {
     private $mediaTypes = [];
     private $rules = [];
+    private $isRequired = [];
 
     public function __construct()
     {
+        $this->isRequired = 'required';
+        if(request()->has('_method') == 'put')
+            $this->isRequired = 'nullable';
+
         $this->mediaTypes = Portfolio::$mediaTypes;
 
         $this->rules = [
@@ -57,25 +62,25 @@ class PortfolioRequest extends FormRequest
     private function imageRules()
     {
         session()->flash('media.image', true);
-        return $this->rules['image'] = 'required|file|image|max:4096';
+        return $this->rules['image'] = "{$this->isRequired}|file|image|max:4096";
     }
 
     private function sliderRules()
     {
         session()->flash('media.slider', true);
-        $this->rules['slider'] = 'required|array|min:3';
+        $this->rules['slider'] = "{$this->isRequired}|array|min:3";
         return $this->rules['slider.*'] = 'file|image|max:4096';
     }
 
     private function videoRules()
     {
         session()->flash('media.video', true);
-        return $this->rules['video'] = 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4|max:30720';
+        return $this->rules['video'] = "{$this->isRequired}|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4|max:30720";
     }
 
     private function videoLinkRules()
     {
         session()->flash('media.video_link', true);
-        return $this->rules['video_link'] = 'required|url';
+        return $this->rules['video_link'] = "{$this->isRequired}|url";
     }
 }

@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PortfolioRequest;
-use App\Http\Requests\Admin\QualificationRequest;
 use App\Models\Portfolio;
-use App\Models\Qualification;
 
 class PortfolioController extends Controller
 {
@@ -25,7 +23,6 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request)
     {
         $request['status'] = $request->has('status');
-        $media = [];
         if ($request->media_type == Portfolio::$mediaTypes[0])
             $media = $this->imageUpload($request);
         if ($request->media_type == Portfolio::$mediaTypes[1])
@@ -40,14 +37,32 @@ class PortfolioController extends Controller
 
     public function edit(Portfolio $portfolio)
     {
-        return view('admin.portfolio.edit', compact('portfolio'));
+        $mediaTypes = Portfolio::$mediaTypes;
+        return view('admin.portfolio.edit', compact('portfolio', 'mediaTypes'));
     }
 
     public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
         $request['status'] = $request->has('status');
-        $portfolio->updateOrFail($request->all());
+        $inputs = $request->all();
+        unset($inputs['media_type']);
+        if(
+            $request->hasFile('image') &&
+            $request->hasFile('slider') &&
+            $request->hasFile('video') &&
+            $request->hasFile('video_link')
+        )
+        {
+            if ($request->media_type == Portfolio::$mediaTypes[0])
+                $media = $this->imageUpload($request);
+            if ($request->media_type == Portfolio::$mediaTypes[1])
+                $media = $this->sliderUpload($request);
 
+            $inputs['media'] = $media;
+            $inputs['media_type'] = $request['media_type'];
+        }
+
+        $portfolio->updateOrFail($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
