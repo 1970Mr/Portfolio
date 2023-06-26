@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\PortfolioRequest;
 use App\Http\Requests\Admin\QualificationRequest;
 use App\Models\Portfolio;
 use App\Models\Qualification;
-use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
@@ -25,30 +24,76 @@ class PortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
-        dd($request);
         $request['status'] = $request->has('status');
-        Portfolio::create($request->all());
-        return to_route('admin.panel.about.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+        $media = [];
+        if ($request->media_type == Portfolio::$mediaTypes[0])
+            $media = $this->imageUpload($request);
+        if ($request->media_type == Portfolio::$mediaTypes[1])
+            $media = $this->sliderUpload($request);
+
+        $inputs = $request->all();
+        $inputs['media'] = $media;
+
+        Portfolio::create($inputs);
+        return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
-    public function edit(Qualification $qualification)
+    public function edit(Portfolio $portfolio)
     {
-        $types = Qualification::$types;
-        return view('admin.portfolio.edit', compact('qualification', 'types'));
+        return view('admin.portfolio.edit', compact('portfolio'));
     }
 
-    public function update(QualificationRequest $request, Qualification $qualification)
+    public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
         $request['status'] = $request->has('status');
-        $qualification->updateOrFail($request->all());
+        $portfolio->updateOrFail($request->all());
 
-        return to_route('admin.panel.about.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+        return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
-    public function destroy(Qualification $qualification)
+    public function destroy(Portfolio $portfolio)
     {
-        $qualification->delete();
+        if ($portfolio->media_type == Portfolio::$mediaTypes[0])
+            $this->imageDelete($portfolio);
+        if ($portfolio->media_type == Portfolio::$mediaTypes[1])
+            $this->sliderDelete($portfolio);
+
+        $portfolio->delete();
 
         return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+    }
+
+    private function imageUpload($request)
+    {
+        $media = ['type' => Portfolio::$mediaTypes[0]];
+        $media['image'] = image_upload($request->file('image'), public_path('images/portfolio'));
+        return $media;
+    }
+
+    private function sliderUpload($request)
+    {
+        // $media = ['type' => Portfolio::$mediaTypes[0]];
+        // $media['image'] = image_upload($request->file(), public_path('images/portfolio'));
+        // return $media;
+    }
+
+    private function imageDelete($portfolio)
+    {
+        try {
+            $imagePath = public_path($portfolio->media['image']['relative_path']);
+            image_delete($imagePath);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('admin.panel.home')->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        }
+    }
+
+    private function sliderDelete($portfolio)
+    {
+        // try {
+        //     $imagePath = public_path($portfolio->media['image']['relative_path']);
+        //     image_delete($imagePath);
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->with('admin.panel.home')->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        // }
     }
 }
