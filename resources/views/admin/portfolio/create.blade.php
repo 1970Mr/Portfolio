@@ -44,92 +44,106 @@
 
               <ul class="nav nav-tabs mt-3">
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه تصویری</button>
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه
+                    تصویری</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2" type="button">رسانه اسلایدری</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2" type="button">رسانه
+                    اسلایدری</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3" type="button">رسانه ویدئویی</button>
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3" type="button">رسانه
+                    ویدئویی</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود خارج از
+                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود
+                    خارج از
                     سایت)</button>
                 </li>
               </ul>
 
               <div class="tab-content mt-4">
                 <div class="tab-pane fade show active" id="tab1">
-                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[0] }}">
-                    tab1
+                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[0] }}">
+
+                  <div class="mb-3 col-6">
+                    <label for="media" class="form-label">تصویر</label>
+                    <input type="file" name="media" class="form-control"
+                      id="media" value="{{ old($item['name']) }}">
+                    @error('media')
+                      <div class="text-danger fs-7">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
                 </div>
 
                 <div class="tab-pane fade" id="tab2">
-                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[1] }}">
-                    tab2
+                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[1] }}">
+                  tab2
                 </div>
                 <div class="tab-pane fade" id="tab3">
-                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[2] }}">
-                    tab3
+                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[2] }}">
+                  tab3
                 </div>
                 <div class="tab-pane fade" id="tab4">
-                    <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[3] }}">
-                    tab4
+                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[3] }}">
+                  tab4
                 </div>
 
                 <div class="my-3 form-check d-flex justify-content-center">
-                    <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                      {{ old('status') ? 'checked' : '' }}>
-                    <label class="form-check-label" for="status">وضعیت</label>
+                  <input type="checkbox" name="status" class="form-check-input me-2" id="status"
+                    {{ old('status') ? 'checked' : '' }}>
+                  <label class="form-check-label" for="status">وضعیت</label>
+                </div>
+                @error('status')
+                  <div class="text-danger fs-7 text-center" style="margin: -1rem 0 1rem 0;">
+                    {{ $message }}
                   </div>
-                  @error('status')
-                    <div class="text-danger fs-7 text-center" style="margin: -1rem 0 1rem 0;">
-                      {{ $message }}
-                    </div>
-                  @enderror
+                @enderror
 
-                  <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary w-25">ارسال</button>
-                  </div>
-                </form>
-              </div>
+                <div class="d-flex justify-content-center">
+                  <button type="submit" class="btn btn-primary w-25">ارسال</button>
+                </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
   </div>
+  </div>
 @endsection
 
 @push('scripts')
-<script>
+  <script>
     window.onload = function() {
-            let tabs = document.querySelectorAll('.nav-tabs .nav-link');
-            disableInputs();
-            let inputs = document.querySelectorAll('#tab1 *');
-            enableInputs(inputs);
+      let tabs = document.querySelectorAll('.nav-tabs .nav-link');
+      disableInputs();
+      let inputs = document.querySelectorAll('#tab1 *');
+      enableInputs(inputs);
 
 
-            for (let i = 0; i < tabs.length; i++) {
-                tabs[i].addEventListener('click', function() {
-                    disableInputs();
-                    let inputs = document.querySelectorAll('#tab' + (i+1) + ' *');
-                    enableInputs(inputs);
-                });
-            }
+      for (let i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener('click', function() {
+          disableInputs();
+          let inputs = document.querySelectorAll('#tab' + (i + 1) + ' *');
+          enableInputs(inputs);
+        });
+      }
 
-            function disableInputs() {
-                let inputs = document.getElementsByClassName('media');
-                for (let i = 0; i < inputs.length; i++) {
-                    inputs[i].disabled = true;
-                }
-            }
+      function disableInputs() {
+        let inputs = document.getElementsByClassName('media');
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = true;
+        }
+      }
 
-            function enableInputs(inputs) {
-                for (var i = 0; i < inputs.length; i++) {
-                    inputs[i].disabled = false;
-                }
-            }
-        };
-</script>
+      function enableInputs(inputs) {
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = false;
+        }
+      }
+    };
+  </script>
 @endpush

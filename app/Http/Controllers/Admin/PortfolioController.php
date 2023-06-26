@@ -18,9 +18,8 @@ class PortfolioController extends Controller
 
     public function create()
     {
-        $types = Qualification::$types;
         $mediaTypes = Portfolio::$mediaTypes;
-        return view('admin.portfolio.create', compact('mediaTypes', 'types'));
+        return view('admin.portfolio.create', compact('mediaTypes'));
     }
 
     public function store(QualificationRequest $request)
