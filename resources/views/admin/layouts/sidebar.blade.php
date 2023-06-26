@@ -74,25 +74,6 @@
           <span>پروفایل</span>
         </a>
       </li>
-
-      <li x-data="dropdown" class="sidebar-item">
-        <div @click="toggle" class="sidebar-link">
-          <i class="me-2 bi bi-shop"></i>
-          <span>فروشگاه</span>
-          <i class="ms-auto bi bi-chevron-down"></i>
-        </div>
-        <ul x-show="open" x-transition class="submenu">
-          <li class="submenu-item">
-            <a href="#">لیست فروشگاه ها</a>
-          </li>
-          <li class="submenu-item">
-            <a href="#">ایجاد فروشگاه</a>
-          </li>
-          <li class="submenu-item">
-            <a href="#">ویرایش فروشگاه</a>
-          </li>
-        </ul>
-      </li>
     </ul>
   </div>
 </section>
