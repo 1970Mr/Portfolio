@@ -54,10 +54,10 @@
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.portfolio.edit', ['qualification' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.portfolio.edit', ['portfolio' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.portfolio.destroy', ['qualification' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.portfolio.destroy', ['portfolio' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
