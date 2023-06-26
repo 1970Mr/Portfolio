@@ -14,29 +14,6 @@ function active_route($route, $exactly = false)
     if  ( preg_match("/$route/", url()->current()) ) return 'active';
 }
 
-// active_route(['admin.panel.home', 'admin.panel.home.create', 'admin.panel.home.edit'], 'home/edit/')
-// function active_route($route_name, $special_route = null)
-// {
-//     try {
-
-//         if (is_string($route_name)) {
-//             return route($route_name) == url()->current() ? 'active' : '';
-//         }
-
-//         foreach ($route_name as $item) {
-//             if (route($item) == url()->current()) return 'active';
-//         }
-
-//         $route_path = str_replace('.', '\.', route($route_name[0]));
-//         $route_path = str_replace('/', '\/', $route_path);
-//         if  ( preg_match("/$route_path/", url()->current()) ) return 'active';
-
-//         return '';
-//     } catch (\Exception $e) {
-//         if (strpos(url()->current(), $special_route)) return 'active';
-//     }
-// }
-
 function text_limitation($text, $limit = 50)
 {
     if (mb_strlen($text) <= $limit) return $text;
