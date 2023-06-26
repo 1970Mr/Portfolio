@@ -27,7 +27,8 @@
 
 
           <div class="card-body">
-            <form action="{{ route('admin.panel.portfolio.store') }}" class="row justify-content-center" method="post">
+            <form enctype="multipart/form-data" action="{{ route('admin.panel.portfolio.store') }}"
+              class="row justify-content-center" method="post">
               @csrf
               @foreach ($inputs as $item)
                 <div class="mb-3 col-6">
@@ -44,33 +45,50 @@
 
               <ul class="nav nav-tabs mt-3">
                 <li class="nav-item">
-                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه
+                  <button
+                    class="nav-link
+                  {{ !session('media.has') ? 'active' : '' }}
+                  {{ session("media.{$mediaTypes[0]}") ? 'active' : '' }}"
+                    data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه
                     تصویری</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab2" type="button">رسانه
+                  <button class="nav-link {{ session("media.{$mediaTypes[1]}") ? 'active' : '' }}" data-bs-toggle="tab"
+                    data-bs-target="#tab2" type="button">رسانه
                     اسلایدری</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab3" type="button">رسانه
+                  <button class="nav-link {{ session("media.{$mediaTypes[2]}") ? 'active' : '' }}" data-bs-toggle="tab"
+                    data-bs-target="#tab3" type="button">رسانه
                     ویدئویی</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود
+                  <button class="nav-link {{ session("media.{$mediaTypes[3]}") ? 'active' : '' }}" data-bs-toggle="tab"
+                    data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود
                     خارج از
                     سایت)</button>
                 </li>
               </ul>
 
               <div class="tab-content mt-4">
-                <div class="tab-pane fade show active" id="tab1">
-                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[0] }}">
+                @error('media_type')
+                  <div class="text-danger fs-7 my-2">
+                    {{ $message }}
+                  </div>
+                @enderror
+
+                <div
+                  class="tab-pane fade
+                {{ !session('media.has') ? 'show active' : '' }}
+                {{ session("media.{$mediaTypes[0]}") ? 'show active' : '' }}
+                "
+                  id="tab1">
+                  <input type="hidden" name="media_type" value="{{ $mediaTypes[0] }}">
 
                   <div class="mb-3 col-6">
-                    <label for="media" class="form-label">تصویر</label>
-                    <input type="file" name="media" class="form-control"
-                      id="media" value="{{ old($item['name']) }}">
-                    @error('media')
+                    <label for="image" class="form-label">تصویر</label>
+                    <input type="file" name="image" class="form-control" id="image">
+                    @error('image')
                       <div class="text-danger fs-7">
                         {{ $message }}
                       </div>
@@ -78,52 +96,77 @@
                   </div>
                 </div>
 
-                <div class="tab-pane fade" id="tab2">
-                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[1] }}">
-                  tab2
+                <div class="tab-pane fade {{ session("media.{$mediaTypes[1]}") ? 'show active' : '' }}" id="tab2">
+                  <input type="hidden" name="media_type" value="{{ $mediaTypes[1] }}">
+
+                  <div class="row justify-content-center">
+                    @error('slider')
+                      <div class="text-danger fs-7 text-center mb-3">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                    @error('slider.*')
+                      <div class="text-danger fs-7 text-center mb-3">
+                        {{ $message }}
+                      </div>
+                    @enderror
+
+                    <div class="mb-3 col-6">
+                      <label for="slider" class="form-label">تصویر</label>
+                      <input type="file" name="slider[]" class="form-control" id="slider">
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label for="slider" class="form-label">تصویر</label>
+                      <input type="file" name="slider[]" class="form-control" id="slider">
+                    </div>
+                    <div class="mb-3 col-6">
+                      <label for="slider" class="form-label">تصویر</label>
+                      <input type="file" name="slider[]" class="form-control" id="slider">
+                    </div>
+                  </div>
                 </div>
-                <div class="tab-pane fade" id="tab3">
-                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[2] }}">
+
+                <div class="tab-pane fade {{ session("media.{$mediaTypes[2]}") ? 'show active' : '' }}" id="tab3">
+                  <input type="hidden" name="project_type" value="{{ $mediaTypes[2] }}">
                   tab3
                 </div>
-                <div class="tab-pane fade" id="tab4">
-                  <input class="media" type="hidden" name="project_type" value="{{ $mediaTypes[3] }}">
+
+                <div class="tab-pane fade {{ session("media.{$mediaTypes[3]}") ? 'show active' : '' }}" id="tab4">
+                  <input type="hidden" name="project_type" value="{{ $mediaTypes[3] }}">
                   tab4
                 </div>
+              </div>
 
-                <div class="my-3 form-check d-flex justify-content-center">
-                  <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                    {{ old('status') ? 'checked' : '' }}>
-                  <label class="form-check-label" for="status">وضعیت</label>
+              <div class="my-3 form-check d-flex justify-content-center">
+                <input type="checkbox" name="status" class="form-check-input me-2" id="status"
+                  {{ old('status') ? 'checked' : '' }}>
+                <label class="form-check-label" for="status">وضعیت</label>
+              </div>
+              @error('status')
+                <div class="text-danger fs-7 text-center" style="margin: -1rem 0 1rem 0;">
+                  {{ $message }}
                 </div>
-                @error('status')
-                  <div class="text-danger fs-7 text-center" style="margin: -1rem 0 1rem 0;">
-                    {{ $message }}
-                  </div>
-                @enderror
+              @enderror
 
-                <div class="d-flex justify-content-center">
-                  <button type="submit" class="btn btn-primary w-25">ارسال</button>
-                </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary w-25">ارسال</button>
+              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
-  </div>
 @endsection
 
 @push('scripts')
   <script>
     window.onload = function() {
-      let tabs = document.querySelectorAll('.nav-tabs .nav-link');
       disableInputs();
-      let inputs = document.querySelectorAll('#tab1 *');
+      let inputs = document.querySelectorAll('.tab-pane.active *');
       enableInputs(inputs);
 
-
+      let tabs = document.querySelectorAll('.nav-tabs .nav-link');
       for (let i = 0; i < tabs.length; i++) {
         tabs[i].addEventListener('click', function() {
           disableInputs();
@@ -133,7 +176,8 @@
       }
 
       function disableInputs() {
-        let inputs = document.getElementsByClassName('media');
+        let inputs = document.querySelectorAll('.tab-content input');
+        console.log(inputs);
         for (let i = 0; i < inputs.length; i++) {
           inputs[i].disabled = true;
         }

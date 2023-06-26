@@ -7,12 +7,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PortfolioRequest extends FormRequest
 {
-    private $mediaTypes;
+    private $mediaTypes = [];
     private $rules = [];
 
     public function __construct()
     {
-        $this->mediaTypes = Portfolio::$mediaTypes[0];
+        $this->mediaTypes = Portfolio::$mediaTypes;
 
         $this->rules = [
             'title' => 'required',
@@ -31,7 +31,6 @@ class PortfolioRequest extends FormRequest
      */
     public function authorize()
     {
-        // $this->mediaTypes = Portfolio::$mediaTypes[0]; TDOD: fix this
         return true;
     }
 
@@ -43,42 +42,40 @@ class PortfolioRequest extends FormRequest
     public function rules()
     {
         request()->validate([
-            'media_type' => "required|in:$this->mediaTypes[0], $this->mediaTypes[1], $this->mediaTypes[2], $this->mediaTypes[3]",
+            'media_type' => "required|in:{$this->mediaTypes[0]},{$this->mediaTypes[1]},{$this->mediaTypes[2]},{$this->mediaTypes[3]}",
         ]);
+        session()->flash('media.has', true);
 
-        if (request()['media_type'] == 'image') $this->rules[] = $this->imageRules();
-        if (request()['media_type'] == 'slider') $this->rules[] = $this->sliderRules();
-        if (request()['media_type'] == 'video') $this->rules[] = $this->videoRules();
-        if (request()['media_type'] == 'video_link') $this->rules[] = $this->videoLinkRules();
+        if (request()['media_type'] == 'image') $this->imageRules();
+        if (request()['media_type'] == 'slider') $this->sliderRules();
+        if (request()['media_type'] == 'video') $this->videoRules();
+        if (request()['media_type'] == 'video_link') $this->videoLinkRules();
 
         return $this->rules;
     }
 
     private function imageRules()
     {
-        return [
-            'media' => 'required|file|image|size:4096',
-        ];
+        session()->flash('media.image', true);
+        return $this->rules['image'] = 'required|file|image|max:4096';
     }
 
     private function sliderRules()
     {
-        return [
-            'media.*' => 'required|file|image|size:4096',
-        ];
+        session()->flash('media.slider', true);
+        $this->rules['slider'] = 'required|array|min:3';
+        return $this->rules['slider.*'] = 'file|image|max:4096';
     }
 
     private function videoRules()
     {
-        return [
-            'media' => 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4|max:30720',
-        ];
+        session()->flash('media.video', true);
+        return $this->rules['video'] = 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4|max:30720';
     }
 
     private function videoLinkRules()
     {
-        return [
-            'media' => 'required|url',
-        ];
+        session()->flash('media.video_link', true);
+        return $this->rules['video_link'] = 'required|url';
     }
 }
