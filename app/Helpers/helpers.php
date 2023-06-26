@@ -22,6 +22,28 @@ function text_limitation($text, $limit = 50)
 
 function image_upload($file, $destinationPath)
 {
+    return file_upload($file, $destinationPath);
+}
+
+function image_delete($path)
+{
+    if (file_exists($path)) unlink($path);
+
+    //   try {
+    //     if (!file_exists($path)) throw new Exception('Not Implemented');
+    //     unlink($path);
+    //   } catch (Exception $e) {
+    //     return abort(501, $e->getMessage());
+    //   }
+}
+
+function video_upload($file, $destinationPath)
+{
+    return file_upload($file, $destinationPath);
+}
+
+function file_upload($file, $destinationPath)
+{
     try {
         // check has file
         if (is_null($file)) throw new Exception('Not Implemented');
@@ -41,16 +63,4 @@ function image_upload($file, $destinationPath)
         // return error page
         return abort(501, $e->getMessage());
     }
-}
-
-function image_delete($path)
-{
-    if (file_exists($path)) unlink($path);
-
-    //   try {
-    //     if (!file_exists($path)) throw new Exception('Not Implemented');
-    //     unlink($path);
-    //   } catch (Exception $e) {
-    //     return abort(501, $e->getMessage());
-    //   }
 }

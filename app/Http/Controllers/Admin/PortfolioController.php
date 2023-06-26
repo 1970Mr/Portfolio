@@ -83,13 +83,6 @@ class PortfolioController extends Controller
         return $media;
     }
 
-    private function sliderUpload($request)
-    {
-        // $media = ['type' => Portfolio::$mediaTypes[0]];
-        // $media['image'] = image_upload($request->file(), public_path('images/portfolio'));
-        // return $media;
-    }
-
     private function imageDelete($portfolio)
     {
         try {
@@ -100,6 +93,13 @@ class PortfolioController extends Controller
         }
     }
 
+    private function sliderUpload($request)
+    {
+        // $media = ['type' => Portfolio::$mediaTypes[0]];
+        // $media['image'] = image_upload($request->file(), public_path('images/portfolio'));
+        // return $media;
+    }
+    
     private function sliderDelete($portfolio)
     {
         // try {
