@@ -52,7 +52,7 @@
                             data-bs-toggle="dropdown" aria-expanded="false">
                             عملیات
                           </button>
-                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
                                 href="{{ route('admin.panel.portfolio.edit', ['portfolio' => $item->id]) }}">ویرایش</a>
                             </li>

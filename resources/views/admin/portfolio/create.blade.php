@@ -25,7 +25,6 @@
             </a>
           </div>
 
-
           <div class="card-body">
             <form enctype="multipart/form-data" action="{{ route('admin.panel.portfolio.store') }}"
               class="row justify-content-center" method="post">
@@ -77,6 +76,7 @@
                   </div>
                 @enderror
 
+                {{-- tab1 --}}
                 <div
                   class="tab-pane fade
                 {{ !session('media.has') ? 'show active' : '' }}
@@ -96,6 +96,7 @@
                   </div>
                 </div>
 
+                {{-- tab2 --}}
                 <div class="tab-pane fade {{ session("media.{$mediaTypes[1]}") ? 'show active' : '' }}" id="tab2">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[1] }}">
 
@@ -126,13 +127,15 @@
                   </div>
                 </div>
 
+                {{-- tab3 --}}
                 <div class="tab-pane fade {{ session("media.{$mediaTypes[2]}") ? 'show active' : '' }}" id="tab3">
-                  <input type="hidden" name="project_type" value="{{ $mediaTypes[2] }}">
+                  <input type="hidden" name="media_type" value="{{ $mediaTypes[2] }}">
                   tab3
                 </div>
 
+                {{-- tab4 --}}
                 <div class="tab-pane fade {{ session("media.{$mediaTypes[3]}") ? 'show active' : '' }}" id="tab4">
-                  <input type="hidden" name="project_type" value="{{ $mediaTypes[3] }}">
+                  <input type="hidden" name="media_type" value="{{ $mediaTypes[3] }}">
                   tab4
                 </div>
               </div>
