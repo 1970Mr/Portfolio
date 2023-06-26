@@ -47,9 +47,9 @@ class PortfolioController extends Controller
         $inputs = $request->all();
         unset($inputs['media_type']);
         if(
-            $request->hasFile('image') &&
-            $request->hasFile('slider') &&
-            $request->hasFile('video') &&
+            $request->hasFile('image') ||
+            $request->hasFile('slider') ||
+            $request->hasFile('video') ||
             $request->hasFile('video_link')
         )
         {
@@ -58,6 +58,7 @@ class PortfolioController extends Controller
             if ($request->media_type == Portfolio::$mediaTypes[1])
                 $media = $this->sliderUpload($request);
 
+            $this->deleteAnyFile($portfolio);
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
         }
@@ -68,10 +69,7 @@ class PortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
-        if ($portfolio->media_type == Portfolio::$mediaTypes[0])
-            $this->imageDelete($portfolio);
-        if ($portfolio->media_type == Portfolio::$mediaTypes[1])
-            $this->sliderDelete($portfolio);
+        $this->deleteAnyFile($portfolio);
 
         $portfolio->delete();
 
@@ -110,5 +108,13 @@ class PortfolioController extends Controller
         // } catch (\Exception $e) {
         //     return redirect()->back()->with('admin.panel.home')->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
         // }
+    }
+
+    private function deleteAnyFile($portfolio)
+    {
+        if ($portfolio->media_type == Portfolio::$mediaTypes[0])
+            $this->imageDelete($portfolio);
+        if ($portfolio->media_type == Portfolio::$mediaTypes[1])
+            $this->sliderDelete($portfolio);
     }
 }

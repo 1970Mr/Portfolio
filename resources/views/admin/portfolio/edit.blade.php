@@ -175,3 +175,35 @@
     </div>
   </div>
 @endsection
+
+@push('scripts')
+  <script>
+    window.onload = function() {
+      disableInputs();
+      let inputs = document.querySelectorAll('.tab-pane.active *');
+      enableInputs(inputs);
+
+      let tabs = document.querySelectorAll('.nav-tabs .nav-link');
+      for (let i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener('click', function() {
+          disableInputs();
+          let inputs = document.querySelectorAll('#tab' + (i + 1) + ' *');
+          enableInputs(inputs);
+        });
+      }
+
+      function disableInputs() {
+        let inputs = document.querySelectorAll('.tab-content input');
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = true;
+        }
+      }
+
+      function enableInputs(inputs) {
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].disabled = false;
+        }
+      }
+    };
+  </script>
+@endpush

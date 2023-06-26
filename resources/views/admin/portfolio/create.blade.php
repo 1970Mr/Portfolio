@@ -180,7 +180,6 @@
 
       function disableInputs() {
         let inputs = document.querySelectorAll('.tab-content input');
-        console.log(inputs);
         for (let i = 0; i < inputs.length; i++) {
           inputs[i].disabled = true;
         }
