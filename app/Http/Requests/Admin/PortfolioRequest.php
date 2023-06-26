@@ -47,7 +47,7 @@ class PortfolioRequest extends FormRequest
     public function rules()
     {
         request()->validate([
-            'media_type' => "required|in:{$this->mediaTypes[0]},{$this->mediaTypes[1]},{$this->mediaTypes[2]},{$this->mediaTypes[3]}",
+            'media_type' => "{$this->isRequired}|in:{$this->mediaTypes[0]},{$this->mediaTypes[1]},{$this->mediaTypes[2]},{$this->mediaTypes[3]}",
         ]);
         session()->flash('media.has', true);
 
