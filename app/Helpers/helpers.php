@@ -47,7 +47,7 @@ function file_upload($file, $destinationPath)
         if (is_null($file)) throw new Exception('Not Implemented');
 
         // move file
-        $fileName = uniqid('RtsRfFw' . time() . mt_rand()) . '.' . $file->getClientOriginalExtension();
+        $fileName = uniqid(time() . mt_rand()) . '.' . $file->getClientOriginalExtension();
         $file->move($destinationPath, $fileName);
 
         // return name, relative_path
