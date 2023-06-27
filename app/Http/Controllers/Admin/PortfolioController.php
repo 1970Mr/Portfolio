@@ -8,6 +8,7 @@ use App\Models\Portfolio;
 
 class PortfolioController extends Controller
 {
+    private Portfolio $portfolio;
     public function index()
     {
         $portfolios = Portfolio::paginate(5);
@@ -40,6 +41,7 @@ class PortfolioController extends Controller
 
     public function update(PortfolioRequest $request, Portfolio $portfolio)
     {
+        $this->portfolio = $portfolio;
         $request['status'] = $request->has('status');
         $inputs = $request->all();
         unset($inputs['media_type']);
@@ -51,7 +53,12 @@ class PortfolioController extends Controller
         ) {
             $media = $this->uploadAnyFile($request);
 
-            $this->deleteAnyFile($portfolio);
+            if (
+                $request['media_type'] != 'slider' &&
+                !$request->hasFile('slider') &&
+                count($request->file('slider')) >= 3
+            )
+                $this->deleteAnyFile($portfolio);
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
         }
@@ -80,13 +87,35 @@ class PortfolioController extends Controller
     {
         $media = ['type' => Portfolio::$mediaTypes[1]];
         $files = $request->file('slider');
-        $path = public_path("images/portfolio/" . uniqid(time() . mt_rand()));
 
-        foreach ($files as $key => $image) {
-            $media['slider'][$key] = image_upload($image, $path);
+        if (strtolower($request['_method']) == 'put') {
+            $media = $this->sliderUpdate($files);
+        } else {
+            $path = public_path("images/portfolio/" . uniqid(time() . mt_rand()));
+            foreach ($files as $key => $image) {
+                $media['slider'][$key] = image_upload($image, $path);
+            }
         }
 
         return $media;
+    }
+
+    private function sliderUpdate($files)
+    {
+        try {
+            $media = $this->portfolio->media;
+            $path = dirname($media['slider'][0]['relative_path']);
+            foreach ($files as $key => $image) {
+                $old_image = $media['slider'][$key];
+                $media['slider'][$key] = image_upload($image, $path);
+
+                $old_image_path = public_path($old_image['relative_path']);
+                file_delete($old_image_path);
+            }
+            return $media;
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        }
     }
 
     private function videoUpload($request)
