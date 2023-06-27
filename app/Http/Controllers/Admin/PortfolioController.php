@@ -53,11 +53,8 @@ class PortfolioController extends Controller
         ) {
             $media = $this->uploadAnyFile($request);
 
-            if (
-                $request['media_type'] != 'slider' &&
-                !$request->hasFile('slider') &&
-                count($request->file('slider')) >= 3
-            )
+            if ($request['media_type'] != 'slider' ||
+                ($request['media_type'] == 'slider' && $portfolio->media_type != 'slider'))
                 $this->deleteAnyFile($portfolio);
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
@@ -78,9 +75,14 @@ class PortfolioController extends Controller
 
     private function imageUpload($request)
     {
-        $media = ['type' => Portfolio::$mediaTypes[0]];
-        $media['image'] = image_upload($request->file('image'), public_path('images/portfolio'));
-        return $media;
+        // return $this->fileUpload($request, Portfolio::$mediaTypes[0]);
+        return $this->fileUpload($request, 'image');
+    }
+
+    private function videoUpload($request)
+    {
+        // return $this->fileUpload($request, Portfolio::$mediaTypes[2]);
+        return $this->fileUpload($request, 'video');
     }
 
     private function sliderUpload($request)
@@ -88,7 +90,7 @@ class PortfolioController extends Controller
         $media = ['type' => Portfolio::$mediaTypes[1]];
         $files = $request->file('slider');
 
-        if (strtolower($request['_method']) == 'put') {
+        if (strtolower($request['_method']) == 'put' && $this->portfolio->media_type == 'slider') {
             $media = $this->sliderUpdate($files);
         } else {
             $path = public_path("images/portfolio/" . uniqid(time() . mt_rand()));
@@ -116,13 +118,6 @@ class PortfolioController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
         }
-    }
-
-    private function videoUpload($request)
-    {
-        $media = ['type' => Portfolio::$mediaTypes[2]];
-        $media['video'] = video_upload($request->file('video'), public_path('videos/portfolio'));
-        return $media;
     }
 
     private function deleteAnyFile($portfolio)
@@ -174,5 +169,12 @@ class PortfolioController extends Controller
             return $media;
 
         return redirect()->back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
+    }
+
+    private function fileUpload($request, $type)
+    {
+        $media = ['type' => $type];
+        $media[$type] = image_upload($request->file($type), public_path("{$type}s/portfolio"));
+        return $media;
     }
 }
