@@ -78,19 +78,15 @@ class PortfolioController extends Controller
 
     private function sliderUpload($request)
     {
-        // $media = ['type' => Portfolio::$mediaTypes[0]];
-        // $media['image'] = image_upload($request->file(), public_path('images/portfolio'));
-        // return $media;
-    }
+        $media = ['type' => Portfolio::$mediaTypes[1]];
+        $files = $request->file('slider');
+        $path = public_path("images/portfolio/" . uniqid(time() . mt_rand()));
 
-    private function sliderDelete($portfolio)
-    {
-        // try {
-        //     $imagePath = public_path($portfolio->media['image']['relative_path']);
-        //     image_delete($imagePath);
-        // } catch (\Exception $e) {
-        //     return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
-        // }
+        foreach ($files as $key => $image) {
+            $media['slider'][$key] = image_upload($image, $path);
+        }
+
+        return $media;
     }
 
     private function videoUpload($request)
@@ -105,7 +101,7 @@ class PortfolioController extends Controller
         if ($portfolio->media_type == Portfolio::$mediaTypes[0])
             $this->fileDelete($portfolio, 'image');
         if ($portfolio->media_type == Portfolio::$mediaTypes[1])
-            $this->sliderDelete($portfolio);
+            $this->filesDelete($portfolio, 'slider');
         if ($portfolio->media_type == Portfolio::$mediaTypes[2])
             $this->fileDelete($portfolio, 'video');
     }
@@ -115,6 +111,20 @@ class PortfolioController extends Controller
         try {
             $path = public_path($portfolio->media[$type]['relative_path']);
             file_delete($path);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        }
+    }
+
+    private function filesDelete($portfolio, $type)
+    {
+        try {
+            foreach ($portfolio->media[$type] as $fileInfo) {
+                $path = public_path($fileInfo['relative_path']);
+                file_delete($path);
+                $dir = dirname($path);
+            }
+            rmdir($dir);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
         }
@@ -131,7 +141,7 @@ class PortfolioController extends Controller
         if ($request->media_type == Portfolio::$mediaTypes[2])
             $media = $this->videoUpload($request);
 
-        if($media)
+        if ($media)
             return $media;
 
         return redirect()->back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
