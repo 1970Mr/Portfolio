@@ -47,25 +47,34 @@
               <ul class="nav nav-tabs mt-3">
                 <li class="nav-item">
                   <button
-                    class="nav-link
-                  {{ !session('media.has') ? 'active' : '' }}
-                  {{ session("media.{$mediaTypes[0]}") ? 'active' : '' }}"
+                    class="nav-link {{ session("media.{$mediaTypes[0]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[0])
+                        ? 'active'
+                        : '' }}"
                     data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه
                     تصویری</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link {{ session("media.{$mediaTypes[1]}") ? 'active' : '' }}" data-bs-toggle="tab"
-                    data-bs-target="#tab2" type="button">رسانه
+                  <button
+                    class="nav-link {{ session("media.{$mediaTypes[1]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[1])
+                        ? 'active'
+                        : '' }}"
+                    data-bs-toggle="tab" data-bs-target="#tab2" type="button">رسانه
                     اسلایدری</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link {{ session("media.{$mediaTypes[2]}") ? 'active' : '' }}" data-bs-toggle="tab"
-                    data-bs-target="#tab3" type="button">رسانه
+                  <button
+                    class="nav-link {{ session("media.{$mediaTypes[2]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[2])
+                        ? 'active'
+                        : '' }}"
+                    data-bs-toggle="tab" data-bs-target="#tab3" type="button">رسانه
                     ویدئویی</button>
                 </li>
                 <li class="nav-item">
-                  <button class="nav-link {{ session("media.{$mediaTypes[3]}") ? 'active' : '' }}" data-bs-toggle="tab"
-                    data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود
+                  <button
+                    class="nav-link {{ session("media.{$mediaTypes[3]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[3])
+                        ? 'active'
+                        : '' }}"
+                    data-bs-toggle="tab" data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود
                     خارج از
                     سایت)</button>
                 </li>
@@ -80,10 +89,9 @@
 
                 {{-- tab1 --}}
                 <div
-                  class="tab-pane fade
-                {{ !session('media.has') ? 'show active' : '' }}
-                {{ session("media.{$mediaTypes[0]}") ? 'show active' : '' }}
-                "
+                  class="tab-pane fade {{ session("media.{$mediaTypes[0]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[0])
+                      ? 'show active'
+                      : '' }}"
                   id="tab1">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[0] }}">
 
@@ -102,7 +110,11 @@
                 </div>
 
                 {{-- tab2 --}}
-                <div class="tab-pane fade {{ session("media.{$mediaTypes[1]}") ? 'show active' : '' }}" id="tab2">
+                <div
+                  class="tab-pane fade {{ session("media.{$mediaTypes[1]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[1])
+                      ? 'show active'
+                      : '' }}"
+                  id="tab2">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[1] }}">
 
                   <div class="row justify-content-center">
@@ -142,7 +154,11 @@
                 </div>
 
                 {{-- tab3 --}}
-                <div class="tab-pane fade {{ session("media.{$mediaTypes[2]}") ? 'show active' : '' }}" id="tab3">
+                <div
+                  class="tab-pane fade {{ session("media.{$mediaTypes[2]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[2])
+                      ? 'show active'
+                      : '' }}"
+                  id="tab3">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[2] }}">
 
                   <div class="mb-3 col-6">
@@ -156,10 +172,15 @@
                         {{ $message }}
                       </div>
                     @enderror
+                  </div>
                 </div>
 
                 {{-- tab4 --}}
-                <div class="tab-pane fade {{ session("media.{$mediaTypes[3]}") ? 'show active' : '' }}" id="tab4">
+                <div
+                  class="tab-pane fade {{ session("media.{$mediaTypes[3]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[3])
+                      ? 'show active'
+                      : '' }}"
+                  id="tab4">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[3] }}">
                   tab4
                 </div>
@@ -191,7 +212,7 @@
   <script>
     window.onload = function() {
       disableInputs();
-      let inputs = document.querySelectorAll('.tab-pane.active *');
+      let inputs = document.querySelectorAll('.tab-pane.active input');
       enableInputs(inputs);
 
       let tabs = document.querySelectorAll('.nav-tabs .nav-link');

@@ -23,12 +23,7 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request)
     {
         $request['status'] = $request->has('status');
-        if ($request->media_type == Portfolio::$mediaTypes[0])
-            $media = $this->imageUpload($request);
-        if ($request->media_type == Portfolio::$mediaTypes[1])
-            $media = $this->sliderUpload($request);
-        if ($request->media_type == Portfolio::$mediaTypes[2])
-            $media = $this->videoUpload($request);
+        $media = $this->uploadAnyFile($request);
 
         $inputs = $request->all();
         $inputs['media'] = $media;
@@ -48,17 +43,13 @@ class PortfolioController extends Controller
         $request['status'] = $request->has('status');
         $inputs = $request->all();
         unset($inputs['media_type']);
-        if(
+        if (
             $request->hasFile('image') ||
             $request->hasFile('slider') ||
             $request->hasFile('video') ||
             $request->hasFile('video_link')
-        )
-        {
-            if ($request->media_type == Portfolio::$mediaTypes[0])
-                $media = $this->imageUpload($request);
-            if ($request->media_type == Portfolio::$mediaTypes[1])
-                $media = $this->sliderUpload($request);
+        ) {
+            $media = $this->uploadAnyFile($request);
 
             $this->deleteAnyFile($portfolio);
             $inputs['media'] = $media;
@@ -127,5 +118,22 @@ class PortfolioController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
         }
+    }
+
+    private function uploadAnyFile($request)
+    {
+        $media = [];
+
+        if ($request->media_type == Portfolio::$mediaTypes[0])
+            $media = $this->imageUpload($request);
+        if ($request->media_type == Portfolio::$mediaTypes[1])
+            $media = $this->sliderUpload($request);
+        if ($request->media_type == Portfolio::$mediaTypes[2])
+            $media = $this->videoUpload($request);
+
+        if($media)
+            return $media;
+
+        return redirect()->back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
     }
 }
