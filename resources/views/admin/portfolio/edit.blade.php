@@ -133,21 +133,21 @@
                       <label for="slider" class="form-label">تصویر</label>
                       <input type="file" name="slider[]" class="form-control" id="slider1">
                       <div class="text-info fs-7 mt-1">
-                        {{-- {{ $portfolio->media_type == $mediaTypes[2] ? $portfolio->media['slider']['relative_path'] : '' }} --}}
+                        {{ $portfolio->media_type == $mediaTypes[1] ? $portfolio->media['slider'][0]['relative_path'] : '' }}
                       </div>
                     </div>
                     <div class="mb-3 col-6">
                       <label for="slider" class="form-label">تصویر</label>
                       <input type="file" name="slider[]" class="form-control" id="slider2">
                       <div class="text-info fs-7 mt-1">
-                        {{-- {{ $portfolio->media_type == $mediaTypes[2] ? $portfolio->media['slider']['relative_path'] : '' }} --}}
+                        {{ $portfolio->media_type == $mediaTypes[1] ? $portfolio->media['slider'][1]['relative_path'] : '' }}
                       </div>
                     </div>
                     <div class="mb-3 col-6">
                       <label for="slider" class="form-label">تصویر</label>
                       <input type="file" name="slider[]" class="form-control" id="slider3">
                       <div class="text-info fs-7 mt-1">
-                        {{-- {{ $portfolio->media_type == $mediaTypes[2] ? $portfolio->media['slider']['relative_path'] : '' }} --}}
+                        {{ $portfolio->media_type == $mediaTypes[1] ? $portfolio->media['slider'][2]['relative_path'] : '' }}
                       </div>
                     </div>
                   </div>
