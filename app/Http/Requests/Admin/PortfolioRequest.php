@@ -14,7 +14,7 @@ class PortfolioRequest extends FormRequest
     public function __construct()
     {
         $this->isRequired = 'required';
-        if(request()->has('_method') == 'put')
+        if(strtolower( request()->get('_method') ) == 'put')
             $this->isRequired = 'nullable';
 
         $this->mediaTypes = Portfolio::$mediaTypes;
@@ -68,7 +68,8 @@ class PortfolioRequest extends FormRequest
     private function sliderRules()
     {
         session()->flash('media.slider', true);
-        $this->rules['slider'] = "{$this->isRequired}|array|min:3";
+        if($this->isRequired == 'required')
+            $this->rules['slider'] = "{$this->isRequired}|array|min:3";
         return $this->rules['slider.*'] = 'file|image|max:4096';
     }
 
