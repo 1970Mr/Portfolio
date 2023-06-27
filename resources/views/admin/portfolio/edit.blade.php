@@ -144,7 +144,18 @@
                 {{-- tab3 --}}
                 <div class="tab-pane fade {{ session("media.{$mediaTypes[2]}") ? 'show active' : '' }}" id="tab3">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[2] }}">
-                  tab3
+
+                  <div class="mb-3 col-6">
+                    <label for="video" class="form-label">ویدئو</label>
+                    <input type="file" name="video" class="form-control" id="video">
+                    <div class="text-info fs-7 mt-1">
+                      {{ $portfolio->media_type == $mediaTypes[2] ? $portfolio->media['video']['relative_path'] : '' }}
+                    </div>
+                    @error('video')
+                      <div class="text-danger fs-7">
+                        {{ $message }}
+                      </div>
+                    @enderror
                 </div>
 
                 {{-- tab4 --}}
