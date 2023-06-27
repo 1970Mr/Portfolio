@@ -27,19 +27,17 @@ function image_upload($file, $destinationPath)
 
 function image_delete($path)
 {
-    if (file_exists($path)) unlink($path);
-
-    //   try {
-    //     if (!file_exists($path)) throw new Exception('Not Implemented');
-    //     unlink($path);
-    //   } catch (Exception $e) {
-    //     return abort(501, $e->getMessage());
-    //   }
+    file_delete($path);
 }
 
 function video_upload($file, $destinationPath)
 {
     return file_upload($file, $destinationPath);
+}
+
+function video_delete($path)
+{
+    file_delete($path);
 }
 
 function file_upload($file, $destinationPath)
@@ -63,4 +61,16 @@ function file_upload($file, $destinationPath)
         // return error page
         return abort(501, $e->getMessage());
     }
+}
+
+function file_delete($path)
+{
+    if (file_exists($path)) unlink($path);
+
+    //   try {
+    //     if (!file_exists($path)) throw new Exception('Not Implemented');
+    //     unlink($path);
+    //   } catch (Exception $e) {
+    //     return abort(501, $e->getMessage());
+    //   }
 }

@@ -27,6 +27,8 @@ class PortfolioController extends Controller
             $media = $this->imageUpload($request);
         if ($request->media_type == Portfolio::$mediaTypes[1])
             $media = $this->sliderUpload($request);
+        if ($request->media_type == Portfolio::$mediaTypes[2])
+            $media = $this->videoUpload($request);
 
         $inputs = $request->all();
         $inputs['media'] = $media;
@@ -83,38 +85,47 @@ class PortfolioController extends Controller
         return $media;
     }
 
-    private function imageDelete($portfolio)
-    {
-        try {
-            $imagePath = public_path($portfolio->media['image']['relative_path']);
-            image_delete($imagePath);
-        } catch (\Exception $e) {
-            return redirect()->back()->with('admin.panel.home')->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
-        }
-    }
-
     private function sliderUpload($request)
     {
         // $media = ['type' => Portfolio::$mediaTypes[0]];
         // $media['image'] = image_upload($request->file(), public_path('images/portfolio'));
         // return $media;
     }
-    
+
     private function sliderDelete($portfolio)
     {
         // try {
         //     $imagePath = public_path($portfolio->media['image']['relative_path']);
         //     image_delete($imagePath);
         // } catch (\Exception $e) {
-        //     return redirect()->back()->with('admin.panel.home')->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        //     return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
         // }
+    }
+
+    private function videoUpload($request)
+    {
+        $media = ['type' => Portfolio::$mediaTypes[2]];
+        $media['video'] = video_upload($request->file('video'), public_path('videos/portfolio'));
+        return $media;
     }
 
     private function deleteAnyFile($portfolio)
     {
         if ($portfolio->media_type == Portfolio::$mediaTypes[0])
-            $this->imageDelete($portfolio);
+            $this->fileDelete($portfolio, 'image');
         if ($portfolio->media_type == Portfolio::$mediaTypes[1])
             $this->sliderDelete($portfolio);
+        if ($portfolio->media_type == Portfolio::$mediaTypes[2])
+            $this->fileDelete($portfolio, 'video');
+    }
+
+    private function fileDelete($portfolio, $type)
+    {
+        try {
+            $path = public_path($portfolio->media[$type]['relative_path']);
+            file_delete($path);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        }
     }
 }

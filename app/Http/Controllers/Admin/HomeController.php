@@ -129,7 +129,7 @@ class HomeController extends Controller
 
       return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     } catch (\Exception $e) {
-      return redirect()->back()->with('admin.panel.home')->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+      return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
     }
   }
 
