@@ -4,18 +4,22 @@ namespace App\Http\Requests\Admin;
 
 use App\Models\Portfolio;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Route;
 
 class PortfolioRequest extends FormRequest
 {
     private $mediaTypes = [];
+    private $mediaType = '';
     private $rules = [];
     private $isRequired = [];
 
     public function __construct()
     {
         $this->isRequired = 'required';
-        if(strtolower( request()->get('_method') ) == 'put')
+        if (strtolower(request()->get('_method')) == 'put') {
             $this->isRequired = 'nullable';
+            $this->mediaType = Route::current()->parameter('portfolio')->media_type;
+        }
 
         $this->mediaTypes = Portfolio::$mediaTypes;
 
@@ -68,8 +72,8 @@ class PortfolioRequest extends FormRequest
     private function sliderRules()
     {
         session()->flash('media.slider', true);
-        if($this->isRequired == 'required')
-            $this->rules['slider'] = "{$this->isRequired}|array|min:3";
+        if ($this->isRequired == 'required' || $this->mediaType != 'slider')
+            $this->rules['slider'] = "required|array|min:3";
         return $this->rules['slider.*'] = 'file|image|max:4096';
     }
 
