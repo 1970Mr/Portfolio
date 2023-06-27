@@ -44,7 +44,7 @@
                 </div>
               @endforeach
 
-              <ul class="nav nav-tabs mt-3">
+              <ul class="nav nav-tabs mt-3 justify-content-center">
                 <li class="nav-item">
                   <button
                     class="nav-link {{ session("media.{$mediaTypes[0]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[0])
@@ -95,7 +95,7 @@
                   id="tab1">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[0] }}">
 
-                  <div class="mb-3 col-6">
+                  <div class="mb-3 col-6 mx-auto">
                     <label for="image" class="form-label">تصویر</label>
                     <input type="file" name="image" class="form-control" id="image">
                     <div class="text-info fs-7 mt-1">
@@ -161,7 +161,7 @@
                   id="tab3">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[2] }}">
 
-                  <div class="mb-3 col-6">
+                  <div class="mb-3 col-6 mx-auto">
                     <label for="video" class="form-label">ویدئو</label>
                     <input type="file" name="video" class="form-control" id="video">
                     <div class="text-info fs-7 mt-1">

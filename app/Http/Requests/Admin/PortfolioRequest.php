@@ -75,7 +75,16 @@ class PortfolioRequest extends FormRequest
     private function videoRules()
     {
         session()->flash('media.video', true);
-        return $this->rules['video'] = "{$this->isRequired}|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4|max:30720";
+        return $this->rules['video'] = "{$this->isRequired}|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
+        // mkv            video/x-matroska
+        // flv            video/x-flv
+        // mp4            video/mp4
+        // m3u8           application/x-mpegURL
+        // ts             video/MP2T
+        // 3gp            video/3gpp
+        // mov            video/quicktime
+        // avi            video/x-msvideo
+        // wmv            video/x-ms-wmv
     }
 
     private function videoLinkRules()
