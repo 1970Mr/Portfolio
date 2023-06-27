@@ -42,7 +42,7 @@
                 </div>
               @endforeach
 
-              <ul class="nav nav-tabs mt-3">
+              <ul class="nav nav-tabs mt-3 justify-content-center">
                 <li class="nav-item">
                   <button
                     class="nav-link
@@ -85,7 +85,7 @@
                   id="tab1">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[0] }}">
 
-                  <div class="mb-3 col-6">
+                  <div class="mb-3 col-6 mx-auto">
                     <label for="image" class="form-label">تصویر</label>
                     <input type="file" name="image" class="form-control" id="image">
                     @error('image')
@@ -130,7 +130,16 @@
                 {{-- tab3 --}}
                 <div class="tab-pane fade {{ session("media.{$mediaTypes[2]}") ? 'show active' : '' }}" id="tab3">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[2] }}">
-                  tab3
+
+                  <div class="mb-3 col-6 mx-auto">
+                    <label for="video" class="form-label">ویدئو</label>
+                    <input type="file" name="video" class="form-control" id="video">
+                    @error('video')
+                      <div class="text-danger fs-7">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
                 </div>
 
                 {{-- tab4 --}}
