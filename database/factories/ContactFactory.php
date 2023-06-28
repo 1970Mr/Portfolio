@@ -17,7 +17,17 @@ class ContactFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => fake()->title(),
+            'description' => fake()->text(50),
+            'email' => fake()->email(),
+            'phone_number' => fake()->phoneNumber(),
+            'telegram' => fake()->name(),
+            'instagram' => fake()->name(),
+            'twitter' => fake()->name(),
+            'youtube' => fake()->name(),
+            'facebook' => fake()->name(),
+            'linkedin' => fake()->name(),
+            'github' => fake()->name(),
         ];
     }
 }
