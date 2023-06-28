@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SkillController;
@@ -52,9 +53,14 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
     Route::put('/portfolio/{portfolio}', [PortfolioController::class, 'update'])->name('portfolio.update');
     Route::delete('/portfolio/{portfolio}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');
 
-    Route::get('/contact', function () {
-        return view('admin.contact');
-    })->name('contact');
+    Route::prefix('contact')->name('contact.')->group(function () {
+        Route::get('/details', [ContactController::class, 'index'])->name('details');
+        Route::get('/details/create', [ContactController::class, 'create'])->name('details.create');
+        Route::post('/details', [ContactController::class, 'store'])->name('details.store');
+        Route::get('/details/edit/{contact}', [ContactController::class, 'edit'])->name('details.edit');
+        Route::put('/details/{contact}', [ContactController::class, 'update'])->name('details.update');
+        Route::delete('/details/{contact}', [ContactController::class, 'destroy'])->name('details.destroy');
+    });
 
     Route::get('/blog', function () {
         return view('admin.blog');
