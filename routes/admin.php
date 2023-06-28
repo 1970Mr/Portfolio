@@ -61,6 +61,7 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
         Route::put('/details/{contact}', [ContactController::class, 'update'])->name('details.update');
         Route::delete('/details/{contact}', [ContactController::class, 'destroy'])->name('details.destroy');
     });
+    Route::get('/contact', fn () => to_route('admin.panel.contact.details'))->name('contact');
 
     Route::get('/blog', function () {
         return view('admin.blog');
