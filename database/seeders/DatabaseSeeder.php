@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SkillSeeder::class,
             QualificationSeeder::class,
             PortfolioSeeder::class,
+            ContactSeeder::class,
         ]);
     }
 }
