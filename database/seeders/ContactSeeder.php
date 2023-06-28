@@ -24,6 +24,7 @@ class ContactSeeder extends Seeder
             منتظر پیام خوبت هستم و هیچ وقت از ارتباط با تو خسته نمی‌شم. بیا با هم صحبت کنیم، برای شروع فقط پیامت رو بفرست و ببین چه اتفاقی میفته...',
             'email' => 'rasoolmorshedi10@gmail.com',
             'phone_number' => '+989387908594',
+            'status' => 1,
         ]);
 
         Contact::factory(10)->create();

@@ -21,5 +21,6 @@ class Contact extends Model
         'facebook',
         'linkedin',
         'github',
+        'status',
     ];
 }

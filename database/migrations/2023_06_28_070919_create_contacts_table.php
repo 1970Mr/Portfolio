@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('github')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
