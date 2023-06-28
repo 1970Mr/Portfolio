@@ -54,11 +54,26 @@
         </a>
       </li>
 
-      <li class="sidebar-item {{ active_route('admin.panel.contact') }}">
-        <a class="sidebar-link" href="{{ route('admin.panel.contact') }}">
-          <i class="bi bi-envelope me-2"></i>
-          <span>ارتباط</span>
-        </a>
+      <li x-data="{{ active_route('admin.panel.contact') == 'active' ? '{dropdown, open: true}' : 'dropdown' }}" class="sidebar-item">
+        <div @click="toggle" class="sidebar-link">
+          <i class="bi bi-person-lines-fill me-2"></i>
+          <span>ارتباط با من</span>
+          <i class="ms-auto bi bi-chevron-down"></i>
+        </div>
+        <ul x-show="open" x-transition class="submenu">
+          <li class="submenu-item {{ active_route('admin.panel.contact.details') }}">
+            <a class="sidebar-link" href="{{ route('admin.panel.contact.details') }}">
+              <i class="bi bi-sign-merge-right me-2"></i>
+              <span>راه‌های ارتباطی</span>
+            </a>
+          </li>
+          <li class="submenu-item {{ active_route('admin.panel.about.skill') }}">
+            <a class="sidebar-link" href="{{ route('admin.panel.about.skill') }}">
+              <i class="bi bi-envelope me-2"></i>
+              <span>پیام‌های من</span>
+            </a>
+          </li>
+        </ul>
       </li>
 
       <li class="sidebar-item {{ active_route('admin.panel.blog') }}">

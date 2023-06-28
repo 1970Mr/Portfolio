@@ -28,13 +28,13 @@ class ContactRequest extends FormRequest
             'description' => 'required',
             'email' => 'required|email',
             'phone_number' => 'required',
-            'telegram' => 'required',
-            'instagram' => 'required',
-            'twitter' => 'required',
-            'youtube' => 'required',
-            'facebook' => 'required',
-            'linkedin' => 'required',
-            'github' => 'required',
+            'telegram' => 'nullable',
+            'instagram' => 'nullable',
+            'twitter' => 'nullable',
+            'youtube' => 'nullable',
+            'facebook' => 'nullable',
+            'linkedin' => 'nullable',
+            'github' => 'nullable',
         ];
     }
 }

@@ -25,7 +25,7 @@ class ContactController extends Controller
 
         Contact::create($request->all());
 
-		return to_route('admin.panel.about.contact')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+		return to_route('admin.panel.contact.details')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(Contact $contact)
@@ -38,7 +38,7 @@ class ContactController extends Controller
         $request['status'] = $request->has('status');
         $contact->updateOrFail($request->all());
 
-		return to_route('admin.panel.about.contact')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+		return to_route('admin.panel.contact.details')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Contact $contact)
