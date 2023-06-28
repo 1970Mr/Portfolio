@@ -1090,7 +1090,7 @@ body.light hr.separator {
     color: #fff;
     transition: .3s;
     font-size: 17px;
-    margin: 0 6px;
+    margin: 0 3px;
     background: #2b2a2a;
     border-radius: 50%;
 }

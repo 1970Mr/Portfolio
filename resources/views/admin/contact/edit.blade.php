@@ -3,7 +3,6 @@
 @php
   $inputs = [
       ['name' => 'title', 'title' => 'عنوان', 'type' => 'text'],
-      ['name' => 'description', 'title' => 'توضیحات', 'type' => 'text'],
       ['name' => 'email', 'title' => 'ایمیل', 'type' => 'text'],
       ['name' => 'phone_number', 'title' => 'شماره تماس', 'type' => 'text'],
       ['name' => 'telegram', 'title' => 'تلگرام', 'type' => 'text'],
@@ -50,6 +49,16 @@
                   @enderror
                 </div>
               @endforeach
+
+              <div class="mb-3 col-6">
+                <label for="description" class="form-label">توضیحات</label>
+                  <textarea name="description" id="description" class="form-control" rows="3">{{ old('description') ? old('description') : $contact->description }}</textarea>
+                @error('description')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
