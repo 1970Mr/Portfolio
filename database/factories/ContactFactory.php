@@ -28,6 +28,7 @@ class ContactFactory extends Factory
             'facebook' => fake()->name(),
             'linkedin' => fake()->name(),
             'github' => fake()->name(),
+            'status' => 0,
         ];
     }
 }
