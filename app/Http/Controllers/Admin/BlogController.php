@@ -12,4 +12,9 @@ class BlogController extends Controller
         $blogs = Blog::paginate(5);
 		return view('admin.blog.blog', compact('blogs'));
     }
+
+    public function create()
+    {
+        return view('admin.blog.create');
+    }
 }
