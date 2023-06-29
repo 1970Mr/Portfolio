@@ -30,6 +30,11 @@ class BlogController extends Controller
 		return to_route('admin.panel.blogs')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
+    public function edit(Blog $blog)
+    {
+        return view('admin.blog.edit', compact('blog'));
+    }
+
     private function imageUpload($request)
     {
         return image_upload($request->file('photo'), public_path("images/blog"));
