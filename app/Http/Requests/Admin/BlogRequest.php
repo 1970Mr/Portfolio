@@ -6,6 +6,17 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class BlogRequest extends FormRequest
 {
+
+    private $isRequired = '';
+
+    public function __construct()
+    {
+        $this->isRequired = 'required';
+        if (strtolower(request()->get('_method')) == 'put') {
+            $this->isRequired = 'nullable';
+        }
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -28,7 +39,7 @@ class BlogRequest extends FormRequest
             'text' => 'required',
             'author' => 'required',
             'keywords' => 'required',
-            'photo' => 'required',
+            'photo' => "{$this->isRequired}",
             'status' => 'nullable',
         ];
     }
