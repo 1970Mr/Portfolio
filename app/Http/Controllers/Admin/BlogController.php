@@ -23,7 +23,7 @@ class BlogController extends Controller
     {
         $request['status'] = $request->has('status');
 
-        $request['photo'] = $this->imageUpload($request);
+        $request['photo'] = $this->photoUpload($request);
 
         Blog::create($request->all());
 
@@ -39,15 +39,32 @@ class BlogController extends Controller
     {
         $request['status'] = $request->has('status');
         if ($request->has('photo')) {
-            $request['photo'] = $this->imageUpload($request);
+            $request['photo'] = $this->photoUpload($request);
         }
 
         $blog->updateOrFail($request->all());
         return to_route('admin.panel.blogs')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
-    private function imageUpload($request)
+    public function destroy(Blog $blog)
+    {
+        $this->photoDelete($blog);
+        $blog->delete();
+		return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+    }
+
+    private function photoUpload($request)
     {
         return image_upload($request->file('photo'), public_path("images/blog"));
+    }
+
+    private function photoDelete($blog)
+    {
+        try {
+            $path = public_path($blog->photo['relative_path']);
+            file_delete($path);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        }
     }
 }
