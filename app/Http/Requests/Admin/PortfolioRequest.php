@@ -11,7 +11,7 @@ class PortfolioRequest extends FormRequest
     private $mediaTypes = [];
     private $mediaType = '';
     private $rules = [];
-    private $isRequired = [];
+    private $isRequired = '';
 
     public function __construct()
     {

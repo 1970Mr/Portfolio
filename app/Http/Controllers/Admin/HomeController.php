@@ -10,32 +10,17 @@ use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
-  /**
-   * Display a listing of the resource.
-   *
-   * @return View
-   */
   public function index()
   {
     $homesData = Home::paginate(10);
     return view('admin.home.home', compact('homesData'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return View
-   */
   public function create()
   {
     return view('admin.home.create');
   }
 
-  /**
-   * Store a newly created resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   */
   public function store(HomeRequest $request)
   {
     $photoInfo = $this->imageUpload(file: $request->file('photo'), path: 'images/home');
@@ -61,24 +46,12 @@ class HomeController extends Controller
     return to_route('admin.panel.home')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param  int  $id
-   */
   public function edit($id)
   {
     $homeDetails = Home::findOrFail($id);
     return view('admin.home.edit', compact('homeDetails'));
   }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
   public function update(HomeUpdateRequest $request, Home $home)
   {
     $status = $request->has('status');
@@ -112,11 +85,6 @@ class HomeController extends Controller
     return to_route('admin.panel.home')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
   }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   */
   public function destroy($id)
   {
     try {
