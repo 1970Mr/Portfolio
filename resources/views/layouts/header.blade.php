@@ -27,9 +27,10 @@
       </a>
     </li>
     <li class="icon-box {{ active_route( 'blog' ) }}">
-      <i class="fa fa-comments"></i>
+      {{-- <i class="fa fa-comments"></i> --}}
+      <i class="fa fa-file-text"></i>
       <a href="{{ route('blog') }}">
-        <h2>مقالات</h2>
+        <h2>وبلاگ</h2>
       </a>
     </li>
   </ul>
@@ -55,7 +56,7 @@
             <a href="{{ route('contact') }}"><i class="fa fa-envelope-open"></i><span>ارتباط با من</span></a>
         </li>
         <li class="{{ active_route('blog') }}">
-            <a href="{{ route('blog') }}"><i class="fa fa-comments"></i><span>مقالات</span></a>
+            <a href="{{ route('blog') }}"><i class="fa fa-file-text"></i><span>وبلاگ</span></a>
         </li>
       </ul>
     </div>
