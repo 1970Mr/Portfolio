@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\AboutController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\QualificationController;
@@ -63,9 +64,12 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
     });
     Route::get('/contact', fn () => to_route('admin.panel.contact.details'))->name('contact');
 
-    Route::get('/blog', function () {
-        return view('admin.blog');
-    })->name('blog');
+    Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
+    Route::get('/blogs/create', [BlogController::class, 'create'])->name('blog.create');
+    Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
+    Route::get('/blogs/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
+    Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blog.update');
+    Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
     Route::get('/profile', function () {
         return view('admin.profile');
