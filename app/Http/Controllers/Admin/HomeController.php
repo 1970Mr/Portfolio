@@ -46,10 +46,9 @@ class HomeController extends Controller
     return to_route('admin.panel.home')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
   }
 
-  public function edit($id)
+  public function edit(Home $home)
   {
-    $homeDetails = Home::findOrFail($id);
-    return view('admin.home.edit', compact('homeDetails'));
+    return view('admin.home.edit', compact('home'));
   }
 
   public function update(HomeUpdateRequest $request, Home $home)
@@ -78,15 +77,14 @@ class HomeController extends Controller
     return to_route('admin.panel.home')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
   }
 
-  public function destroy($id)
+  public function destroy(Home $home)
   {
     try {
-      $homeDetails = Home::findOrFail($id);
-      $imagePath = public_path($homeDetails->photo['relative_path']);
+      $imagePath = public_path($home->photo['relative_path']);
       image_delete($imagePath);
-      $mobileImagePath = public_path($homeDetails->photo['mobile']['relative_path']);
+      $mobileImagePath = public_path($home->photo['mobile']['relative_path']);
       image_delete($mobileImagePath);
-      $homeDetails->delete();
+      $home->delete();
 
       return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     } catch (\Exception $e) {

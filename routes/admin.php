@@ -19,9 +19,9 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/home/create', [HomeController::class, 'create'])->name('home.create');
     Route::post('/home', [HomeController::class, 'store'])->name('home.store');
-    Route::get('/home/edit/{id}', [HomeController::class, 'edit'])->name('home.edit');
+    Route::get('/home/edit/{home}', [HomeController::class, 'edit'])->name('home.edit');
     Route::put('/home/{home}', [HomeController::class, 'update'])->name('home.update');
-    Route::delete('/home/{id}', [HomeController::class, 'destroy'])->name('home.destroy');
+    Route::delete('/home/{home}', [HomeController::class, 'destroy'])->name('home.destroy');
 
     Route::prefix('about')->name('about.')->group(function () {
         Route::get('/personal', [AboutController::class, 'index'])->name('personal');

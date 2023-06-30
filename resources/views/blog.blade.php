@@ -1,10 +1,10 @@
-    @extends('layouts.app', ['title' => 'مقالات', 'my_class' => 'blog'])
+    @extends('layouts.app', ['title' => 'وبلاگ', 'my_class' => 'blog'])
 
 @section('content')
   <!-- Page Title Starts -->
   <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
     <h1>مقالات <span>من</span></h1>
-    <span class="title-bg">مقالات</span>
+    <span class="title-bg">وبلاگ</span>
   </section>
   <!-- Page Title Ends -->
   <!-- Main Content Starts -->
