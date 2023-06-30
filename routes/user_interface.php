@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,7 @@ Route::get('/portfolio', function () {
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
-Route::get('/blog', function () {
-  return view('blog');
-})->name('blog');
+Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
 
 Route::get('/blog-post', function () {
   return view('blog-post');
