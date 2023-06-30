@@ -1,7 +1,7 @@
 @extends('admin.layouts.app', ['title' => 'مقالات | ایجاد'])
 
 @php
-  $inputs = [['name' => 'title', 'title' => 'عنوان', 'type' => 'text'], ['name' => 'text', 'title' => 'متن', 'type' => 'text'], ['name' => 'author', 'title' => 'نویسنده', 'type' => 'text'], ['name' => 'keywords', 'title' => 'کلمات کلیدی', 'type' => 'text']];
+  $inputs = [['name' => 'title', 'title' => 'عنوان', 'type' => 'text'], ['name' => 'author', 'title' => 'نویسنده', 'type' => 'text'], ['name' => 'keywords', 'title' => 'کلمات کلیدی', 'type' => 'text']];
 @endphp
 
 @section('content')
@@ -25,8 +25,8 @@
             </a>
           </div>
           <div class="card-body">
-            <form enctype="multipart/form-data" action="{{ route('admin.panel.blog.update', $blog->id) }}" class="row justify-content-center"
-              method="post">
+            <form enctype="multipart/form-data" action="{{ route('admin.panel.blog.update', $blog->id) }}"
+              class="row justify-content-center" method="post">
               @csrf
               @method('put')
               @foreach ($inputs as $item)
@@ -50,6 +50,16 @@
                   {{ $blog->photo['relative_path'] }}
                 </div>
                 @error('photo')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
+              <div class="mb-3 col-6">
+                <label for="text" class="form-label">متن</label>
+                <textarea name="text" class="form-control" id="text">{{ old('text') ? old('text') : $blog->text }}</textarea>
+                @error('text')
                   <div class="text-danger fs-7">
                     {{ $message }}
                   </div>

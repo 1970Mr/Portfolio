@@ -3,7 +3,6 @@
 @php
   $inputs = [
       ['name' => 'title', 'title' => 'عنوان', 'type' => 'text'],
-      ['name' => 'text', 'title' => 'متن', 'type' => 'text'],
       ['name' => 'author', 'title' => 'نویسنده', 'type' => 'text'],
       ['name' => 'keywords', 'title' => 'کلمات کلیدی', 'type' => 'text'],
   ];
@@ -49,6 +48,16 @@
                 <label for="photo" class="form-label">تصویر</label>
                 <input type="file" name="photo" class="form-control" id="photo">
                 @error('photo')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
+              <div class="mb-3 col-6">
+                <label for="text" class="form-label">متن</label>
+                <textarea name="text" class="form-control" id="text"></textarea>
+                @error('text')
                   <div class="text-danger fs-7">
                     {{ $message }}
                   </div>

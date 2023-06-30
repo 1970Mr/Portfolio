@@ -39,7 +39,7 @@ class BlogRequest extends FormRequest
             'text' => 'required',
             'author' => 'required',
             'keywords' => 'required',
-            'photo' => "{$this->isRequired}",
+            'photo' => "{$this->isRequired}|file|image|max:4096",
             'status' => 'nullable',
         ];
     }
