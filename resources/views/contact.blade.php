@@ -1,5 +1,9 @@
 @extends('layouts.app', ['title' => 'ارتباط با من', 'my_class' => 'contact'])
 
+@php
+  $socials = ['telegram', 'instagram', 'twitter', 'youtube', 'facebook', 'linkedin', 'github'];
+@endphp
+
 @section('content')
   <!-- Page Title Starts -->
   <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
@@ -28,10 +32,11 @@
           <ul class="social list-unstyled pt-1 mb-5 d-flex">
 
             @foreach ($socials as $social)
-              @if ($contact->{$social['name']})
+              @if ($contact->{$social})
                 <li>
-                  <a target="_blank" title="{{ $social['name'] }}" href="{{ $social['link'] . '/' . $contact->{$social['name']} }}">
-                    <i class="fa fa-{{ $social['name'] }}"></i>
+                  <a target="_blank" title="{{ $social }}"
+                    href="{{ $contact->{$social} }}">
+                    <i class="fa fa-{{ $social }}"></i>
                   </a>
                 </li>
               @endif
