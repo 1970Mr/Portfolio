@@ -18,6 +18,7 @@ Route::get('/portfolio', function () {
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
+Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/blog-post', function () {
   return view('blog-post');

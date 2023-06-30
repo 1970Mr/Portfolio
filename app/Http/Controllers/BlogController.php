@@ -12,4 +12,9 @@ class BlogController extends Controller
         $blogs = Blog::where('status', 1)->get();
         return view('blog', compact('blogs'));
     }
+
+    public function show(Blog $blog)
+    {
+        return view('blog-post', compact('blog'));
+    }
 }
