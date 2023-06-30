@@ -17,7 +17,7 @@
         <div class="col-12 col-md-6 col-lg-6 col-xl-4 mb-30">
             <article class="post-container">
               <div class="post-thumb">
-                <a href="{{ route('blog-post') }}" class="d-block position-relative overflow-hidden">
+                <a href="{{ route('blog.show', ['blog' => $blog->id]) }}" class="d-block position-relative overflow-hidden">
                   <img src="{{ asset($blog->photo['relative_path']) }}" class="img-fluid" alt="Blog Post | {{ $blog->title }}">
                 </a>
               </div>
