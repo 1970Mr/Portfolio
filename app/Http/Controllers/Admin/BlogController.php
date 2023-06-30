@@ -21,13 +21,12 @@ class BlogController extends Controller
 
     public function store(BlogRequest $request)
     {
-        $request['status'] = $request->has('status');
+        $data = $request->all();
+        $data['status'] = $request->has('status');
+        $data['photo'] = $this->photoUpload($request);
+        Blog::create($data);
 
-        $request['photo'] = $this->photoUpload($request);
-
-        Blog::create($request->all());
-
-        return to_route('admin.panel.blogs')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+        return to_route('admin.panel.blog')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(Blog $blog)
@@ -37,20 +36,21 @@ class BlogController extends Controller
 
     public function update(BlogRequest $request, Blog $blog)
     {
-        $request['status'] = $request->has('status');
+        $data = $request->except(['photo']);
+        $data['status'] = $request->has('status');
         if ($request->has('photo')) {
-            $request['photo'] = $this->photoUpload($request);
+            $data['photo'] = $this->photoUpload($request);
         }
 
-        $blog->updateOrFail($request->all());
-        return to_route('admin.panel.blogs')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+        $blog->updateOrFail($data);
+        return to_route('admin.panel.blog')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Blog $blog)
     {
         $this->photoDelete($blog);
         $blog->delete();
-		return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+        return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     }
 
     private function photoUpload($request)

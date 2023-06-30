@@ -1,0 +1,76 @@
+@extends('admin.layouts.app', ['title' => 'مقالات | ایجاد'])
+
+@php
+  $inputs = [
+      ['name' => 'title', 'title' => 'عنوان', 'type' => 'text'],
+      ['name' => 'text', 'title' => 'متن', 'type' => 'text'],
+      ['name' => 'author', 'title' => 'نویسنده', 'type' => 'text'],
+      ['name' => 'keywords', 'title' => 'کلمات کلیدی', 'type' => 'text'],
+  ];
+@endphp
+
+@section('content')
+  <div class="content p-2 p-lg-4">
+    <div class="container-fluid">
+      <div class="row">
+        <x-breadcrumbs :routes="[
+            'پنل ادمین' => route('admin.panel.dashboard'),
+            'مقالات' => route('admin.panel.blog'),
+            'ایجاد' => '',
+        ]"></x-breadcrumbs>
+      </div>
+
+      <div class="row">
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <h3>ایجاد مقاله</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.blog') }}">
+              بازگشت
+              <i class="bi bi-arrow-90deg-left"></i>
+            </a>
+          </div>
+          <div class="card-body justify-content-center">
+            <form enctype="multipart/form-data" action="{{ route('admin.panel.blog.store') }}" class="row justify-content-center" method="post">
+              @csrf
+              @foreach ($inputs as $item)
+                <div class="mb-3 col-6">
+                  <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
+                  <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
+                    value="{{ old($item['name']) }}">
+                  @error($item['name'])
+                    <div class="text-danger fs-7">
+                      {{ $message }}
+                    </div>
+                  @enderror
+                </div>
+              @endforeach
+
+              <div class="mb-3 col-6">
+                <label for="photo" class="form-label">تصویر</label>
+                <input type="file" name="photo" class="form-control" id="photo">
+                @error('photo')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
+              <div class="mb-3 form-check d-flex justify-content-center">
+                <input type="checkbox" name="status" class="form-check-input me-2" id="status"
+                  {{ old('status') ? 'checked' : '' }}>
+                <label class="form-check-label" for="status">وضعیت</label>
+              </div>
+              @error('status')
+                <div class="text-danger fs-7 text-center" style="margin: -1rem 0 1rem 0;">
+                  {{ $message }}
+                </div>
+              @enderror
+
+              <button type="submit" class="btn btn-primary w-25">ارسال</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
