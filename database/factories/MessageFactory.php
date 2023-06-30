@@ -20,8 +20,8 @@ class MessageFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->email(),
             'subject' => fake()->text(10),
-            'message' => fake()->text(70),
-            'response' => fake()->name(50),
+            'message' => fake()->text(150),
+            'response' => fake()->text(100),
         ];
     }
 }
