@@ -39,6 +39,7 @@ class BlogController extends Controller
         $data = $request->except(['photo']);
         $data['status'] = $request->has('status');
         if ($request->has('photo')) {
+            $this->photoDelete($blog);
             $data['photo'] = $this->photoUpload($request);
         }
 
@@ -64,7 +65,7 @@ class BlogController extends Controller
             $path = public_path($blog->photo['relative_path']);
             file_delete($path);
         } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+            return redirect()->back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
         }
     }
 }

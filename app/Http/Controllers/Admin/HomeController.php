@@ -23,8 +23,8 @@ class HomeController extends Controller
 
   public function store(HomeRequest $request)
   {
-    $photoInfo = $this->imageUpload(file: $request->file('photo'), path: 'images/home');
-    $mobilePhotoInfo = $this->imageUpload(file: $request->file('mobilePhoto'), path: 'images/home/mobile');
+    $photoInfo = image_upload(file: $request->file('photo'), destinationPath: 'images/home');
+    $mobilePhotoInfo = image_upload(file: $request->file('mobilePhoto'), destinationPath: 'images/home/mobile');
 
     $status = $request->has('status');
 
@@ -54,8 +54,8 @@ class HomeController extends Controller
 
   public function update(HomeUpdateRequest $request, Home $home)
   {
-    $status = $request->has('status');
     $data = $this->initialUpdateData($home);
+    $data['status'] = $request->has('status');
 
     if ($request->has('title')) {
       $data['title'] = $request->title;
@@ -66,29 +66,22 @@ class HomeController extends Controller
     if ($request->has('description')) {
       $data['description'] = $request->description;
     }
-    if ($request->has('status')) {
-      $data['status'] = $status;
-    }
-    else {
-      $data['status'] = false;
-    }
 
     if ($request->has('photo')) {
-      $data = $this->photoUpload($request, $data, $home);
+      $data = $this->updatePhoto($request, $data, $home);
     }
     if ($request->has('mobilePhoto')) {
-      $data = $this->mobilePhotoUpload($request, $data, $home);
+      $data = $this->updateMobilePhoto($request, $data, $home);
     }
 
     $home->updateOrFail($data);
-
     return to_route('admin.panel.home')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
   }
 
   public function destroy($id)
   {
     try {
-      $homeDetails = Home::findOrfail($id);
+      $homeDetails = Home::findOrFail($id);
       $imagePath = public_path($homeDetails->photo['relative_path']);
       image_delete($imagePath);
       $mobileImagePath = public_path($homeDetails->photo['mobile']['relative_path']);
@@ -101,8 +94,8 @@ class HomeController extends Controller
     }
   }
 
-  // photo field upload for update data
-  private function photoUpload($request, $data, $home)
+  // photo upload for update data
+  private function updatePhoto($request, $data, $home)
   {
     $file = $request->file('photo');
     $destinationPath = public_path('images/home');
@@ -115,8 +108,8 @@ class HomeController extends Controller
     return $data;
   }
 
-  // mobilePhoto field upload for update data
-  private function mobilePhotoUpload($request, $data, $home)
+  // mobilePhoto upload for update data
+  private function updateMobilePhoto($request, $data, $home)
   {
     $mobilePhoto = $request->file('mobilePhoto');
       $destinationPathMobile = public_path('images/home/mobile');
@@ -141,12 +134,5 @@ class HomeController extends Controller
         ],
       ],
     ];
-  }
-
-  private function imageUpload($file, $path)
-  {
-    // $file = $request->file('photo');
-    $destinationPath = public_path($path);
-    return image_upload($file, $destinationPath);
   }
 }
