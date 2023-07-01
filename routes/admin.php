@@ -65,6 +65,7 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
 
         Route::get('/messages', [MessageController::class, 'index'])->name('message');
         Route::post('/messages', [ContactController::class, 'store'])->name('message.store');
+        Route::post('/messages/{message}', [ContactController::class, 'show'])->name('message.show');
     });
     Route::get('/contact', fn () => to_route('admin.panel.contact.details'))->name('contact');
 
