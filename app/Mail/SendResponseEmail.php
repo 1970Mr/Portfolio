@@ -19,8 +19,19 @@ class SendResponseEmail extends Mailable
      *
      * @return void
      */
-    public function __construct(private $subject, private $message)
+    public function __construct(
+        public $subject,
+        public $content,
+        public $greeting = null,
+        public $intro = null,
+        public $farewell = null,
+        public $signature = null,
+    )
     {
+        $this->greeting = $this->greeting ?? 'سلام دوست عزیز، امیدوارم حالت خوب باشه!';
+        $this->intro = $this->intro ?? 'ممنون که بهم پیام دادی. این ایمیل رو برای پاسخ به پیام شما فرستادم.';
+        $this->farewell = $this->farewell ?? 'اگر حرف دیگه‌ای داشتی حتما بهم بگو!';
+        $this->signature = $this->signature ?? config('app.name');
     }
 
     /**
@@ -46,7 +57,11 @@ class SendResponseEmail extends Mailable
         return new Content(
             view: 'emails.send-response',
             with: [
-                'message' => $this->message
+                'content' => $this->content,
+                'greeting' => $this->greeting,
+                'intro' => $this->intro,
+                'farewell' => $this->farewell,
+                'signature' => $this->signature,
             ],
         );
     }
