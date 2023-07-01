@@ -46,6 +46,7 @@
   <script src="{{ asset('front/js/popper.min.js') }}"></script>
   <script src="{{ asset('front/js/bootstrap.js') }}"></script>
   <script src="{{ asset('front/js/custom.js') }}"></script>
+  @include('sweetalert::alert')
 
   @stack('scripts')
 

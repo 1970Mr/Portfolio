@@ -8,25 +8,25 @@
         <h2>خانه</h2>
       </a>
     </li>
-    <li class="icon-box {{ active_route( 'about' ) }}">
+    <li class="icon-box {{ active_route('about', true) }}">
       <i class="fa fa-user"></i>
       <a href="{{ route('about') }}">
         <h2>درباره من</h2>
       </a>
     </li>
-    <li class="icon-box {{ active_route( 'portfolio' ) }}">
+    <li class="icon-box {{ active_route('portfolio', true) }}">
       <i class="fa fa-briefcase"></i>
       <a href="{{ route('portfolio') }}">
         <h2>نمونه‌ کار</h2>
       </a>
     </li>
-    <li class="icon-box {{ active_route( 'contact' ) }}">
+    <li class="icon-box {{ active_route('contact', true) }}">
       <i class="fa fa-envelope-open"></i>
       <a href="{{ route('contact') }}">
         <h2>ارتباط</h2>
       </a>
     </li>
-    <li class="icon-box {{ active_route( 'blog' ) }}">
+    <li class="icon-box {{ active_route('blog') }}">
       {{-- <i class="fa fa-comments"></i> --}}
       <i class="fa fa-file-text"></i>
       <a href="{{ route('blog') }}">

@@ -86,6 +86,8 @@
   </section>
   <!-- Main Content Ends -->
 @endsection
+<x-alert type='success'></x-alert>
+<x-alert type='error'></x-alert>
 
 @push('styles')
   <style>

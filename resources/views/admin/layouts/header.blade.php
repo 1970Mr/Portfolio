@@ -17,7 +17,7 @@
         </span>
         <i class="bi bi-envelope fs-4 text-gray-600"></i>
       </div>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <ul class="dropdown-menu">
         <li><a class="dropdown-item fs-7" href="#">
             مشاهده پیام‌های خوانده نشده
             <span class="badge rounded-pill bg-red ms-2">
@@ -38,7 +38,7 @@
           <p class="fs-8 text-gray-600 mb-0">سوپر ادمین</p>
         </div>
       </div>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <ul class="dropdown-menu">
         <li>
           <a class="dropdown-item fs-7" href="#">
             <i class="bi bi-person fs-5 me-1"></i>
