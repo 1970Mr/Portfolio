@@ -21,4 +21,9 @@ class MessageController extends Controller
         Message::create($data);
 		return to_route('admin.panel.contact.message')->with(['success' => 'پیام شما با موفقیت ارسال شد! بزودی به پیام شما پاسخ داده خواهد شد.']);
     }
+
+    public function show(Message $message)
+    {
+		return view('admin.message.show', compact('message'));
+    }
 }
