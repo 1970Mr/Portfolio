@@ -64,8 +64,9 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
         Route::delete('/details/{contact}', [ContactController::class, 'destroy'])->name('details.destroy');
 
         Route::get('/messages', [MessageController::class, 'index'])->name('message');
-        Route::post('/messages', [ContactController::class, 'store'])->name('message.store');
-        Route::post('/messages/{message}', [ContactController::class, 'show'])->name('message.show');
+        Route::post('/messages', [MessageController::class, 'store'])->name('message.store');
+        Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
+        Route::post('/messages/send-response/{message}', [MessageController::class, 'sendResponse'])->name('message.send.response');
     });
     Route::get('/contact', fn () => to_route('admin.panel.contact.details'))->name('contact');
 
