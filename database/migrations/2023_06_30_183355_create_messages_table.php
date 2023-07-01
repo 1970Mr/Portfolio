@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('message');
             $table->text('response')->nullable();
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
