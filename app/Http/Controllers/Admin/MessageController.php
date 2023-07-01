@@ -26,4 +26,17 @@ class MessageController extends Controller
     {
 		return view('admin.message.show', compact('message'));
     }
+
+    public function sendResponse(Message $message, Request $request)
+    {
+        $data = $request->validate([
+            'response' => 'required',
+        ]);
+
+        // Send response
+        
+
+        $message->update($data);
+		return back()->with(['success' => 'پاسخ شما با موفقیت ارسال شد!']);
+    }
 }
