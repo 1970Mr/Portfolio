@@ -34,9 +34,18 @@ class MessageController extends Controller
         ]);
 
         // Send response
-        
+        $this->sendResponseMail();
 
         $message->update($data);
 		return back()->with(['success' => 'پاسخ شما با موفقیت ارسال شد!']);
+    }
+
+    private function sendResponseMail()
+    {
+        try {
+            //code...
+        } catch (\Exception $e) {
+            //throw $th;
+        }
     }
 }
