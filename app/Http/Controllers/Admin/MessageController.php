@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MessageRequest;
+use App\Mail\SendResponseEmail;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -33,19 +35,18 @@ class MessageController extends Controller
             'response' => 'required',
         ]);
 
-        // Send response
-        $this->sendResponseMail();
+        $this->sendResponseMail($message, $request);
 
         $message->update($data);
 		return back()->with(['success' => 'پاسخ شما با موفقیت ارسال شد!']);
     }
 
-    private function sendResponseMail()
+    private function sendResponseMail($message, $request)
     {
         try {
-            //code...
+            Mail::to($message->email)->send(new SendResponseEmail('پاسخ پیام شما', $request->response));
         } catch (\Exception $e) {
-            //throw $th;
+            return back()->with(['error' => 'پاسخ شما با موفقیت ارسال نشد!']);
         }
     }
 }
