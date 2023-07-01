@@ -21,6 +21,7 @@ class MessageFactory extends Factory
             'email' => fake()->email(),
             'subject' => fake()->text(10),
             'message' => fake()->text(150),
+            'is_read' => false,
             'response' => fake()->text(100),
         ];
     }

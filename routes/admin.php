@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SkillController;
@@ -61,6 +62,8 @@ Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
         Route::get('/details/edit/{contact}', [ContactController::class, 'edit'])->name('details.edit');
         Route::put('/details/{contact}', [ContactController::class, 'update'])->name('details.update');
         Route::delete('/details/{contact}', [ContactController::class, 'destroy'])->name('details.destroy');
+
+        Route::get('/messages', [MessageController::class, 'index'])->name('message');
     });
     Route::get('/contact', fn () => to_route('admin.panel.contact.details'))->name('contact');
 
