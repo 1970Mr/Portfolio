@@ -21,7 +21,7 @@ class MessageController extends Controller
     {
         $data = $request->except(['response', 'is_read']);
         Message::create($data);
-		return to_route('admin.panel.contact.message')->with(['success' => 'پیام شما با موفقیت ارسال شد! بزودی به پیام شما پاسخ داده خواهد شد.']);
+		return back()->with(['success' => 'پیام شما با موفقیت ارسال شد! بزودی به پیام شما پاسخ داده خواهد شد.']);
     }
 
     public function show(Message $message)
