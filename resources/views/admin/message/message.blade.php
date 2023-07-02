@@ -41,11 +41,11 @@
                       <td class="text-muted">{{ $item->subject }}</td>
                       <td class="text-muted">{{ Illuminate\Support\Str::limit($item->message, 40) }}</td>
                       <td>
-                        <form action="{{ route('admin.panel.contact.messages.destroy', ['contact' => $item->id]) }}"
+                        <form action="{{ route('admin.panel.contact.message.destroy', ['message' => $item->id]) }}"
                           method="post" id="form-{{ $loop->iteration }}">
                           @csrf
                           @method('delete')
-                          <a class="dropdown-item" href="javascript:"
+                          <a class="btn btn-danger" href="javascript:"
                             onclick="document.getElementById('form-{{ $loop->iteration }}').submit()">حذف</a>
                         </form>
                       </td>
