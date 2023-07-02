@@ -40,6 +40,7 @@ class MessageController extends Controller
         $data = $request->validate([
             'response' => 'required',
         ]);
+        dd($data);
 
         $this->sendResponseMail($message, $request);
 
