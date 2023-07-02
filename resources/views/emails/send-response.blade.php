@@ -9,7 +9,7 @@
 
     <p>{{ $intro }}</p>
 
-    <p>{{ $content }}</p>
+    <p style="white-space: pre-wrap;">{{ $content }}</p>
 
     <p>{{ $farewell }}</p>
 
