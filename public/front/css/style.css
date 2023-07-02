@@ -1102,7 +1102,7 @@ body.light hr.separator {
     background: #252525;
     color: #fff;
     padding: 11px 26px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
     border-radius: 30px;
     outline: none !important;
     transition: .3s;
@@ -1114,7 +1114,7 @@ body.light hr.separator {
     color: #fff;
     width: 100%;
     padding: 12px 26px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     height: 160px;
     overflow: hidden;
     border-radius: 30px;

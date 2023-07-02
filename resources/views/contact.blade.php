@@ -2,6 +2,8 @@
 
 @php
   $socials = ['telegram', 'instagram', 'twitter', 'youtube', 'facebook', 'linkedin', 'github'];
+
+  $inputs = [['name' => 'name', 'title' => 'نام', 'type' => 'text'], ['name' => 'email', 'title' => 'ایمیل', 'type' => 'email'], ['name' => 'subject', 'title' => 'موضوع', 'type' => 'text']];
 @endphp
 
 @section('content')
@@ -34,8 +36,7 @@
             @foreach ($socials as $social)
               @if ($contact->{$social})
                 <li>
-                  <a target="_blank" title="{{ $social }}"
-                    href="{{ $contact->{$social} }}">
+                  <a target="_blank" title="{{ $social }}" href="{{ $contact->{$social} }}">
                     <i class="fa fa-{{ $social }}"></i>
                   </a>
                 </li>
@@ -53,28 +54,38 @@
         <!-- Left Side Ends -->
         <!-- Contact Form Starts -->
         <div class="col-12 col-lg-8">
-          <form class="contactform" method="post" action="https://tunis.setinco.com/dark/php/process-form.php">
+          <form class="contactform" method="post" action="{{ route('admin.panel.contact.message.store') }}">
+            @csrf
             <div class="contactform">
               <div class="row">
-                <div class="col-12 col-md-4">
-                  <input type="text" name="name" placeholder="نام شما ">
-                </div>
-                <div class="col-12 col-md-4">
-                  <input type="email" name="email" placeholder="ایمیل شما ">
-                </div>
-                <div class="col-12 col-md-4">
-                  <input type="text" name="subject" placeholder="موضوع شما ">
-                </div>
+                @foreach ($inputs as $input)
+                  <div class="col-12 col-md-4 mb-4">
+                    <input type="{{ $input['type'] }}" name="{{ $input['name'] }}" value="{{ old($input['name']) }}"
+                      placeholder="{{ $input['title'] }}">
+                    @error($input['name'])
+                      <div class="text-danger small">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
+                @endforeach
+
                 <div class="col-12">
-                  <textarea name="message" placeholder="پیغام شما"></textarea>
-                  <button type="submit" class="button">
+                  <textarea name="message" placeholder="پیام شما"></textarea>
+                  @error('message')
+                    <div class="text-danger small">
+                      {{ $message }}
+                    </div>
+                  @enderror
+
+                  <button type="submit" class="button mt-4">
                     <span class="button-text">ارسال پیام</span>
                     <span class="button-icon fa fa-send"></span>
                   </button>
                 </div>
-                <div class="col-12 form-message">
+                {{-- <div class="col-12 form-message">
                   <span class="output_message text-center font-weight-600 text-uppercase"></span>
-                </div>
+                </div> --}}
               </div>
             </div>
           </form>
@@ -103,5 +114,10 @@
     textarea {
       height: 200px !important;
     }
+
+    .small{
+        font-size: 85%;
+    }
+    
   </style>
 @endpush
