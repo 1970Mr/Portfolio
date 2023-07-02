@@ -23,7 +23,7 @@
           <div class="chat-body">
             <div class="chat-message user">
               <span class="sender">{{ $message->name }}:</span>
-              <div class="content">{{ $message->message }}</div>
+              <div class="chat-content">{{ $message->message }}</div>
               <div class="meta-info">ایمیل: {{ $message->email }}</div>
               <div class="meta-info">ارسال شده در: <span
                   class="d-inline-block">{{ jdate()->forge($message->created_at) }}</span></div>
@@ -32,7 +32,7 @@
             @if ($message->response)
               <div class="chat-message admin">
                 <span class="sender">پاسخ شما:</span>
-                <div class="content">{{ $message->response }}</div>
+                <div class="chat-content">{{ $message->response }}</div>
                 <div class="meta-info">ایمیل: {{ config('mail.from.address') }}</div>
                 <div class="meta-info">ارسال شده در: <span
                     class="d-inline-block">{{ jdate()->forge($message->updated_at) }}</span></div>
@@ -115,6 +115,10 @@
 
     .input-group textarea {
       height: 28px;
+    }
+
+    .chat-content {
+        white-space: pre-wrap;
     }
   </style>
 @endpush

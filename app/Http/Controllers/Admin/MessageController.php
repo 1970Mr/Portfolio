@@ -41,6 +41,10 @@ class MessageController extends Controller
             'response' => 'required',
         ]);
 
+        if ($message->response != null) {
+            return back()->with(['error' => 'شما قبلا به این پیام پاسخ داده‌اید!']);
+        }
+
         $this->sendResponseMail($message, $request);
 
         $message->update($data);
