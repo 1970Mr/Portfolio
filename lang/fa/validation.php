@@ -233,6 +233,7 @@ return [
         'phone_number'             => "شماره تماس",
         'author'                   => "نویسنده",
         'keyword'                  => "کلمه کلیدی",
-        'keywords'                  => "کلمات کلیدی",
+        'keywords'                 => "کلمات کلیدی",
+        'response'                 => "پاسخ",
     ],
 ];
