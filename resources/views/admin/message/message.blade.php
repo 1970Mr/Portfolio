@@ -1,4 +1,4 @@
-@extends('admin.layouts.app', ['title' => 'راه‌های ارتباطی'])
+@extends('admin.layouts.app', ['title' => 'پیام‌های من'])
 
 @section('content')
   <div class="content p-2 p-lg-4">
@@ -6,18 +6,14 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'راه‌های ارتباطی' => '',
+            'پیام‌های من' => '',
         ]"></x-breadcrumbs>
       </div>
 
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>راه‌های ارتباطی</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.contact.details.create') }}">
-              ایجاد
-              <i class="bi bi-plus-circle"></i>
-            </a>
+            <h3>پیام‌های من</h3>
           </div>
           <div class="card-body">
             <div class="table-responsive" style="min-height: 40vh;">
@@ -29,7 +25,7 @@
                     <th>ایمیل</th>
                     <th>موضوع</th>
                     <th>پیام</th>
-                    <th>حذف</th>
+                    <th>عملیات</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -40,14 +36,28 @@
                       <td class="text-muted">{{ $item->email }}</td>
                       <td class="text-muted">{{ $item->subject }}</td>
                       <td class="text-muted">{{ Illuminate\Support\Str::limit($item->message, 40) }}</td>
+
                       <td>
-                        <form action="{{ route('admin.panel.contact.message.destroy', ['message' => $item->id]) }}"
-                          method="post" id="form-{{ $loop->iteration }}">
-                          @csrf
-                          @method('delete')
-                          <a class="btn btn-danger" href="javascript:"
-                            onclick="document.getElementById('form-{{ $loop->iteration }}').submit()">حذف</a>
-                        </form>
+                        <div class="dropdown">
+                          <button class="btn btn-light-primary dropdown-toggle" type="button"
+                            data-bs-toggle="dropdown">
+                            عملیات
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item"
+                                href="{{ route('admin.panel.contact.message.show', ['message' => $item->id]) }}">نمایش</a>
+                            </li>
+                            <li>
+                              <form action="{{ route('admin.panel.contact.message.destroy', ['message' => $item->id]) }}" method="post"
+                                id="form-{{ $loop->iteration }}">
+                                @csrf
+                                @method('delete')
+                                <a class="dropdown-item" href="javascript:"
+                                  onclick="document.getElementById('form-{{ $loop->iteration }}').submit()">حذف</a>
+                              </form>
+                            </li>
+                          </ul>
+                        </div>
                       </td>
                     </tr>
                   @endforeach
