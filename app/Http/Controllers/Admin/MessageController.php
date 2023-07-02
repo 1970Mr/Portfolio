@@ -29,6 +29,12 @@ class MessageController extends Controller
 		return view('admin.message.show', compact('message'));
     }
 
+    public function destroy(Message $message)
+    {
+        $message->delete();
+        return back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+    }
+
     public function sendResponse(Message $message, Request $request)
     {
         $data = $request->validate([

@@ -23,9 +23,7 @@ class SkillController extends Controller
     public function store(SkillRequest $request)
     {
         $request['status'] = $request->has('status');
-
         Skill::create($request->all());
-
 		return to_route('admin.panel.about.skill')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
@@ -38,14 +36,12 @@ class SkillController extends Controller
     {
         $request['status'] = $request->has('status');
         $skill->updateOrFail($request->all());
-
 		return to_route('admin.panel.about.skill')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Skill $skill)
     {
         $skill->delete();
-
-		return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+		return back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     }
 }
