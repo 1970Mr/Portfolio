@@ -28,6 +28,7 @@ class MessageController extends Controller
     {
         $data = $request->except(['response', 'is_read']);
         $message = Message::create($data);
+        Notification::send($message, new AdminHasMessage);
 		return back()->with(['success' => 'پیام شما با موفقیت ارسال شد! بزودی به پیام شما پاسخ داده خواهد شد.']);
     }
 

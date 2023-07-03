@@ -17,7 +17,6 @@ class AdminHasMessage extends Notification
      * @return void
      */
     public function __construct(
-        public $messageID,
         public $subject = null,
         public $greeting = null,
         public $content = null,
@@ -48,11 +47,12 @@ class AdminHasMessage extends Notification
     {
         return (new MailMessage)
             ->from(config('mail.from.address'), config('mail.from.name'))
+            ->subject($this->subject)
             ->view('emails.inform-admin', [
                 'subject' => $this->subject,
                 'greeting' => $this->greeting,
                 'content' => $this->content,
-                'messageID' => $this->messageID,
+                'messageID' => $notifiable->id,
             ]);
     }
 
