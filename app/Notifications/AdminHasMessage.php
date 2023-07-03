@@ -17,15 +17,14 @@ class AdminHasMessage extends Notification
      * @return void
      */
     public function __construct(
+        public $messageID,
         public $subject = null,
         public $greeting = null,
         public $content = null,
-    )
-    {
-        $this->greeting = $this->greeting ?? 'سلام ' . config('app.name') . ' عزیز، امیدوارم حالت خوب باشه!';
-        $this->intro = $this->intro ?? 'ممنون که بهم پیام دادی. این ایمیل رو برای پاسخ به پیام شما فرستادم.';
-        $this->farewell = $this->farewell ?? 'اگر حرف دیگه‌ای داشتی حتما بهم بگو!';
-        $this->signature = $this->signature ?? config('app.name');
+    ) {
+        $this->subject = $this->subject ?? 'پیام جدید دارید';
+        $this->greeting = $this->greeting ?? 'سلام ' . config('admin.name') . ' عزیز، امیدوارم حالت خوب باشه!';
+        $this->content = $this->content ?? 'شما یک پیام جدید دارید!';
     }
 
     /**
@@ -48,9 +47,13 @@ class AdminHasMessage extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->from(config('mail.from.address'), config('mail.from.name'))
+            ->view('emails.inform-admin', [
+                'subject' => $this->subject,
+                'greeting' => $this->greeting,
+                'content' => $this->content,
+                'messageID' => $this->messageID,
+            ]);
     }
 
     /**

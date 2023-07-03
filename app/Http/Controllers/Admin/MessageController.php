@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MessageRequest;
 use App\Mail\SendResponseEmail;
 use App\Models\Message;
+use App\Notifications\AdminHasMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class MessageController extends Controller
 {
@@ -25,7 +27,7 @@ class MessageController extends Controller
     public function store(MessageRequest $request)
     {
         $data = $request->except(['response', 'is_read']);
-        Message::create($data);
+        $message = Message::create($data);
 		return back()->with(['success' => 'پیام شما با موفقیت ارسال شد! بزودی به پیام شما پاسخ داده خواهد شد.']);
     }
 
