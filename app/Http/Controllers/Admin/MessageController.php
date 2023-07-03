@@ -31,6 +31,7 @@ class MessageController extends Controller
 
     public function show(Message $message)
     {
+        $message->is_read ?: $message->update(['is_read' => true]);
 		return view('admin.message.show', compact('message'));
     }
 
