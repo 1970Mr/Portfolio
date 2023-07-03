@@ -16,9 +16,16 @@ class AdminHasMessage extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        public $subject = null,
+        public $greeting = null,
+        public $content = null,
+    )
     {
-        //
+        $this->greeting = $this->greeting ?? 'سلام ' . config('app.name') . ' عزیز، امیدوارم حالت خوب باشه!';
+        $this->intro = $this->intro ?? 'ممنون که بهم پیام دادی. این ایمیل رو برای پاسخ به پیام شما فرستادم.';
+        $this->farewell = $this->farewell ?? 'اگر حرف دیگه‌ای داشتی حتما بهم بگو!';
+        $this->signature = $this->signature ?? config('app.name');
     }
 
     /**
