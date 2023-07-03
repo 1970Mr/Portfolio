@@ -14,11 +14,11 @@ class MessageController extends Controller
     public function index(Request $request)
     {
         if ($request->has('is_read') && $request->is_read >= 1)
-            $messages = Message::where('is_read', true)->paginate(5);
+            $messages = Message::where('is_read', true)->paginate(5)->withQueryString();
         elseif($request->has('is_read') && $request->is_read == 0)
-            $messages = Message::where('is_read', false)->paginate(5);
+            $messages = Message::where('is_read', false)->paginate(5)->withQueryString();
         else
-            $messages = Message::paginate(5);
+            $messages = Message::paginate(5)->withQueryString();
 		return view('admin.message.message', compact('messages'));
     }
 
