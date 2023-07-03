@@ -31,7 +31,7 @@ class SendResponseEmail extends Mailable
         $this->greeting = $this->greeting ?? 'سلام دوست عزیز، امیدوارم حالت خوب باشه!';
         $this->intro = $this->intro ?? 'ممنون که بهم پیام دادی. این ایمیل رو برای پاسخ به پیام شما فرستادم.';
         $this->farewell = $this->farewell ?? 'اگر حرف دیگه‌ای داشتی حتما بهم بگو!';
-        $this->signature = $this->signature ?? config('app.name');
+        $this->signature = $this->signature ?? config('admin.name');
     }
 
     /**
