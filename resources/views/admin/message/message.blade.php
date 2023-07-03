@@ -14,6 +14,11 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>پیام‌های من</h3>
+            <div>
+              <a href="{{ route('admin.panel.contact.message', ['is_read' => true]) }}" class="btn btn-light-primary">پیام‌های خوانده شده</a>
+              <a href="{{ route('admin.panel.contact.message', ['is_read' => false]) }}" class="btn btn-light-primary">پیام‌های خوانده نشده</a>
+              <a href="{{ route('admin.panel.contact.message') }}" class="btn btn-light-primary">همه پیام‌ها</a>
+            </div>
           </div>
           <div class="card-body">
             <div class="table-responsive" style="min-height: 40vh;">
@@ -25,6 +30,7 @@
                     <th>ایمیل</th>
                     <th>موضوع</th>
                     <th>پیام</th>
+                    <th>وضعیت خواندن</th>
                     <th>عملیات</th>
                   </tr>
                 </thead>
@@ -36,11 +42,11 @@
                       <td class="text-muted">{{ $item->email }}</td>
                       <td class="text-muted">{{ $item->subject }}</td>
                       <td class="text-muted">{{ Illuminate\Support\Str::limit($item->message, 40) }}</td>
+                      <td class="text-muted" style="min-width: 7.2rem; text-align: center;">{{ $item->is_read }}</td>
 
                       <td>
                         <div class="dropdown">
-                          <button class="btn btn-light-primary dropdown-toggle" type="button"
-                            data-bs-toggle="dropdown">
+                          <button class="btn btn-light-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             عملیات
                           </button>
                           <ul class="dropdown-menu">
@@ -48,8 +54,8 @@
                                 href="{{ route('admin.panel.contact.message.show', ['message' => $item->id]) }}">نمایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.contact.message.destroy', ['message' => $item->id]) }}" method="post"
-                                id="form-{{ $loop->iteration }}">
+                              <form action="{{ route('admin.panel.contact.message.destroy', ['message' => $item->id]) }}"
+                                method="post" id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
                                 <a class="dropdown-item" href="javascript:"
