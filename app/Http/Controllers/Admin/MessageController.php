@@ -11,9 +11,14 @@ use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $messages = Message::paginate(5);
+        if ($request->has('is_read') && $request->is_read >= 1)
+            $messages = Message::where('is_read', true)->paginate(5);
+        elseif($request->has('is_read') && $request->is_read == 0)
+            $messages = Message::where('is_read', false)->paginate(5);
+        else
+            $messages = Message::paginate(5);
 		return view('admin.message.message', compact('messages'));
     }
 

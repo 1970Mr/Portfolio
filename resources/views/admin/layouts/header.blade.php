@@ -1,5 +1,6 @@
 @php
-    $mobilePhoto = App\Models\Home::where('status', true)->first()->photo['mobile']['relative_path']
+    $mobilePhoto = App\Models\Home::where('status', true)->first()->photo['mobile']['relative_path'];
+    $unreadMessagesCount = App\Models\Message::where('is_read', false)->count();
 @endphp
 
 <header class="header d-flex justify-content-between p-3 align-items-center">
@@ -11,26 +12,26 @@
 
   <div class="d-flex align-items-center">
     <div class="dropdown mx-4" style="cursor: pointer;">
-      <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="dropdown-toggle" data-bs-toggle="dropdown">
         <span class="position-absolute top-0 end-50 translate-middle badge rounded-pill bg-red">
-          9
+            {{ $unreadMessagesCount }}
         </span>
         <i class="bi bi-envelope fs-4 text-gray-600"></i>
       </div>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item fs-7" href="#">
+        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.message', ['is_read' => false]) }}">
             مشاهده پیام‌های خوانده نشده
             <span class="badge rounded-pill bg-red ms-2">
-                9
+                {{ $unreadMessagesCount }}
             </span>
         </a></li>
-        <li><a class="dropdown-item fs-7" href="#"> مشاهده پیام‌های خوانده شده </a></li>
-        <li><a class="dropdown-item fs-7" href="#"> مشاهده همه پیام‌ها </a></li>
+        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.message', ['is_read' => true]) }}"> مشاهده پیام‌های خوانده شده </a></li>
+        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.message') }}"> مشاهده همه پیام‌ها </a></li>
       </ul>
     </div>
 
     <div class="dropdown" style="cursor: pointer;">
-      <div class="dropdown-toggle profile d-flex align-items-center " data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="dropdown-toggle profile d-flex align-items-center " data-bs-toggle="dropdown">
         <img width="45" class="img-fluid rounded-circle me-2" src="{{ asset($mobilePhoto) }}"
           alt="">
         <div>
