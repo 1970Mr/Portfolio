@@ -5,14 +5,16 @@
     <title>{{ $subject }}</title>
 </head>
 <body>
-    <h2>{{ $greeting }}</h2>
+    <div class="container">
+        <h2>{{ $greeting }}</h2>
 
-    <p>{{ $intro }}</p>
+        <p>{{ $intro }}</p>
 
-    <p style="white-space: pre-wrap;">{{ $content }}</p>
+        <p style="white-space: pre-wrap;">{{ $content }}</p>
 
-    <p>{{ $farewell }}</p>
+        <p>{{ $farewell }}</p>
 
-    <p>{{ $signature }}</p>
+        <p class="signature">{{ $signature }}</p>
+    </div>
 </body>
 </html>
