@@ -23,7 +23,13 @@ class PortfolioSeeder extends Seeder
                 'link' => 'rasmor.ir',
                 'technology' => 'php, laravel',
                 'media_type' => Portfolio::$mediaTypes[0],
-                'media' => fake()->imageUrl(),
+                'media' => [
+                    'media_type' => Portfolio::$mediaTypes[0],
+                    'image' => [
+                        'name' => fake()->name(),
+                        'relative_path' => fake()->imageUrl(),
+                    ],
+                ],
                 'status' => true,
             ],
             [
@@ -33,7 +39,13 @@ class PortfolioSeeder extends Seeder
                 'link' => 'mohebnews.com',
                 'technology' => 'wordpress',
                 'media_type' => Portfolio::$mediaTypes[0],
-                'media' => fake()->imageUrl(),
+                'media' => [
+                    'media_type' => Portfolio::$mediaTypes[0],
+                    'image' => [
+                        'name' => fake()->name(),
+                        'relative_path' => fake()->imageUrl(),
+                    ],
+                ],
                 'status' => true,
             ]
         ]);

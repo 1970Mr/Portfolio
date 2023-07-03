@@ -23,8 +23,14 @@ class PortfolioFactory extends Factory
             'customer' => fake()->name(),
             'link' => fake()->url(),
             'technology' => fake()->text(20),
-            'media_type' => Portfolio::$mediaTypes[ array_rand(Portfolio::$mediaTypes) ],
-            'media' => fake()->text(100),
+            'media_type' => Portfolio::$mediaTypes[0],
+            'media' => [
+                'media_type' => Portfolio::$mediaTypes[0],
+                'image' => [
+                    'name' => fake()->name(),
+                    'relative_path' => fake()->imageUrl(),
+                ],
+            ],
             'status' => rand(0,1),
         ];
     }
