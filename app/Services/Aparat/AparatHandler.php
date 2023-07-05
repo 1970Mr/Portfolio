@@ -11,8 +11,17 @@ class AparatHandler
 
     public function uploadFile()
     {
+        // 1. get token
+        // 2. get upload form
+        // 3. upload file
+
         $token = $this->getToken();
-        dd($token);
+        $uploadForm = $this->uploadForm($token);
+
+        // $response = Http::post($url);
+
+        dd('hi');
+        // return response->json('');
     }
 
     private function getToken()
@@ -33,5 +42,15 @@ class AparatHandler
             $url = str_replace($key, $value, $url);
         }
         return $url;
+    }
+
+    private function uploadForm($token)
+    {
+        $url = $this->replaceRequirement(config('aparat.upload_​form'), [
+            '{user}' => config('aparat.username'),
+            '{token}' => $token,
+        ]);
+        $response = Http::get($url);
+        return $response->json('upload​form');
     }
 }
