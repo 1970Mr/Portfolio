@@ -29,10 +29,6 @@ class PortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
-        $uid = $this->aparat->uploadFile($request->file('video'), $request->title);
-        $frame = $this->aparat->fileInfo($uid)['frame'];
-        dd($frame);
-
         $request['status'] = $request->has('status');
         $media = $this->uploadAnyFile($request);
 
@@ -95,6 +91,19 @@ class PortfolioController extends Controller
     {
         // return $this->fileUpload($request, Portfolio::$mediaTypes[2]);
         return $this->fileUpload($request, 'video');
+    }
+
+    private function videoAparatUpload($request)
+    {
+        $uid = $this->aparat->uploadFile($request->file('video'), $request->title);
+        $frame = $this->aparat->fileInfo($uid)['frame'];
+
+        $media = ['type' => Portfolio::$mediaTypes[3]];
+        $media['video_link'] = [
+            'uid' => $uid,
+            'frame' => $frame,
+        ];
+        return $media;
     }
 
     private function sliderUpload($request)
@@ -176,6 +185,8 @@ class PortfolioController extends Controller
             $media = $this->sliderUpload($request);
         if ($request->media_type == Portfolio::$mediaTypes[2])
             $media = $this->videoUpload($request);
+        if ($request->media_type == Portfolio::$mediaTypes[3])
+            $media = $this->videoAparatUpload($request);
 
         if ($media)
             return $media;
