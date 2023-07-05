@@ -2,14 +2,16 @@
 
 namespace App\Services\Aparat;
 
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class AparatHandler
 {
     const EXPIRE_TIME = 18000;
+    const TIMEOUT = 300;
 
-    public function uploadFile()
+    public function uploadFile(UploadedFile $file, $title)
     {
         // 1. get token
         // 2. get upload form
@@ -18,10 +20,19 @@ class AparatHandler
         $token = $this->getToken();
         $uploadForm = $this->uploadForm($token);
 
-        // $response = Http::post($url);
+        $fileName = uniqid(time() . mt_rand()) . '.' . $file->getClientOriginalExtension();
+        $response = Http::attach(
+            // 'video', file_get_contents($file->getPathname()), $fileName
+            'video',
+            $file->get(),
+            $fileName,
+        )->timeout(self::TIMEOUT)->post($uploadForm['formAction'], [
+            'frm-id' => $uploadForm['frm-id'],
+            'data[title]' => $title,
+            'data[category]' => config('aparat.tech_category_id'),
+        ]);
 
-        dd('hi');
-        // return response->json('');
+        return $response->json('uploadpost.uid');
     }
 
     private function getToken()
@@ -36,14 +47,6 @@ class AparatHandler
         });
     }
 
-    private function replaceRequirement($url, $options)
-    {
-        foreach ($options as $key => $value) {
-            $url = str_replace($key, $value, $url);
-        }
-        return $url;
-    }
-
     private function uploadForm($token)
     {
         $url = $this->replaceRequirement(config('aparat.upload_​form'), [
@@ -51,6 +54,14 @@ class AparatHandler
             '{token}' => $token,
         ]);
         $response = Http::get($url);
-        return $response->json('upload​form');
+        return $response->json('uploadform');
+    }
+
+    private function replaceRequirement($url, $options)
+    {
+        foreach ($options as $key => $value) {
+            $url = str_replace($key, $value, $url);
+        }
+        return $url;
     }
 }
