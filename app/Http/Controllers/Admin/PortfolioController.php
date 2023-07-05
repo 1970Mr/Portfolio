@@ -194,12 +194,15 @@ class PortfolioController extends Controller
 
         if ($request->media_type == Portfolio::$mediaTypes[1])
         {
-            if($this->portfolio->media_type == Portfolio::$mediaTypes[1])
+            if(strtolower($request['_method']) == 'put' && $this->portfolio->media_type == Portfolio::$mediaTypes[1])
+            {
                 // update slider to slider
                 $media = $this->sliderUpdate($request);
-            else
-                // update another type to slider
+            }
+            else {
+                // update another type to slider or store slider
                 $media = $this->sliderUpload($request);
+            }
         }
 
         if ($request->media_type == Portfolio::$mediaTypes[2])
