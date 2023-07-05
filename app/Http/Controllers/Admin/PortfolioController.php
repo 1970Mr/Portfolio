@@ -5,12 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PortfolioRequest;
 use App\Models\Portfolio;
+use App\Services\Aparat\AparatHandler;
 
 class PortfolioController extends Controller
 {
     private Portfolio $portfolio;
+
+    public function __construct(public AparatHandler $aparat)
+    {
+    }
+
     public function index()
     {
+        $this->aparat->uploadFile();
+        
         $portfolios = Portfolio::paginate(5);
         return view('admin.portfolio.portfolio', compact('portfolios'));
     }
@@ -53,8 +61,10 @@ class PortfolioController extends Controller
         ) {
             $media = $this->uploadAnyFile($request);
 
-            if ($request['media_type'] != 'slider' ||
-                ($request['media_type'] == 'slider' && $portfolio->media_type != 'slider'))
+            if (
+                $request['media_type'] != 'slider' ||
+                ($request['media_type'] == 'slider' && $portfolio->media_type != 'slider')
+            )
                 $this->deleteAnyFile($portfolio);
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
