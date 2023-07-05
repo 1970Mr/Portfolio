@@ -95,8 +95,8 @@ class PortfolioController extends Controller
 
     private function videoAparatUpload($request)
     {
-        $uid = $this->aparat->uploadFile($request->file('video_link'), $request->title);
-        $frame = $this->aparat->fileInfo($uid)['frame'];
+        $uid = $this->aparat->uploadVideo($request->file('video_link'), $request->title);
+        $frame = $this->aparat->videoInfo($uid)['frame'];
 
         $media = ['type' => Portfolio::$mediaTypes[3]];
         $media['video_link'] = [
@@ -149,6 +149,8 @@ class PortfolioController extends Controller
             $this->filesDelete($portfolio, 'slider');
         if ($portfolio->media_type == Portfolio::$mediaTypes[2])
             $this->fileDelete($portfolio, 'video');
+        if ($portfolio->media_type == Portfolio::$mediaTypes[3])
+            $this->videoLinkDelete($portfolio);
     }
 
     private function fileDelete($portfolio, $type)
@@ -173,6 +175,11 @@ class PortfolioController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
         }
+    }
+
+    private function videoLinkDelete($portfolio)
+    {
+        $this->aparat->deleteVideo($portfolio['media']['video_link']['uid']);
     }
 
     private function uploadAnyFile($request)

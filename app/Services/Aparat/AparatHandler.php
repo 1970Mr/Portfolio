@@ -11,7 +11,7 @@ class AparatHandler
     const EXPIRE_TIME = 18000;
     const TIMEOUT = 300;
 
-    public function uploadFile(UploadedFile $file, $title)
+    public function uploadVideo(UploadedFile $file, $title)
     {
         // 1. get token
         // 2. get upload form
@@ -59,7 +59,15 @@ class AparatHandler
         return $response->json('uploadform');
     }
 
-    public function fileInfo($uid)
+    private function replaceRequirement($url, $options)
+    {
+        foreach ($options as $key => $value) {
+            $url = str_replace($key, $value, $url);
+        }
+        return $url;
+    }
+
+    public function videoInfo($uid)
     {
         $url = $this->replaceRequirement(config('aparat.video'), [
             '{uid}' => $uid,
@@ -70,14 +78,24 @@ class AparatHandler
 
     public function checkProcess($uid)
     {
-        return $this->fileInfo($uid)['process'];
+        return $this->videoInfo($uid)['process'];
     }
 
-    private function replaceRequirement($url, $options)
+    public function deleteVideo($uid)
     {
-        foreach ($options as $key => $value) {
-            $url = str_replace($key, $value, $url);
-        }
-        return $url;
+        $deleteVideoLink = $this->deleteVideoLink($uid);
+        $response = Http::get($deleteVideoLink);
+        return $response->json('deletevideo.type') == 'success';
+    }
+
+    private function deleteVideoLink($uid)
+    {
+        $url = $this->replaceRequirement(config('aparat.deletevideolink'), [
+            '{user}' => config('aparat.username'),
+            '{token}' => $this->getToken(),
+            '{uid}' => $uid,
+        ]);
+        $response = Http::get($url);
+        return $response->json('deletevideolink.deleteurl');
     }
 }
