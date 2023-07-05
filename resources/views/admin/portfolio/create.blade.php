@@ -145,7 +145,16 @@
                 {{-- tab4 --}}
                 <div class="tab-pane fade {{ session("media.{$mediaTypes[3]}") ? 'show active' : '' }}" id="tab4">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[3] }}">
-                  tab4
+
+                  <div class="mb-3 col-6 mx-auto">
+                    <label for="video_link" class="form-label">ویدئو (Aparat)</label>
+                    <input type="file" name="video_link" class="form-control" id="video_link">
+                    @error('video_link')
+                      <div class="text-danger fs-7">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
                 </div>
               </div>
 
