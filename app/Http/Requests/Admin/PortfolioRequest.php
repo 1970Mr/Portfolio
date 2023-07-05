@@ -95,6 +95,7 @@ class PortfolioRequest extends FormRequest
     private function videoLinkRules()
     {
         session()->flash('media.video_link', true);
-        return $this->rules['video_link'] = "{$this->isRequired}|url";
+        // return $this->rules['video_link'] = "{$this->isRequired}|url";
+        return $this->rules['video_link'] = "{$this->isRequired}|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
     }
 }
