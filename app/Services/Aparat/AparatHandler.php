@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Http;
 
 class AparatHandler
 {
-    const EXPIRE_TIME = 18000;
-    const TIMEOUT = 300;
+    const EXPIRE_TIME = 18000; // 5 h
+    const TIMEOUT = 1800; // 30 m
 
     public function uploadVideo(UploadedFile $file, $title)
     {
