@@ -2,8 +2,23 @@
 
 namespace App\Services\Aparat;
 
+use Illuminate\Support\Facades\Http;
+
 class AparatHandler
 {
-    
+    private function getToken()
+    {
+        $url = $this->replaceRequirement(config('aparat.login'), [
+            '{user}' => '',
+            '{lpass}' => sha1(MD5('password'))
+        ]);
+        $response = Http::get('');
+        return $response->json('profile.ltoken');
+    }
+
+    private function replaceRequirement($url, $options)
+    {
+
+    }
 }
 
