@@ -9,6 +9,7 @@ use App\Services\Aparat\AparatHandler;
 
 class PortfolioController extends Controller
 {
+    // for Update
     private Portfolio $portfolio;
 
     public function __construct(public AparatHandler $aparat)
@@ -50,7 +51,6 @@ class PortfolioController extends Controller
         $this->portfolio = $portfolio;
         $request['status'] = $request->has('status');
         $inputs = $request->all();
-        unset($inputs['media_type']);
         if (
             $request->hasFile('image') ||
             $request->hasFile('slider') ||
@@ -58,12 +58,7 @@ class PortfolioController extends Controller
             $request->hasFile('video_link')
         ) {
             $media = $this->uploadAnyFile($request);
-
-            if (
-                $request['media_type'] != 'slider' ||
-                ($request['media_type'] == 'slider' && $portfolio->media_type != 'slider')
-            )
-                $this->deleteAnyFile($portfolio);
+            $this->deleteAnyFile($portfolio);
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
         }
@@ -110,22 +105,17 @@ class PortfolioController extends Controller
     {
         $media = ['type' => Portfolio::$mediaTypes[1]];
         $files = $request->file('slider');
-
-        if (strtolower($request['_method']) == 'put' && $this->portfolio->media_type == 'slider') {
-            $media = $this->sliderUpdate($files);
-        } else {
-            $path = public_path("images/portfolio/" . uniqid(time() . mt_rand()));
-            foreach ($files as $key => $image) {
-                $media['slider'][$key] = image_upload($image, $path);
-            }
+        $path = public_path("images/portfolio/" . uniqid(time() . mt_rand()));
+        foreach ($files as $key => $image) {
+            $media['slider'][$key] = image_upload($image, $path);
         }
-
         return $media;
     }
 
-    private function sliderUpdate($files)
+    private function sliderUpdate($request)
     {
         try {
+            $files = $request->file('slider');
             $media = $this->portfolio->media;
             $path = dirname($media['slider'][0]['relative_path']);
             foreach ($files as $key => $image) {
@@ -145,8 +135,21 @@ class PortfolioController extends Controller
     {
         if ($portfolio->media_type == Portfolio::$mediaTypes[0])
             $this->fileDelete($portfolio, 'image');
+
         if ($portfolio->media_type == Portfolio::$mediaTypes[1])
-            $this->filesDelete($portfolio, 'slider');
+        {
+            // when new file not slider delete, to slider update, don't delete any file
+            if (
+                // if is no update, delete files
+                strtolower(request()['_method']) != 'put' ||
+                (
+                    // if is update and slider type convert to another type, delete files
+                    strtolower(request()['_method']) == 'put' && request()['media_type'] != 'slider'
+                )
+            )
+                $this->filesDelete($portfolio, 'slider');
+        }
+
         if ($portfolio->media_type == Portfolio::$mediaTypes[2])
             $this->fileDelete($portfolio, 'video');
         if ($portfolio->media_type == Portfolio::$mediaTypes[3])
@@ -188,8 +191,17 @@ class PortfolioController extends Controller
 
         if ($request->media_type == Portfolio::$mediaTypes[0])
             $media = $this->imageUpload($request);
+
         if ($request->media_type == Portfolio::$mediaTypes[1])
-            $media = $this->sliderUpload($request);
+        {
+            if($this->portfolio->media_type == Portfolio::$mediaTypes[1])
+                // update slider to slider
+                $media = $this->sliderUpdate($request);
+            else
+                // update another type to slider
+                $media = $this->sliderUpload($request);
+        }
+
         if ($request->media_type == Portfolio::$mediaTypes[2])
             $media = $this->videoUpload($request);
         if ($request->media_type == Portfolio::$mediaTypes[3])
