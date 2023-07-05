@@ -68,6 +68,11 @@ class AparatHandler
         return $response->json('video');
     }
 
+    public function checkProcess($uid)
+    {
+        return $this->fileInfo($uid)['process'];
+    }
+
     private function replaceRequirement($url, $options)
     {
         foreach ($options as $key => $value) {
