@@ -1,6 +1,9 @@
 <?php
 
 // $special_route for error time (for when route want variables)
+
+use App\Services\Aparat\AparatHandler;
+
 function active_route($route, $exactly = false)
 {
     $route = route($route);
@@ -73,4 +76,8 @@ function file_delete($path)
     //   } catch (Exception $e) {
     //     return abort(501, $e->getMessage());
     //   }
+}
+
+function aparat() : AparatHandler {
+    return new AparatHandler;
 }
