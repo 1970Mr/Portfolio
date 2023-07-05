@@ -189,6 +189,9 @@
                     <div class="text-info fs-7 mt-1">
                       {{ $portfolio->media_type == $mediaTypes[3] ? $portfolio->media['video_link']['frame'] : '' }}
                     </div>
+                    <div class="text-info fs-7 mt-1">
+                      وضعیت پردازش در آپارات: {{ aparat()->checkProcess($portfolio->media['video_link']['uid']) }}
+                    </div>
                     @error('video_link')
                       <div class="text-danger fs-7">
                         {{ $message }}
