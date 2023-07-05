@@ -230,6 +230,7 @@ return [
         'slider'                   => "اسلایدر",
         'slider.*'                 => "تصویر",
         'video'                    => "ویدئو",
+        'video_link'               => "ویدئو",
         'phone_number'             => "شماره تماس",
         'author'                   => "نویسنده",
         'keyword'                  => "کلمه کلیدی",
