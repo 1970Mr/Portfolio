@@ -17,8 +17,6 @@ class PortfolioController extends Controller
 
     public function index()
     {
-        $this->aparat->uploadFile();
-        
         $portfolios = Portfolio::paginate(5);
         return view('admin.portfolio.portfolio', compact('portfolios'));
     }
@@ -31,6 +29,9 @@ class PortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
+        $uid = $this->aparat->uploadFile($request->file('video'), $request->title);
+        $frame = $this->aparat->fileInfo($uid)['frame'];
+
         $request['status'] = $request->has('status');
         $media = $this->uploadAnyFile($request);
 
