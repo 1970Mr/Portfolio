@@ -95,7 +95,7 @@ class PortfolioController extends Controller
 
     private function videoAparatUpload($request)
     {
-        $uid = $this->aparat->uploadFile($request->file('video'), $request->title);
+        $uid = $this->aparat->uploadFile($request->file('video_link'), $request->title);
         $frame = $this->aparat->fileInfo($uid)['frame'];
 
         $media = ['type' => Portfolio::$mediaTypes[3]];
