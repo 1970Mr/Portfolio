@@ -182,7 +182,19 @@
                       : '' }}"
                   id="tab4">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[3] }}">
-                  tab4
+
+                  <div class="mb-3 col-6 mx-auto">
+                    <label for="video_link" class="form-label">ویدئو</label>
+                    <input type="file" name="video_link" class="form-control" id="video_link">
+                    <div class="text-info fs-7 mt-1">
+                      {{ $portfolio->media_type == $mediaTypes[3] ? $portfolio->media['video_link']['frame'] : '' }}
+                    </div>
+                    @error('video_link')
+                      <div class="text-danger fs-7">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
                 </div>
               </div>
 
