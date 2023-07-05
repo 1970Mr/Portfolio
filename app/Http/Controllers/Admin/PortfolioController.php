@@ -31,6 +31,7 @@ class PortfolioController extends Controller
     {
         $uid = $this->aparat->uploadFile($request->file('video'), $request->title);
         $frame = $this->aparat->fileInfo($uid)['frame'];
+        dd($frame);
 
         $request['status'] = $request->has('status');
         $media = $this->uploadAnyFile($request);

@@ -16,6 +16,8 @@ class AparatHandler
         // 1. get token
         // 2. get upload form
         // 3. upload file
+        ini_set('max_execution_time', self::TIMEOUT);
+        set_time_limit(self::TIMEOUT);
 
         $token = $this->getToken();
         $uploadForm = $this->uploadForm($token);
@@ -55,6 +57,15 @@ class AparatHandler
         ]);
         $response = Http::get($url);
         return $response->json('uploadform');
+    }
+
+    public function fileInfo($uid)
+    {
+        $url = $this->replaceRequirement(config('aparat.video'), [
+            '{uid}' => $uid,
+        ]);
+        $response = Http::get($url);
+        return $response->json('video');
     }
 
     private function replaceRequirement($url, $options)
