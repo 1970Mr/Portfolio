@@ -5,14 +5,14 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-class VideoUploadException extends Exception
+class VideoInfoException extends Exception
 {
     /**
      * The error message.
      *
      * @var string
      */
-    protected $message = 'Video upload failed in aparat.';
+    protected $message = 'Get video info failed from aparat.';
 
     /**
      * The error code.
