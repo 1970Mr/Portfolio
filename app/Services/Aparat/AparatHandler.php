@@ -2,39 +2,46 @@
 
 namespace App\Services\Aparat;
 
+use App\Exceptions\VideoUploadException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class AparatHandler
 {
-    const EXPIRE_TIME = 18000; // 5 h
-    const TIMEOUT = 1800; // 30 m
+    const EXPIRE_TIME = 18000; // 5 h (for token cache)
+    const TIMEOUT = 1800; // 30 m (for execution time in when upload the file)
 
     public function uploadVideo(UploadedFile $file, $title)
     {
         // 1. get token
         // 2. get upload form
         // 3. upload file
-        ini_set('max_execution_time', self::TIMEOUT);
-        set_time_limit(self::TIMEOUT);
+        try {
+            throw new VideoUploadException();
+            ini_set('max_execution_time', self::TIMEOUT);
+            set_time_limit(self::TIMEOUT);
 
-        $token = $this->getToken();
-        $uploadForm = $this->uploadForm($token);
+            $token = $this->getToken();
+            $uploadForm = $this->uploadForm($token);
 
-        $fileName = uniqid(time() . mt_rand()) . '.' . $file->getClientOriginalExtension();
-        $response = Http::attach(
-            // 'video', file_get_contents($file->getPathname()), $fileName
-            'video',
-            $file->get(),
-            $fileName,
-        )->timeout(self::TIMEOUT)->post($uploadForm['formAction'], [
-            'frm-id' => $uploadForm['frm-id'],
-            'data[title]' => $title,
-            'data[category]' => config('aparat.tech_category_id'),
-        ]);
+            $fileName = uniqid(time() . mt_rand()) . '.' . $file->getClientOriginalExtension();
+            $response = Http::attach(
+                // 'video', file_get_contents($file->getPathname()), $fileName
+                'video',
+                $file->get(),
+                $fileName,
+            )->timeout(self::TIMEOUT)->post($uploadForm['formAction'], [
+                'frm-id' => $uploadForm['frm-id'],
+                'data[title]' => $title,
+                'data[category]' => config('aparat.tech_category_id'),
+            ]);
 
-        return $response->json('uploadpost.uid');
+            return $response->json('uploadpost.uid');
+        } catch (VideoUploadException $e) {
+            $e->report();
+            return $e->toResponse('عملیات آپلود ویدئو در آپارات با موفقیت انجام نشد!');
+        }
     }
 
     private function getToken()
