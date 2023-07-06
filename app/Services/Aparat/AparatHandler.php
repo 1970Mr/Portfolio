@@ -19,7 +19,7 @@ class AparatHandler
         // 2. get upload form
         // 3. upload file
         try {
-            throw new VideoUploadException();
+            // throw new VideoUploadException();
             ini_set('max_execution_time', self::TIMEOUT);
             set_time_limit(self::TIMEOUT);
 
@@ -79,7 +79,7 @@ class AparatHandler
     {
         try {
             $url = $this->replaceRequirement(config('aparat.video'), [
-                '{uid}' => $uid,
+                '{uid}' => 123,
             ]);
             $response = Http::get($url);
             return $response->json('video');
@@ -91,7 +91,12 @@ class AparatHandler
 
     public function checkProcess($uid)
     {
-        return $this->videoInfo($uid)['process'];
+        try {
+            return $this->videoInfo($uid)['process'];
+        } catch (VideoInfoException $e) {
+            $e->report();
+            return $e->toResponse('عملیات گرفتن اطلاعات ویدئو از آپارات موفقیت آمیز نبود!');
+        }
     }
 
     public function deleteVideo($uid)
