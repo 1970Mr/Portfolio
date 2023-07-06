@@ -2,6 +2,7 @@
 
 namespace App\Services\Aparat;
 
+use App\Exceptions\VideoInfoException;
 use App\Exceptions\VideoUploadException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Cache;
@@ -76,11 +77,16 @@ class AparatHandler
 
     public function videoInfo($uid)
     {
-        $url = $this->replaceRequirement(config('aparat.video'), [
-            '{uid}' => $uid,
-        ]);
-        $response = Http::get($url);
-        return $response->json('video');
+        try {
+            $url = $this->replaceRequirement(config('aparat.video'), [
+                '{uid}' => $uid,
+            ]);
+            $response = Http::get($url);
+            return $response->json('video');
+        } catch (VideoInfoException $e) {
+            $e->report();
+            return $e->toResponse('عملیات گرفتن اطلاعات ویدئو از آپارات موفقیت آمیز نبود!');
+        }
     }
 
     public function checkProcess($uid)
