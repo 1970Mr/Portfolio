@@ -133,4 +133,17 @@ class AparatHandler
         $response = Http::get($url);
         return $response->json('deletevideolink.deleteurl');
     }
+
+    public function bigPoster($uid)
+    {
+        try {
+            return $this->videoInfo($uid)['big_poster'];
+        } catch (\Throwable $th) {
+            try {
+                throw new VideoInfoException();
+            } catch (VideoInfoException $e) {
+                $e->report();
+            }
+        }
+    }
 }
