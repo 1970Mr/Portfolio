@@ -31,13 +31,13 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request)
     {
         $request['status'] = $request->has('status');
-        // $media = $this->uploadAnyFile($request);
+        $media = $this->uploadAnyFile($request);
 
         $inputs = $request->all();
-        $inputs['media'] = 123;
+        $inputs['media'] = $media;
 
         if (!$this->mediaChecker($inputs))
-            return back()->with(['error' => 'عملیات با موفقیت انجام نشد'])->withInput();
+            return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         Portfolio::create($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
@@ -66,7 +66,7 @@ class PortfolioController extends Controller
         }
 
         if (!$this->mediaChecker($inputs))
-            return back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
+            return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         $portfolio->updateOrFail($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
