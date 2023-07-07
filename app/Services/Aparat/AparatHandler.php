@@ -2,6 +2,7 @@
 
 namespace App\Services\Aparat;
 
+use App\Exceptions\VideoDeleteException;
 use App\Exceptions\VideoInfoException;
 use App\Exceptions\VideoUploadException;
 use Illuminate\Http\UploadedFile;
@@ -38,7 +39,7 @@ class AparatHandler
             ]);
 
             return $response->json('uploadpost.uid');
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             try {
                 throw new VideoUploadException();
             } catch (VideoUploadException $e) {
@@ -85,7 +86,7 @@ class AparatHandler
             ]);
             $response = Http::get($url);
             return $response->json('video');
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             try {
                 throw new VideoInfoException();
             } catch (VideoInfoException $e) {
@@ -98,7 +99,7 @@ class AparatHandler
     {
         try {
             return $this->videoInfo($uid)['process'];
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             try {
                 throw new VideoInfoException();
             } catch (VideoInfoException $e) {
@@ -109,9 +110,17 @@ class AparatHandler
 
     public function deleteVideo($uid)
     {
-        $deleteVideoLink = $this->deleteVideoLink($uid);
-        $response = Http::get($deleteVideoLink);
-        return $response->json('deletevideo.type') == 'success';
+        try {
+            $deleteVideoLink = $this->deleteVideoLink($uid);
+            $response = Http::get($deleteVideoLink);
+            return $response->json('deletevideo.type') == 'success';
+        } catch (\Throwable $th) {
+            try {
+                throw new VideoDeleteException();
+            } catch (VideoDeleteException $e) {
+                $e->report();
+            }
+        }
     }
 
     private function deleteVideoLink($uid)
