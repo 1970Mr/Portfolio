@@ -74,9 +74,7 @@
                     class="nav-link {{ session("media.{$mediaTypes[3]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[3])
                         ? 'active'
                         : '' }}"
-                    data-bs-toggle="tab" data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود
-                    خارج از
-                    سایت)</button>
+                    data-bs-toggle="tab" data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود در آپارات)</button>
                 </li>
               </ul>
 
