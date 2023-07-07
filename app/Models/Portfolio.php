@@ -29,10 +29,13 @@ class Portfolio extends Model
     ];
 
     protected function media(): Attribute
-	{
-		return Attribute::make(
-			get: fn ($value) => json_decode($value, true),
-			set: fn ($value) => json_encode($value),
-		);
-	}
+    {
+        return Attribute::make(
+            get: fn ($value) => [
+                ...json_decode($value, true),
+                'media_type' => $this->media_type
+            ],
+            set: fn ($value) => json_encode($value),
+        );
+    }
 }
