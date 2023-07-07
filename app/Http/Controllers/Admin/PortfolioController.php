@@ -184,7 +184,11 @@ class PortfolioController extends Controller
 
     private function videoLinkDelete($portfolio)
     {
-        $this->aparat->deleteVideo($portfolio['media']['video_link']['uid']);
+        try {
+            $this->aparat->deleteVideo($portfolio['media']['video_link']['uid']);
+        } catch (\Throwable $th) {
+            return back()->with(['error' => 'عملیات حذف فایل با موفقیت انجام نشد'])->withInput();
+        }
     }
 
     private function uploadAnyFile($request)
