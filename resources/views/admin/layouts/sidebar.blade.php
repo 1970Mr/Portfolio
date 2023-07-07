@@ -1,7 +1,7 @@
 <section x-cloak class="sidebar" :class="open || 'inactive'">
   <div class="d-flex align-items-center justify-content-between justify-content-lg-center">
     <h4 class="fw-bold">رسول مرشدی</h4>
-    <i @click="toggle" class="d-lg-none fs-1 bi bi-x"></i>
+    <i @click="toggle" class="d-lg-none fs-1 bi bi-x" style="cursor: pointer"></i>
   </div>
   <div class="mt-4">
     <ul class="list-unstyled">

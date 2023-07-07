@@ -160,7 +160,8 @@
 
 
                 <div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe
-                    class="{{-- youtube-video --}}aparat-video" src="https://www.aparat.com/video/video/embed/videohash/2Gnzw/vt/frame"
+                    class="{{-- youtube-video --}}aparat-video"
+                    src="https://www.aparat.com/video/video/embed/videohash/2Gnzw/vt/frame"
                     title="ستین شاپ | روش های ارسال" allowFullScreen="true" webkitallowfullscreen="true"
                     mozallowfullscreen="true"></iframe></div>
               </div>
@@ -416,10 +417,10 @@
         </ul>
         <!-- Portfolio Navigation Starts -->
         <nav>
-          <span class="icon nav-prev"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
+          <span class="icon nav-prev"><img src="{{ asset('front/img/projects/navigation/left-arrow.png') }}"
               alt="previous"></span>
-          <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/left-arrow.png') }}"
-              alt="next"></span>
+            <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
+                alt="next"></span>
           <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}"
               alt="close"> </span>
         </nav>

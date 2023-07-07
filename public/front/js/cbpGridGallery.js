@@ -90,6 +90,7 @@
         imagesLoaded( grid, function() {
             new Masonry( grid, {
                 itemSelector: 'li',
+                originLeft: false,
                 columnWidth: grid.querySelector( '.grid-sizer' )
             });
         });

@@ -1030,11 +1030,11 @@ body.light hr.separator {
 }
 
 .portfolio .slideshow nav span.nav-prev {
-    right: 0;
+    left: 0;
 }
 
 .portfolio .slideshow nav span.nav-next {
-    left: 0;
+    right: 0;
 }
 
 .portfolio .slideshow nav span.nav-close {
