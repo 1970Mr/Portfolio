@@ -12,7 +12,7 @@ class VideoInfoException extends Exception
      *
      * @var string
      */
-    protected $message = 'Get video info failed from aparat.';
+    protected $message = 'عملیات گرفتن اطلاعات ویدئو از آپارات موفقیت آمیز نبود!';
 
     /**
      * The error code.
@@ -26,11 +26,5 @@ class VideoInfoException extends Exception
         Log::channel('aparat_logs')->error($this->getMessage(), [
             'exception' => $this,
         ]);
-    }
-
-    public function toResponse($message = null)
-    {
-        $message = $message ?? $this->getMessage();
-        return back()->with(['error' => $message], $this->getCode());
     }
 }

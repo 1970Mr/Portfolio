@@ -36,6 +36,8 @@ class PortfolioController extends Controller
         $inputs = $request->all();
         $inputs['media'] = $media;
 
+        if(!$this->mediaChecker($inputs))
+            return back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
         Portfolio::create($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
@@ -63,6 +65,8 @@ class PortfolioController extends Controller
             $inputs['media_type'] = $request['media_type'];
         }
 
+        if(!$this->mediaChecker($inputs))
+            return back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
         $portfolio->updateOrFail($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
@@ -138,7 +142,6 @@ class PortfolioController extends Controller
 
         if ($portfolio->media_type == Portfolio::$mediaTypes[1])
         {
-            // when new file not slider delete, to slider update, don't delete any file
             if (
                 // if is no update, delete files
                 strtolower(request()['_method']) != 'put' ||
@@ -221,5 +224,14 @@ class PortfolioController extends Controller
         $media = ['type' => $type];
         $media[$type] = image_upload($request->file($type), public_path("{$type}s/portfolio"));
         return $media;
+    }
+
+    private function mediaChecker($inputs)
+    {
+        foreach ($inputs['media'] as $key => $value) {
+            if(array_search($key, Portfolio::$mediaTypes) != false)
+                return true;
+        }
+        return false;
     }
 }
