@@ -4,10 +4,10 @@
   <!-- Page Title Starts -->
   <section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
     <h1>
-        نمونه کارهای
-        <span>
-            من
-        </span>
+      نمونه کارهای
+      <span>
+        من
+      </span>
     </h1>
     <span class="title-bg">نمونه کار</span>
   </section>
@@ -158,27 +158,9 @@
               <div class="videocontainer">
                 <!--                            <iframe  src="https://www.youtube.com/embed/7e90gBu4pas?enablejsapi=1&version=3&playerapiid=ytplayer" allowfullscreen></iframe>-->
 
-                <style>
-                  .h_iframe-aparat_embed_frame {
-                    position: relative;
-                  }
 
-                  .h_iframe-aparat_embed_frame .ratio {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                  }
-
-                  .h_iframe-aparat_embed_frame iframe {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                  }
-                </style>
                 <div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe
-                    class="youtube-video" src="https://www.aparat.com/video/video/embed/videohash/2Gnzw/vt/frame"
+                    class="{{-- youtube-video --}}aparat-video" src="https://www.aparat.com/video/video/embed/videohash/2Gnzw/vt/frame"
                     title="ستین شاپ | روش های ارسال" allowFullScreen="true" webkitallowfullscreen="true"
                     mozallowfullscreen="true"></iframe></div>
               </div>
@@ -434,9 +416,12 @@
         </ul>
         <!-- Portfolio Navigation Starts -->
         <nav>
-          <span class="icon nav-prev"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}" alt="previous"></span>
-          <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/left-arrow.png') }}" alt="next"></span>
-          <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}" alt="close"> </span>
+          <span class="icon nav-prev"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
+              alt="previous"></span>
+          <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/left-arrow.png') }}"
+              alt="next"></span>
+          <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}"
+              alt="close"> </span>
         </nav>
         <!-- Portfolio Navigation Ends -->
       </section>
@@ -444,3 +429,25 @@
   </section>
   <!-- Main Content Ends -->
 @endsection
+
+@push('styles')
+  <style>
+    .h_iframe-aparat_embed_frame {
+      position: relative;
+    }
+
+    .h_iframe-aparat_embed_frame .ratio {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .h_iframe-aparat_embed_frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+@endpush

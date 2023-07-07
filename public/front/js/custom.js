@@ -11,7 +11,7 @@
 		if (video.paused !== true && video.ended !== true) {
 			video.pause();
 		}
-		$('.youtube-video')[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
+		$('.aparat-video')[0].contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' + '","args":""}', '*');
 	}
 
 	$(document).ready(function() {
