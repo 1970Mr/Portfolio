@@ -12,7 +12,7 @@ class VideoUploadException extends Exception
      *
      * @var string
      */
-    protected $message = 'Video upload failed in aparat.';
+    protected $message = 'عملیات آپلود ویدئو در آپارات با موفقیت انجام نشد!';
 
     /**
      * The error code.
