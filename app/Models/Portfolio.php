@@ -32,9 +32,10 @@ class Portfolio extends Model
     {
         return Attribute::make(
             get: fn ($value) => [
+                'media_type' => $this->media_type,
                 ...json_decode($value, true),
-                'media_type' => $this->media_type
             ],
+
             set: fn ($value) => json_encode($value),
         );
     }
