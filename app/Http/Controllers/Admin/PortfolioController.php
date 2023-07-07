@@ -31,13 +31,13 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request)
     {
         $request['status'] = $request->has('status');
-        $media = $this->uploadAnyFile($request);
+        // $media = $this->uploadAnyFile($request);
 
         $inputs = $request->all();
-        $inputs['media'] = $media;
+        $inputs['media'] = 123;
 
-        if(!$this->mediaChecker($inputs))
-            return back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
+        if (!$this->mediaChecker($inputs))
+            return back()->with(['error' => 'عملیات با موفقیت انجام نشد'])->withInput();
         Portfolio::create($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
@@ -65,7 +65,7 @@ class PortfolioController extends Controller
             $inputs['media_type'] = $request['media_type'];
         }
 
-        if(!$this->mediaChecker($inputs))
+        if (!$this->mediaChecker($inputs))
             return back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
         $portfolio->updateOrFail($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
@@ -140,8 +140,7 @@ class PortfolioController extends Controller
         if ($portfolio->media_type == Portfolio::$mediaTypes[0])
             $this->fileDelete($portfolio, 'image');
 
-        if ($portfolio->media_type == Portfolio::$mediaTypes[1])
-        {
+        if ($portfolio->media_type == Portfolio::$mediaTypes[1]) {
             if (
                 // if is no update, delete files
                 strtolower(request()['_method']) != 'put' ||
@@ -195,14 +194,11 @@ class PortfolioController extends Controller
         if ($request->media_type == Portfolio::$mediaTypes[0])
             $media = $this->imageUpload($request);
 
-        if ($request->media_type == Portfolio::$mediaTypes[1])
-        {
-            if(strtolower($request['_method']) == 'put' && $this->portfolio->media_type == Portfolio::$mediaTypes[1])
-            {
+        if ($request->media_type == Portfolio::$mediaTypes[1]) {
+            if (strtolower($request['_method']) == 'put' && $this->portfolio->media_type == Portfolio::$mediaTypes[1]) {
                 // update slider to slider
                 $media = $this->sliderUpdate($request);
-            }
-            else {
+            } else {
                 // update another type to slider or store slider
                 $media = $this->sliderUpload($request);
             }
@@ -228,8 +224,10 @@ class PortfolioController extends Controller
 
     private function mediaChecker($inputs)
     {
+        if (!is_array($inputs['media']))
+            return false;
         foreach ($inputs['media'] as $key => $value) {
-            if(array_search($key, Portfolio::$mediaTypes) != false)
+            if (array_search($key, Portfolio::$mediaTypes) != false)
                 return true;
         }
         return false;
