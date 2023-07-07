@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('customer');
             $table->string('link');
             $table->string('technology');
+            $table->text('featured_image');
             $table->string('media_type');
             $table->text('media');
             $table->boolean('status')->default(0);
