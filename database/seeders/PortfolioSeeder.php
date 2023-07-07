@@ -22,6 +22,10 @@ class PortfolioSeeder extends Seeder
                 'customer' => 'خودم',
                 'link' => 'rasmor.ir',
                 'technology' => 'php, laravel',
+                'featured_image' => [
+                    'name' => fake()->name(),
+                    'relative_path' => fake()->imageUrl(),
+                ],
                 'media_type' => Portfolio::$mediaTypes[0],
                 'media' => [
                     'media_type' => Portfolio::$mediaTypes[0],
@@ -38,6 +42,10 @@ class PortfolioSeeder extends Seeder
                 'customer' => 'یکی از آشنایان',
                 'link' => 'mohebnews.com',
                 'technology' => 'wordpress',
+                'featured_image' => [
+                    'name' => fake()->name(),
+                    'relative_path' => fake()->imageUrl(),
+                ],
                 'media_type' => Portfolio::$mediaTypes[0],
                 'media' => [
                     'media_type' => Portfolio::$mediaTypes[0],
