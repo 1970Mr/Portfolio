@@ -28,12 +28,7 @@ class PortfolioFactory extends Factory
                 'relative_path' => fake()->imageUrl(),
             ],
             'media_type' => Portfolio::$mediaTypes[0],
-            'media' => [
-                'image' => [
-                    'name' => fake()->name(),
-                    'relative_path' => fake()->imageUrl(),
-                ],
-            ],
+            'media' => null,
             'status' => 0,
         ];
     }
