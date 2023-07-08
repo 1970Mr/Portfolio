@@ -29,6 +29,7 @@ class PortfolioRequest extends FormRequest
             'customer' => 'required',
             'link' => 'required',
             'technology' => 'required',
+            'featured_image' => "{$this->isRequired}|file|image|max:4096",
             'status' => 'nullable',
         ];
     }
@@ -55,7 +56,6 @@ class PortfolioRequest extends FormRequest
         ]);
         session()->flash('media.has', true);
 
-        if (request()['media_type'] == 'image') $this->imageRules();
         if (request()['media_type'] == 'slider') $this->sliderRules();
         if (request()['media_type'] == 'video') $this->videoRules();
         if (request()['media_type'] == 'video_link') $this->videoLinkRules();
@@ -63,24 +63,17 @@ class PortfolioRequest extends FormRequest
         return $this->rules;
     }
 
-    private function imageRules()
-    {
-        session()->flash('media.image', true);
-        return $this->rules['image'] = "{$this->isRequired}|file|image|max:4096";
-    }
-
     private function sliderRules()
     {
         session()->flash('media.slider', true);
-        if ($this->isRequired == 'required' || $this->mediaType != 'slider')
-            $this->rules['slider'] = "required|array|min:3";
+        $this->rules['slider'] = "nullable|array|min:3";
         return $this->rules['slider.*'] = 'file|image|max:4096';
     }
 
     private function videoRules()
     {
         session()->flash('media.video', true);
-        return $this->rules['video'] = "{$this->isRequired}|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
+        return $this->rules['video'] = "nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
         // mkv            video/x-matroska
         // flv            video/x-flv
         // mp4            video/mp4
@@ -96,6 +89,6 @@ class PortfolioRequest extends FormRequest
     {
         session()->flash('media.video_link', true);
         // return $this->rules['video_link'] = "{$this->isRequired}|url";
-        return $this->rules['video_link'] = "{$this->isRequired}|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
+        return $this->rules['video_link'] = "nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
     }
 }
