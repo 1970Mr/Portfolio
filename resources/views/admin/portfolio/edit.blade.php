@@ -66,7 +66,7 @@
               <ul class="nav nav-tabs mt-3 justify-content-center">
                 <li class="nav-item">
                   <button
-                    class="nav-link {{ !session('media.has') ? 'active' : '' }}
+                    class="nav-link {{ !session('media.has') && $portfolio->media_type == 'image' ? 'active' : '' }}
                      {{ session("media.{$mediaTypes[1]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[1])
                          ? 'active'
                          : '' }}"
@@ -99,7 +99,7 @@
 
                 {{-- tab1 --}}
                 <div
-                  class="tab-pane fade {{ !session('media.has') ? 'show active' : '' }}
+                  class="tab-pane fade {{ !session('media.has') && $portfolio->media_type == 'image' ? 'show active' : '' }}
                   {{ session("media.{$mediaTypes[1]}") || (!request()->old() && $portfolio->media_type == $mediaTypes[1])
                       ? 'show active'
                       : '' }}"
