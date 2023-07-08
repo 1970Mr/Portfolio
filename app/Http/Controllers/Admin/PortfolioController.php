@@ -31,12 +31,12 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request)
     {
         $request['status'] = $request->has('status');
-        $media = $this->uploadAnyFile($request);
+        $media = $this->uploadAnyMedia($request);
 
         $inputs = $request->all();
         $inputs['media'] = $media;
 
-        if (!$this->mediaChecker($inputs))
+        if (!$this->mediaChecker($inputs['media']))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         Portfolio::create($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
@@ -53,19 +53,14 @@ class PortfolioController extends Controller
         $this->portfolio = $portfolio;
         $request['status'] = $request->has('status');
         $inputs = $request->all();
-        if (
-            $request->hasFile('image') ||
-            $request->hasFile('slider') ||
-            $request->hasFile('video') ||
-            $request->hasFile('video_link')
-        ) {
-            $media = $this->uploadAnyFile($request);
-            $this->deleteAnyFile($portfolio);
+        if ($this->hasAnyMedia($request)) {
+            $media = $this->uploadAnyMedia($request);
+            $this->deleteAnyMedia($portfolio);
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
         }
 
-        if (!$this->mediaChecker($inputs))
+        if (!$this->mediaChecker($inputs['media']))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         $portfolio->updateOrFail($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
@@ -73,7 +68,7 @@ class PortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
-        $this->deleteAnyFile($portfolio);
+        $this->deleteAnyMedia($portfolio);
 
         $portfolio->delete();
 
@@ -135,7 +130,7 @@ class PortfolioController extends Controller
         }
     }
 
-    private function deleteAnyFile($portfolio)
+    private function deleteAnyMedia($portfolio)
     {
         if ($portfolio->media_type == Portfolio::$mediaTypes[0])
             $this->fileDelete($portfolio, 'image');
@@ -191,7 +186,7 @@ class PortfolioController extends Controller
         }
     }
 
-    private function uploadAnyFile($request)
+    private function uploadAnyMedia($request)
     {
         $media = [];
 
@@ -226,14 +221,23 @@ class PortfolioController extends Controller
         return $media;
     }
 
-    private function mediaChecker($inputs)
+    private function mediaChecker($media)
     {
-        if (!is_array($inputs['media']))
+        if (is_null($media))
+            return true;
+        if (!is_array($media))
             return false;
-        foreach ($inputs['media'] as $key => $value) {
+        foreach ($media as $key => $value) {
             if (array_search($key, Portfolio::$mediaTypes) != false)
                 return true;
         }
         return false;
+    }
+
+    private function hasAnyMedia($request)
+    {
+        return $request->hasFile('slider') ||
+            $request->hasFile('video') ||
+            $request->hasFile('video_link');
     }
 }
