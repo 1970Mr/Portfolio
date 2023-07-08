@@ -66,7 +66,11 @@ class PortfolioRequest extends FormRequest
     private function sliderRules()
     {
         session()->flash('media.slider', true);
-        $this->rules['slider'] = "nullable|array|min:3";
+        // When update
+        if ($this->isRequired == 'nullable')
+            $this->rules['slider'] = "nullable";
+        else
+            $this->rules['slider'] = "nullable|array|min:3";
         return $this->rules['slider.*'] = 'file|image|max:4096';
     }
 

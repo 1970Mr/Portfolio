@@ -36,10 +36,8 @@ class PortfolioController extends Controller
 
         if ($this->hasAnyMedia($request))
             $inputs['media'] = $this->uploadAnyMedia($request);
-        else {
-            $inputs['media'] = null;
+        else
             $inputs['media_type'] = 'image';
-        }
 
         if ($this->checkFileUpload($request, $inputs))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
@@ -59,8 +57,7 @@ class PortfolioController extends Controller
         $request['status'] = $request->has('status');
         $inputs = $request->all();
 
-        if ($request->has('featured_image'))
-        {
+        if ($request->has('featured_image')) {
             $inputs['featured_image'] = $this->featuredImageUpload($request);
             $this->fileDelete($portfolio->featured_image['relative_path']);
         }
@@ -71,10 +68,8 @@ class PortfolioController extends Controller
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
         }
-        else {
-            $inputs['media'] = null;
+        elseif (is_null($portfolio->media))
             $inputs['media_type'] = 'image';
-        }
 
         if ($this->checkFileUpload($request, $inputs))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
@@ -117,8 +112,10 @@ class PortfolioController extends Controller
         $media = null;
 
         if ($request->media_type == Portfolio::$mediaTypes[1]) {
-            if (strtolower($request['_method']) == 'put' &&
-            $this->portfolio->media_type == Portfolio::$mediaTypes[1]) {
+            if (
+                strtolower($request['_method']) == 'put' &&
+                $this->portfolio->media_type == Portfolio::$mediaTypes[1]
+            ) {
                 // update slider to slider
                 $media = $this->sliderUpdate($request);
             } else {
@@ -245,10 +242,11 @@ class PortfolioController extends Controller
 
     private function checkFileUpload($request, $inputs)
     {
-        return !$this->mediaChecker($inputs['media']) || (
-            $request->has('featured_image') &&
-            !is_array($inputs['featured_image'])
-        );
+        return ($this->hasAnyMedia($request) &&
+            !$this->mediaChecker($inputs['media']))
+            || ($request->has('featured_image') &&
+                !is_array($inputs['featured_image'])
+            );
     }
 
     private function hasAnyMedia($request)
