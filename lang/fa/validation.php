@@ -236,5 +236,6 @@ return [
         'keyword'                  => "کلمه کلیدی",
         'keywords'                 => "کلمات کلیدی",
         'response'                 => "پاسخ",
+        'featured_image'           => "تصویر شاخص",
     ],
 ];
