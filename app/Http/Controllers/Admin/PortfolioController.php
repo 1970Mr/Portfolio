@@ -84,7 +84,14 @@ class PortfolioController extends Controller
 
         $portfolio->delete();
 
-        return back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+        return back()->with(['success' => 'عملیات حذف با موفقیت انجام شد!']);
+    }
+
+    public function destroyMedia(Portfolio $portfolio)
+    {
+        $this->deleteAnyMedia($portfolio);
+
+        return back()->with(['success' => 'عملیات حذف رسانه‌های نمونه‌کار موردنظر، با موفقیت انجام شد!']);
     }
 
     private function deleteAnyMedia($portfolio)
