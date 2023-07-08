@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('technology');
             $table->text('featured_image');
             $table->string('media_type');
-            $table->text('media');
+            $table->text('media')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
