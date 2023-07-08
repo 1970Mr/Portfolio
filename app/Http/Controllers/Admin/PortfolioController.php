@@ -31,12 +31,14 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request)
     {
         $request['status'] = $request->has('status');
+        $featured_image = $this->featuredImageUpload($request);
         $media = $this->uploadAnyMedia($request);
 
         $inputs = $request->all();
+        $inputs['featured_image'] = $featured_image;
         $inputs['media'] = $media;
 
-        if (!$this->mediaChecker($inputs['media']))
+        if (!$this->mediaChecker($inputs['media']) || !is_array($inputs['featured_image']))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         Portfolio::create($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
@@ -75,7 +77,53 @@ class PortfolioController extends Controller
         return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     }
 
-    private function imageUpload($request)
+    private function deleteAnyMedia($portfolio)
+    {
+        if ($portfolio->media_type == Portfolio::$mediaTypes[0])
+            $this->fileDelete($portfolio, 'image');
+
+        if ($portfolio->media_type == Portfolio::$mediaTypes[1]) {
+            if (
+                // if is no update, delete files
+                strtolower(request()['_method']) != 'put' ||
+                (
+                    // if is update and slider type convert to another type, delete files
+                    strtolower(request()['_method']) == 'put' && request()['media_type'] != 'slider'
+                )
+            )
+                $this->filesDelete($portfolio, 'slider');
+        }
+
+        if ($portfolio->media_type == Portfolio::$mediaTypes[2])
+            $this->fileDelete($portfolio, 'video');
+        if ($portfolio->media_type == Portfolio::$mediaTypes[3])
+            $this->videoLinkDelete($portfolio);
+    }
+
+    private function uploadAnyMedia($request)
+    {
+        $media = null;
+
+        if ($request->media_type == Portfolio::$mediaTypes[1]) {
+            if (strtolower($request['_method']) == 'put' &&
+            $this->portfolio->media_type == Portfolio::$mediaTypes[1]) {
+                // update slider to slider
+                $media = $this->sliderUpdate($request);
+            } else {
+                // update another type to slider or store slider
+                $media = $this->sliderUpload($request);
+            }
+        }
+
+        if ($request->media_type == Portfolio::$mediaTypes[2])
+            $media = $this->videoUpload($request);
+        if ($request->media_type == Portfolio::$mediaTypes[3])
+            $media = $this->videoAparatUpload($request);
+
+        return $media;
+    }
+
+    private function featuredImageUpload($request)
     {
         // return $this->fileUpload($request, Portfolio::$mediaTypes[0]);
         return $this->fileUpload($request, 'image');
@@ -130,29 +178,6 @@ class PortfolioController extends Controller
         }
     }
 
-    private function deleteAnyMedia($portfolio)
-    {
-        if ($portfolio->media_type == Portfolio::$mediaTypes[0])
-            $this->fileDelete($portfolio, 'image');
-
-        if ($portfolio->media_type == Portfolio::$mediaTypes[1]) {
-            if (
-                // if is no update, delete files
-                strtolower(request()['_method']) != 'put' ||
-                (
-                    // if is update and slider type convert to another type, delete files
-                    strtolower(request()['_method']) == 'put' && request()['media_type'] != 'slider'
-                )
-            )
-                $this->filesDelete($portfolio, 'slider');
-        }
-
-        if ($portfolio->media_type == Portfolio::$mediaTypes[2])
-            $this->fileDelete($portfolio, 'video');
-        if ($portfolio->media_type == Portfolio::$mediaTypes[3])
-            $this->videoLinkDelete($portfolio);
-    }
-
     private function fileDelete($portfolio, $type)
     {
         try {
@@ -184,34 +209,6 @@ class PortfolioController extends Controller
         } catch (\Throwable $th) {
             return back()->with(['error' => 'عملیات حذف فایل با موفقیت انجام نشد'])->withInput();
         }
-    }
-
-    private function uploadAnyMedia($request)
-    {
-        $media = [];
-
-        if ($request->media_type == Portfolio::$mediaTypes[0])
-            $media = $this->imageUpload($request);
-
-        if ($request->media_type == Portfolio::$mediaTypes[1]) {
-            if (strtolower($request['_method']) == 'put' && $this->portfolio->media_type == Portfolio::$mediaTypes[1]) {
-                // update slider to slider
-                $media = $this->sliderUpdate($request);
-            } else {
-                // update another type to slider or store slider
-                $media = $this->sliderUpload($request);
-            }
-        }
-
-        if ($request->media_type == Portfolio::$mediaTypes[2])
-            $media = $this->videoUpload($request);
-        if ($request->media_type == Portfolio::$mediaTypes[3])
-            $media = $this->videoAparatUpload($request);
-
-        if ($media)
-            return $media;
-
-        return redirect()->back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
     }
 
     private function fileUpload($request, $type)
