@@ -27,13 +27,7 @@ class PortfolioSeeder extends Seeder
                     'relative_path' => fake()->imageUrl(),
                 ],
                 'media_type' => Portfolio::$mediaTypes[0],
-                'media' => [
-                    'media_type' => Portfolio::$mediaTypes[0],
-                    'image' => [
-                        'name' => fake()->name(),
-                        'relative_path' => fake()->imageUrl(),
-                    ],
-                ],
+                'media' => null,
                 'status' => true,
             ],
             [
@@ -47,13 +41,7 @@ class PortfolioSeeder extends Seeder
                     'relative_path' => fake()->imageUrl(),
                 ],
                 'media_type' => Portfolio::$mediaTypes[0],
-                'media' => [
-                    'media_type' => Portfolio::$mediaTypes[0],
-                    'image' => [
-                        'name' => fake()->name(),
-                        'relative_path' => fake()->imageUrl(),
-                    ],
-                ],
+                'media' => null,
                 'status' => true,
             ]
         ]);
