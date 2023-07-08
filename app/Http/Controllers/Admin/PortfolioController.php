@@ -33,7 +33,9 @@ class PortfolioController extends Controller
         $request['status'] = $request->has('status');
         $inputs = $request->all();
         $inputs['featured_image'] = $this->featuredImageUpload($request);
-        $inputs['media'] = $this->uploadAnyMedia($request);
+
+        if ($this->hasAnyMedia($request))
+            $inputs['media'] = $this->uploadAnyMedia($request);
 
         if (!$this->mediaChecker($inputs['media']) || !is_array($inputs['featured_image']))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
@@ -123,7 +125,7 @@ class PortfolioController extends Controller
     private function featuredImageUpload($request)
     {
         // return $this->fileUpload($request, Portfolio::$mediaTypes[0]);
-        return $this->fileUpload($request, 'image');
+        return image_upload($request->file('featured_image'), public_path("images/portfolio"));
     }
 
     private function videoUpload($request)
