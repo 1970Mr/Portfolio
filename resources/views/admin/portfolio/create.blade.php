@@ -52,16 +52,18 @@
               </div>
 
               <div class="my-3 col-8 px-5 mx-auto">
-                  <div class="alert alert-info text-center">
-                    توجه: برای رسانه نمونه کار خود، اجباری در استفاده از رسانه‌های زیر نیست. و می‌توانید فقط از تصویر شاخص استفاده کنید!
-                  </div>
+                <div class="alert alert-info text-center">
+                  توجه: برای رسانه نمونه کار خود، اجباری در استفاده از رسانه‌های زیر نیست و می‌توانید فقط از تصویر شاخص
+                  استفاده کنید!
+                </div>
               </div>
 
               <ul class="nav nav-tabs justify-content-center">
                 <li class="nav-item">
-                  <button class="nav-link {{ !session('media.has') ? 'active' : '' }}
-                  {{ session("media.{$mediaTypes[1]}") ? 'active' : '' }}" data-bs-toggle="tab"
-                    data-bs-target="#tab1" type="button">رسانه
+                  <button
+                    class="nav-link {{ !session('media.has') ? 'active' : '' }}
+                  {{ session("media.{$mediaTypes[1]}") ? 'active' : '' }}"
+                    data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه
                     اسلایدری</button>
                 </li>
                 <li class="nav-item">
@@ -83,8 +85,10 @@
                 @enderror
 
                 {{-- tab1 --}}
-                <div class="tab-pane fade {{ !session('media.has') ? 'show active' : '' }}
-                {{ session("media.{$mediaTypes[1]}") ? 'show active' : '' }}" id="tab1">
+                <div
+                  class="tab-pane fade {{ !session('media.has') ? 'show active' : '' }}
+                {{ session("media.{$mediaTypes[1]}") ? 'show active' : '' }}"
+                  id="tab1">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[1] }}">
 
                   <div class="row justify-content-center">
