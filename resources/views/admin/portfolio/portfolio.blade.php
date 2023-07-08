@@ -30,7 +30,8 @@
                     <th>مشتری</th>
                     <th>لینک پروژه</th>
                     <th>تکنولوژی</th>
-                    <th>نوع رسانه</th>
+                    <th style="min-width: 77px;">نوع رسانه</th>
+                    <th>تصویر شاخص</th>
                     <th>وضعیت</th>
                     <th>عملیات</th>
                   </tr>
@@ -45,6 +46,7 @@
                       <td class="text-muted">{{ $item->link }}</td>
                       <td class="text-muted">{{ $item->technology }}</td>
                       <td class="text-muted">{{ $item->media_type }}</td>
+                      <td class="text-muted">{{ $item->featured_image['relative_path'] }}</td>
                       <td class="text-muted">{{ $item->status }}</td>
                       <td>
                         <div class="dropdown">
