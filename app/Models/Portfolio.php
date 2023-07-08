@@ -41,8 +41,7 @@ class Portfolio extends Model
     private function getMedia($value)
     {
         $media = ['media_type' => $this->media_type];
-        if($this->media_type == 'image')
-        {
+        if ($this->media_type == 'image') {
             return [
                 ...$media,
                 'image' => $this->featured_image
