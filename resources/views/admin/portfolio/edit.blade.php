@@ -201,18 +201,31 @@
                 </div>
               @enderror
 
-              <div class="col-8 px-5 mx-auto">
-                <div class="alert alert-info text-center">
-                  توجه: برای حذف همه‌ی رسانه‌ها  می‌توانید از دکمه زیر استفاده کنید!
+              @if (!is_null($portfolio->media))
+                <div class="col-8 px-5 mx-auto">
+                    <div class="alert alert-info text-center">
+                    توجه: برای حذف همه‌ی رسانه‌ها می‌توانید از دکمه زیر استفاده کنید!
+                    </div>
                 </div>
-              </div>
-              <div class="d-flex justify-content-center mb-3">
-                <a href="#" class="btn btn-danger w-25">حذف رسانه</a>
-              </div>
+
+                <div class="d-flex justify-content-center mb-3">
+                    <a href="javascript:" onclick="document.getElementById('destroy-media-form').submit()"
+                        class="btn btn-danger w-25">حذف رسانه</a>
+                </div>
+              @endif
+
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary w-25">ارسال</button>
               </div>
             </form>
+            {{-- For delete all media --}}
+            @if (!is_null($portfolio->media))
+            <form action="{{ route('admin.panel.portfolio.destroy.media', ['portfolio' => $portfolio->id]) }}"
+                method="post" id="destroy-media-form">
+                @csrf
+                @method('delete')
+            </form>
+            @endif
           </div>
         </div>
       </div>
