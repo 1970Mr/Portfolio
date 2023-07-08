@@ -41,29 +41,37 @@
                   @enderror
                 </div>
               @endforeach
+              <div class="mb-3 col-6">
+                <label for="featured_image" class="form-label">تصویر شاخص</label>
+                <input type="file" name="featured_image" class="form-control" id="featured_image">
+                @error('featured_image')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
 
-              <ul class="nav nav-tabs mt-3 justify-content-center">
+              <div class="my-3 col-8 px-5 mx-auto">
+                  <div class="alert alert-info text-center">
+                    توجه: برای رسانه نمونه کار خود، اجباری در استفاده از رسانه‌های زیر نیست. و می‌توانید فقط از تصویر شاخص استفاده کنید!
+                  </div>
+              </div>
+
+              <ul class="nav nav-tabs justify-content-center">
                 <li class="nav-item">
-                  <button
-                    class="nav-link
-                  {{ !session('media.has') ? 'active' : '' }}
-                  {{ session("media.{$mediaTypes[0]}") ? 'active' : '' }}"
-                    data-bs-toggle="tab" data-bs-target="#tab1" type="button">رسانه
-                    تصویری</button>
-                </li>
-                <li class="nav-item">
-                  <button class="nav-link {{ session("media.{$mediaTypes[1]}") ? 'active' : '' }}" data-bs-toggle="tab"
-                    data-bs-target="#tab2" type="button">رسانه
+                  <button class="nav-link {{ !session('media.has') ? 'active' : '' }}
+                  {{ session("media.{$mediaTypes[1]}") ? 'active' : '' }}" data-bs-toggle="tab"
+                    data-bs-target="#tab1" type="button">رسانه
                     اسلایدری</button>
                 </li>
                 <li class="nav-item">
                   <button class="nav-link {{ session("media.{$mediaTypes[2]}") ? 'active' : '' }}" data-bs-toggle="tab"
-                    data-bs-target="#tab3" type="button">رسانه
+                    data-bs-target="#tab2" type="button">رسانه
                     ویدئویی</button>
                 </li>
                 <li class="nav-item">
                   <button class="nav-link {{ session("media.{$mediaTypes[3]}") ? 'active' : '' }}" data-bs-toggle="tab"
-                    data-bs-target="#tab4" type="button">رسانه ویدئویی (آپلود در آپارات)</button>
+                    data-bs-target="#tab3" type="button">رسانه ویدئویی (آپلود در آپارات)</button>
                 </li>
               </ul>
 
@@ -75,27 +83,8 @@
                 @enderror
 
                 {{-- tab1 --}}
-                <div
-                  class="tab-pane fade
-                {{ !session('media.has') ? 'show active' : '' }}
-                {{ session("media.{$mediaTypes[0]}") ? 'show active' : '' }}
-                "
-                  id="tab1">
-                  <input type="hidden" name="media_type" value="{{ $mediaTypes[0] }}">
-
-                  <div class="mb-3 col-6 mx-auto">
-                    <label for="image" class="form-label">تصویر</label>
-                    <input type="file" name="image" class="form-control" id="image">
-                    @error('image')
-                      <div class="text-danger fs-7">
-                        {{ $message }}
-                      </div>
-                    @enderror
-                  </div>
-                </div>
-
-                {{-- tab2 --}}
-                <div class="tab-pane fade {{ session("media.{$mediaTypes[1]}") ? 'show active' : '' }}" id="tab2">
+                <div class="tab-pane fade {{ !session('media.has') ? 'show active' : '' }}
+                {{ session("media.{$mediaTypes[1]}") ? 'show active' : '' }}" id="tab1">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[1] }}">
 
                   <div class="row justify-content-center">
@@ -125,8 +114,8 @@
                   </div>
                 </div>
 
-                {{-- tab3 --}}
-                <div class="tab-pane fade {{ session("media.{$mediaTypes[2]}") ? 'show active' : '' }}" id="tab3">
+                {{-- tab2 --}}
+                <div class="tab-pane fade {{ session("media.{$mediaTypes[2]}") ? 'show active' : '' }}" id="tab2">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[2] }}">
 
                   <div class="mb-3 col-6 mx-auto">
@@ -140,8 +129,8 @@
                   </div>
                 </div>
 
-                {{-- tab4 --}}
-                <div class="tab-pane fade {{ session("media.{$mediaTypes[3]}") ? 'show active' : '' }}" id="tab4">
+                {{-- tab3 --}}
+                <div class="tab-pane fade {{ session("media.{$mediaTypes[3]}") ? 'show active' : '' }}" id="tab3">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[3] }}">
 
                   <div class="mb-3 col-6 mx-auto">
