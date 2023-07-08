@@ -31,12 +31,9 @@ class PortfolioController extends Controller
     public function store(PortfolioRequest $request)
     {
         $request['status'] = $request->has('status');
-        $featured_image = $this->featuredImageUpload($request);
-        $media = $this->uploadAnyMedia($request);
-
         $inputs = $request->all();
-        $inputs['featured_image'] = $featured_image;
-        $inputs['media'] = $media;
+        $inputs['featured_image'] = $this->featuredImageUpload($request);
+        $inputs['media'] = $this->uploadAnyMedia($request);
 
         if (!$this->mediaChecker($inputs['media']) || !is_array($inputs['featured_image']))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
