@@ -84,6 +84,7 @@ class PortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
+        $this->fileDelete($portfolio->featured_image['relative_path']);
         $this->deleteAnyMedia($portfolio);
 
         $portfolio->delete();
