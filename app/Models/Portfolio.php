@@ -16,6 +16,7 @@ class Portfolio extends Model
         'customer',
         'link',
         'technology',
+        'featured_image',
         'media_type',
         'media',
         'status',
