@@ -41,7 +41,7 @@ class PortfolioController extends Controller
             $inputs['media_type'] = 'image';
         }
 
-        if (!$this->mediaChecker($inputs['media']) || !is_array($inputs['featured_image']))
+        if ($this->checkFileUpload($request, $inputs))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         Portfolio::create($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
@@ -58,14 +58,21 @@ class PortfolioController extends Controller
         $this->portfolio = $portfolio;
         $request['status'] = $request->has('status');
         $inputs = $request->all();
+
+        if ($request->has('featured_image'))
+            $inputs['featured_image'] = $this->featuredImageUpload($request);
         if ($this->hasAnyMedia($request)) {
             $media = $this->uploadAnyMedia($request);
             $this->deleteAnyMedia($portfolio);
             $inputs['media'] = $media;
             $inputs['media_type'] = $request['media_type'];
         }
+        else {
+            $inputs['media'] = null;
+            $inputs['media_type'] = 'image';
+        }
 
-        if (!$this->mediaChecker($inputs['media']))
+        if ($this->checkFileUpload($request, $inputs))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         $portfolio->updateOrFail($inputs);
         return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
@@ -232,6 +239,14 @@ class PortfolioController extends Controller
                 return true;
         }
         return false;
+    }
+
+    private function checkFileUpload($request, $inputs)
+    {
+        return !$this->mediaChecker($inputs['media']) || (
+            $request->has('featured_image') &&
+            !is_array($inputs['featured_image'])
+        );
     }
 
     private function hasAnyMedia($request)
