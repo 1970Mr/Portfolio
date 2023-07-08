@@ -32,13 +32,26 @@ class Portfolio extends Model
     protected function media(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => [
-                'media_type' => $this->media_type,
-                ...json_decode($value, true),
-            ],
+            get: fn ($value) => $this->getMedia($value),
 
             set: fn ($value) => json_encode($value),
         );
+    }
+
+    private function getMedia($value)
+    {
+        $media = ['media_type' => $this->media_type];
+        if($this->media_type == 'image')
+        {
+            return [
+                ...$media,
+                'image' => $this->featured_image
+            ];
+        }
+        return [
+            ...$media,
+            ...json_decode($value, true),
+        ];
     }
 
     protected function featuredImage(): Attribute

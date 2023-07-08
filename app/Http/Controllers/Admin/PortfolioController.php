@@ -33,11 +33,14 @@ class PortfolioController extends Controller
         $request['status'] = $request->has('status');
         $inputs = $request->all();
         $inputs['featured_image'] = $this->featuredImageUpload($request);
-        $inputs['media'] = null;
 
         if ($this->hasAnyMedia($request))
             $inputs['media'] = $this->uploadAnyMedia($request);
-// dd($inputs);
+        else {
+            $inputs['media'] = null;
+            $inputs['media_type'] = 'image';
+        }
+
         if (!$this->mediaChecker($inputs['media']) || !is_array($inputs['featured_image']))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         Portfolio::create($inputs);
