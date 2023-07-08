@@ -90,8 +90,8 @@ class PortfolioController extends Controller
     public function destroyMedia(Portfolio $portfolio)
     {
         $this->deleteAnyMedia($portfolio);
-
-        return back()->with(['success' => 'عملیات حذف رسانه‌های نمونه‌کار موردنظر، با موفقیت انجام شد!']);
+        $portfolio->updateOrFail(['media_type' => 'image', 'media' => null]);
+        return to_route('admin.panel.portfolio')->with(['success' => 'عملیات حذف رسانه‌های نمونه‌کار موردنظر، با موفقیت انجام شد!']);
     }
 
     private function deleteAnyMedia($portfolio)
@@ -156,7 +156,6 @@ class PortfolioController extends Controller
         $uid = $this->aparat->uploadVideo($request->file('video_link'), $request->title);
         $frame = $this->aparat->videoInfo($uid)['frame'];
 
-        $media = ['type' => Portfolio::$mediaTypes[3]];
         $media['video_link'] = [
             'uid' => $uid,
             'frame' => $frame,
@@ -166,7 +165,6 @@ class PortfolioController extends Controller
 
     private function sliderUpload($request)
     {
-        $media = ['type' => Portfolio::$mediaTypes[1]];
         $files = $request->file('slider');
         $path = public_path("images/portfolio/" . uniqid(time() . mt_rand()));
         foreach ($files as $key => $image) {
@@ -229,7 +227,6 @@ class PortfolioController extends Controller
 
     private function fileUpload($request, $type)
     {
-        $media = ['type' => $type];
         $media[$type] = image_upload($request->file($type), public_path("{$type}s/portfolio"));
         return $media;
     }

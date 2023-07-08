@@ -34,13 +34,16 @@ class Portfolio extends Model
         return Attribute::make(
             get: fn ($value) => $this->getMedia($value),
 
-            set: fn ($value) => json_encode($value),
+            set: fn ($value) => is_array($value) ? json_encode($value) : null,
         );
     }
 
     private function getMedia($value)
     {
-        $media = ['media_type' => $this->media_type];
+        if (is_null($value))
+            return null;
+
+        $media = ['type' => $this->media_type];
         if ($this->media_type == 'image') {
             return [
                 ...$media,
