@@ -56,7 +56,7 @@
                 @enderror
               </div>
 
-              <div class="my-3 col-8 px-5 mx-auto">
+              <div class="mt-3 col-8 px-5 mx-auto">
                 <div class="alert alert-info text-center">
                   توجه: برای رسانه نمونه کار خود، اجباری در استفاده از رسانه‌های زیر نیست و می‌توانید فقط از تصویر شاخص
                   استفاده کنید!
@@ -201,6 +201,14 @@
                 </div>
               @enderror
 
+              <div class="col-8 px-5 mx-auto">
+                <div class="alert alert-info text-center">
+                  توجه: برای حذف همه‌ی رسانه‌ها  می‌توانید از دکمه زیر استفاده کنید!
+                </div>
+              </div>
+              <div class="d-flex justify-content-center mb-3">
+                <a href="#" class="btn btn-danger w-25">حذف رسانه</a>
+              </div>
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary w-25">ارسال</button>
               </div>
