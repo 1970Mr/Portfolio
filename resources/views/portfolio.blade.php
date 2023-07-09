@@ -35,35 +35,91 @@
       <section class="slideshow">
         <ul>
           @foreach ($portfolios as $portfolio)
+            {{-- image --}}
             @if ($portfolio->media_type == 'image')
               <!-- Portfolio Item Detail Starts -->
               <li>
                 <figure>
                   <!-- Project Details Starts -->
                   <figcaption>
-                    <h3>تصویر پروژه </h3>
+                    <h3>{{ $portfolio->title }}</h3>
                     <div class="row open-sans-font">
                       <div class="col-12 col-sm-6 mb-2">
                         <i class="fa fa-file-text-o pr-2"></i><span class="project-label">پروژه </span>: <span
-                          class="ft-wt-600 uppercase">وبسایت</span>
+                          class="ft-wt-600 uppercase">{{ $portfolio->project_type }}</span>
                       </div>
                       <div class="col-12 col-sm-6 mb-2">
                         <i class="fa fa-user-o pr-2"></i><span class="project-label">مشتری</span>: <span
-                          class="ft-wt-600 uppercase">راستچین </span>
+                          class="ft-wt-600 uppercase">{{ $portfolio->customer }}</span>
                       </div>
                       <div class="col-12 col-sm-6 mb-2">
-                        <i class="fa fa-code pr-2"></i><span class="project-label">زبان </span>: <span
-                          class="ft-wt-600 uppercase">HTML, CSS, Javascript</span>
+                        <i class="fa fa-code pr-2"></i><span class="project-label">تکنولوژی </span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->technology }}</span>
                       </div>
                       <div class="col-12 col-sm-6 mb-2">
                         <i class="fa fa-external-link pr-2"></i><span class="project-label">مشاهده سایت </span>: <span
-                          class="ft-wt-600 uppercase"><a href="{{ addHttpsIfNeeded($portfolio->link) }}" target="_blank">{{ $portfolio->link }}</a></span>
+                          class="ft-wt-600 uppercase"><a href="{{ add_https_if_needed($portfolio->link) }}"
+                            target="_blank">{{ $portfolio->link }}</a></span>
                       </div>
                     </div>
                   </figcaption>
                   <!-- Project Details Ends -->
                   <!-- Main Project Content Starts -->
-                  <img src="{{ asset('front/img/projects/project-1.jpg') }}" alt="Portolio Image" />
+                  <img src="{{ asset($portfolio->featured_image['relative_path']) }}" alt="Portolio Image" />
+                  <!-- Main Project Content Ends -->
+                </figure>
+              </li>
+              <!-- Portfolio Item Detail Ends -->
+            @endif
+
+            {{-- slider --}}
+            @if ($portfolio->media_type == 'slider')
+              <!-- Portfolio Item Detail Starts -->
+              <li>
+                <figure>
+                  <!-- Project Details Starts -->
+                  <figcaption>
+                    <h3>{{ $portfolio->title }}</h3>
+                    <div class="row open-sans-font">
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-file-text-o pr-2"></i><span class="project-label">پروژه </span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->project_type }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-user-o pr-2"></i><span class="project-label">مشتری</span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->customer }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-code pr-2"></i><span class="project-label">تکنولوژی </span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->technology }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-external-link pr-2"></i><span class="project-label">مشاهده سایت </span>: <span
+                          class="ft-wt-600 uppercase"><a href="{{ add_https_if_needed($portfolio->link) }}"
+                            target="_blank">{{ $portfolio->link }}</a></span>
+                      </div>
+                    </div>
+                  </figcaption>
+                  <!-- Project Details Ends -->
+                  <!-- Main Project Content Starts -->
+                  @php
+                      $parentIteration = $loop->iteration;
+                  @endphp
+                  <div id="slider{{ $parentIteration }}" class="carousel slide portfolio-slider" data-ride="carousel" data-interval="false">
+                    <ol class="carousel-indicators">
+                        @foreach ($portfolio->media as $media)
+                        <li data-target="#slider{{ $parentIteration }}" data-slide-to="{{ $loop->index }}" class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
+                      @endforeach
+                    </ol>
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                      @foreach ($portfolio->media['slider'] as $media)
+                        <div style="height: 22rem" class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}">
+                          <img src="{{ asset($media['relative_path']) }}" alt="slide {{ $loop->iteration }}">
+                        </div>
+                      @endforeach
+                    </div>
+                  </div>
                   <!-- Main Project Content Ends -->
                 </figure>
               </li>
@@ -77,7 +133,8 @@
               alt="previous"></span>
           <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
               alt="next"></span>
-          <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}" alt="close">
+          <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}"
+              alt="close">
           </span>
         </nav>
         <!-- Portfolio Navigation Ends -->

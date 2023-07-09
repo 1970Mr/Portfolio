@@ -82,7 +82,7 @@ function aparat() : AparatHandler {
     return new AparatHandler;
 }
 
-function addHttpsIfNeeded($url) {
+function add_https_if_needed($url) {
     if (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0) {
         return $url;
     } else {
