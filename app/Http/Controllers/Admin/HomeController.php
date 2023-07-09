@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
   public function index()
   {
-    $homesData = Home::paginate(10);
+    $homesData = Home::orderBy('created_at', 'desc')->paginate(10);
     return view('admin.home.home', compact('homesData'));
   }
 

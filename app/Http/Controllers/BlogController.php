@@ -8,7 +8,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::where('status', 1)->paginate(10);
+        $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->paginate(10);
         return view('blog', compact('blogs'));
     }
 

@@ -16,7 +16,7 @@ class AboutController extends Controller
 	 */
 	public function index()
 	{
-		$aboutsData = About::paginate(5);
+		$aboutsData = About::orderBy('created_at', 'desc')->paginate(5);
 		return view('admin.about.about', compact('aboutsData'));
 	}
 

@@ -10,7 +10,7 @@ class QualificationController extends Controller
 {
     public function index()
     {
-        $qualifications = Qualification::paginate(5);
+        $qualifications = Qualification::orderBy('created_at', 'desc')->paginate(5);
         return view('admin.qualification.qualification', compact('qualifications'));
     }
 
