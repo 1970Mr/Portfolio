@@ -130,7 +130,42 @@
 
             {{-- Video --}}
             @if ($portfolio->media_type == 'video')
-            
+              <!-- Portfolio Item Detail Starts -->
+              <li>
+                <figure>
+                  <!-- Project Details Starts -->
+                  <figcaption>
+                    <h3>{{ $portfolio->title }}</h3>
+                    <div class="row open-sans-font">
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-file-text-o pr-2"></i><span class="project-label">پروژه </span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->project_type }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-user-o pr-2"></i><span class="project-label">مشتری</span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->customer }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-code pr-2"></i><span class="project-label">تکنولوژی </span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->technology }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-external-link pr-2"></i><span class="project-label">مشاهده سایت </span>: <span
+                          class="ft-wt-600 uppercase"><a href="{{ add_https_if_needed($portfolio->link) }}"
+                            target="_blank">{{ $portfolio->link }}</a></span>
+                      </div>
+                    </div>
+                  </figcaption>
+                  <!-- Project Details Ends -->
+                  <!-- Main Project Content Starts -->
+                  <video id="video" class="responsive-video" controls
+                    poster="{{ asset($portfolio->featured_image['relative_path']) }}">
+                    <source src="{{ asset($portfolio->media['video']['relative_path']) }}">
+                  </video>
+                  <!-- Main Project Content Ends -->
+                </figure>
+              </li>
+              <!-- Portfolio Item Detail Ends -->
             @endif
 
             {{-- Video Link --}}
@@ -168,8 +203,7 @@
 
                     <div class="h_iframe-aparat_embed_frame">
                       <span style="display: block;padding-top: 57%"><span>
-                          <iframe class="aparat-video"
-                            src="{{ $portfolio->media['video_link']['frame'] }}"
+                          <iframe class="aparat-video" src="{{ $portfolio->media['video_link']['frame'] }}"
                             title="{{ $portfolio->title }}" allowFullScreen="true" webkitallowfullscreen="true"
                             mozallowfullscreen="true"></iframe>
                     </div>
