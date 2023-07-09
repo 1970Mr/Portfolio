@@ -35,7 +35,7 @@
       <section class="slideshow">
         <ul>
           @foreach ($portfolios as $portfolio)
-            {{-- image --}}
+            {{-- Image --}}
             @if ($portfolio->media_type == 'image')
               <!-- Portfolio Item Detail Starts -->
               <li>
@@ -72,7 +72,7 @@
               <!-- Portfolio Item Detail Ends -->
             @endif
 
-            {{-- slider --}}
+            {{-- Slider --}}
             @if ($portfolio->media_type == 'slider')
               <!-- Portfolio Item Detail Starts -->
               <li>
@@ -103,12 +103,14 @@
                   <!-- Project Details Ends -->
                   <!-- Main Project Content Starts -->
                   @php
-                      $parentIteration = $loop->iteration;
+                    $parentIteration = $loop->iteration;
                   @endphp
-                  <div id="slider{{ $parentIteration }}" class="carousel slide portfolio-slider" data-ride="carousel" data-interval="false">
+                  <div id="slider{{ $parentIteration }}" class="carousel slide portfolio-slider" data-ride="carousel"
+                    data-interval="false">
                     <ol class="carousel-indicators">
-                        @foreach ($portfolio->media as $media)
-                        <li data-target="#slider{{ $parentIteration }}" data-slide-to="{{ $loop->index }}" class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
+                      @foreach ($portfolio->media as $media)
+                        <li data-target="#slider{{ $parentIteration }}" data-slide-to="{{ $loop->index }}"
+                          class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
                       @endforeach
                     </ol>
                     <!-- The slideshow -->
@@ -118,6 +120,58 @@
                           <img src="{{ asset($media['relative_path']) }}" alt="slide {{ $loop->iteration }}">
                         </div>
                       @endforeach
+                    </div>
+                  </div>
+                  <!-- Main Project Content Ends -->
+                </figure>
+              </li>
+              <!-- Portfolio Item Detail Ends -->
+            @endif
+
+            {{-- Video --}}
+            @if ($portfolio->media_type == 'video')
+            
+            @endif
+
+            {{-- Video Link --}}
+            @if ($portfolio->media_type == 'video_link')
+              <!-- Portfolio Item Detail Starts -->
+              <li>
+                <figure>
+                  <!-- Project Details Starts -->
+                  <figcaption>
+                    <h3>{{ $portfolio->title }}</h3>
+                    <div class="row open-sans-font">
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-file-text-o pr-2"></i><span class="project-label">پروژه </span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->project_type }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-user-o pr-2"></i><span class="project-label">مشتری</span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->customer }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-code pr-2"></i><span class="project-label">تکنولوژی </span>: <span
+                          class="ft-wt-600 uppercase">{{ $portfolio->technology }}</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-external-link pr-2"></i><span class="project-label">مشاهده سایت </span>: <span
+                          class="ft-wt-600 uppercase"><a href="{{ add_https_if_needed($portfolio->link) }}"
+                            target="_blank">{{ $portfolio->link }}</a></span>
+                      </div>
+                    </div>
+                  </figcaption>
+                  <!-- Project Details Ends -->
+                  <!-- Main Project Content Starts -->
+                  <div class="videocontainer">
+                    <!-- <iframe  src="https://www.youtube.com/embed/7e90gBu4pas?enablejsapi=1&version=3&playerapiid=ytplayer" allowfullscreen></iframe> -->
+
+                    <div class="h_iframe-aparat_embed_frame">
+                      <span style="display: block;padding-top: 57%"><span>
+                          <iframe class="aparat-video"
+                            src="{{ $portfolio->media['video_link']['frame'] }}"
+                            title="{{ $portfolio->title }}" allowFullScreen="true" webkitallowfullscreen="true"
+                            mozallowfullscreen="true"></iframe>
                     </div>
                   </div>
                   <!-- Main Project Content Ends -->
