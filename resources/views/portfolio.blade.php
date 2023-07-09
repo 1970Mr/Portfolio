@@ -158,8 +158,8 @@
                   </figcaption>
                   <!-- Project Details Ends -->
                   <!-- Main Project Content Starts -->
-                  <video id="video" class="responsive-video" controls
-                    poster="{{ asset($portfolio->featured_image['relative_path']) }}">
+                  {{-- <video id="video" class="responsive-video" controls poster="{{ asset($portfolio->featured_image['relative_path']) }}"> --}}
+                  <video id="video" class="responsive-video" controls width="100%">
                     <source src="{{ asset($portfolio->media['video']['relative_path']) }}">
                   </video>
                   <!-- Main Project Content Ends -->
