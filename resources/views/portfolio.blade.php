@@ -22,7 +22,7 @@
             <!-- Portfolio Item Starts -->
             <li>
               <figure>
-                <img src="{{ asset($portfolio->featured_image['ralative_path']) }}" alt="Portolio Image" />
+                <img src="{{ asset($portfolio->featured_image['relative_path']) }}" alt="Portolio Image" />
                 <div><span>{{ $portfolio->title }}</span></div>
               </figure>
             </li>
