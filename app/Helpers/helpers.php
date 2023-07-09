@@ -81,3 +81,11 @@ function file_delete($path)
 function aparat() : AparatHandler {
     return new AparatHandler;
 }
+
+function addHttpsIfNeeded($url) {
+    if (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0) {
+        return $url;
+    } else {
+        return 'https://' . $url;
+    }
+}

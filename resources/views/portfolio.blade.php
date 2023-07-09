@@ -28,10 +28,92 @@
             </li>
             <!-- Portfolio Item Ends -->
           @endforeach
+        </ul>
+      </section>
+      <!-- Portfolio Grid Ends -->
+      <!-- Portfolio Details Starts -->
+      <section class="slideshow">
+        <ul>
+          @foreach ($portfolios as $portfolio)
+            @if ($portfolio->media_type == 'image')
+              <!-- Portfolio Item Detail Starts -->
+              <li>
+                <figure>
+                  <!-- Project Details Starts -->
+                  <figcaption>
+                    <h3>تصویر پروژه </h3>
+                    <div class="row open-sans-font">
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-file-text-o pr-2"></i><span class="project-label">پروژه </span>: <span
+                          class="ft-wt-600 uppercase">وبسایت</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-user-o pr-2"></i><span class="project-label">مشتری</span>: <span
+                          class="ft-wt-600 uppercase">راستچین </span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-code pr-2"></i><span class="project-label">زبان </span>: <span
+                          class="ft-wt-600 uppercase">HTML, CSS, Javascript</span>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-2">
+                        <i class="fa fa-external-link pr-2"></i><span class="project-label">مشاهده سایت </span>: <span
+                          class="ft-wt-600 uppercase"><a href="{{ addHttpsIfNeeded($portfolio->link) }}" target="_blank">{{ $portfolio->link }}</a></span>
+                      </div>
+                    </div>
+                  </figcaption>
+                  <!-- Project Details Ends -->
+                  <!-- Main Project Content Starts -->
+                  <img src="{{ asset('front/img/projects/project-1.jpg') }}" alt="Portolio Image" />
+                  <!-- Main Project Content Ends -->
+                </figure>
+              </li>
+              <!-- Portfolio Item Detail Ends -->
+            @endif
+          @endforeach
+        </ul>
+        <!-- Portfolio Navigation Starts -->
+        <nav>
+          <span class="icon nav-prev"><img src="{{ asset('front/img/projects/navigation/left-arrow.png') }}"
+              alt="previous"></span>
+          <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
+              alt="next"></span>
+          <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}" alt="close">
+          </span>
+        </nav>
+        <!-- Portfolio Navigation Ends -->
+      </section>
+    </div>
+  </section>
+  <!-- Main Content Ends -->
+@endsection
+
+@push('styles')
+  <style>
+    .h_iframe-aparat_embed_frame {
+      position: relative;
+    }
+
+    .h_iframe-aparat_embed_frame .ratio {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .h_iframe-aparat_embed_frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+@endpush
 
 
 
-          <!-- Portfolio Item Starts -->
+
+{{--
+    <!-- Portfolio Item Starts -->
           <li>
             <figure>
               <img src="{{ asset('front/img/projects/project-1.jpg') }}" alt="Portolio Image" />
@@ -103,13 +185,11 @@
             </figure>
           </li>
           <!-- Portfolio Item Ends -->
-        </ul>
-      </section>
-      <!-- Portfolio Grid Ends -->
-      <!-- Portfolio Details Starts -->
-      <section class="slideshow">
-        <ul>
-          <!-- Portfolio Item Detail Starts -->
+--}}
+
+
+{{--
+    <!-- Portfolio Item Detail Starts -->
           <li>
             <figure>
               <!-- Project Details Starts -->
@@ -173,7 +253,7 @@
 
 
                 <div class="h_iframe-aparat_embed_frame"><span style="display: block;padding-top: 57%"></span><iframe
-                    class="{{-- youtube-video --}}aparat-video"
+                    class="aparat-video"
                     src="https://www.aparat.com/video/video/embed/videohash/2Gnzw/vt/frame"
                     title="ستین شاپ | روش های ارسال" allowFullScreen="true" webkitallowfullscreen="true"
                     mozallowfullscreen="true"></iframe></div>
@@ -427,41 +507,4 @@
             </figure>
           </li>
           <!-- Portfolio Item Detail Ends -->
-        </ul>
-        <!-- Portfolio Navigation Starts -->
-        <nav>
-          <span class="icon nav-prev"><img src="{{ asset('front/img/projects/navigation/left-arrow.png') }}"
-              alt="previous"></span>
-          <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
-              alt="next"></span>
-          <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}"
-              alt="close"> </span>
-        </nav>
-        <!-- Portfolio Navigation Ends -->
-      </section>
-    </div>
-  </section>
-  <!-- Main Content Ends -->
-@endsection
-
-@push('styles')
-  <style>
-    .h_iframe-aparat_embed_frame {
-      position: relative;
-    }
-
-    .h_iframe-aparat_embed_frame .ratio {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .h_iframe-aparat_embed_frame iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  </style>
-@endpush
+--}}

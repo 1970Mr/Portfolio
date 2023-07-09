@@ -9,7 +9,7 @@ class PortfolioController extends Controller
 {
     public function index()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::where('status', true)->get();
         return view('portfolio', compact('portfolios'));
     }
 }
