@@ -18,6 +18,19 @@
       <!-- Portfolio Grid Starts -->
       <section class="grid-wrap">
         <ul class="row grid">
+          @foreach ($portfolios as $portfolio)
+            <!-- Portfolio Item Starts -->
+            <li>
+              <figure>
+                <img src="{{ asset($portfolio->featured_image['ralative_path']) }}" alt="Portolio Image" />
+                <div><span>{{ $portfolio->title }}</span></div>
+              </figure>
+            </li>
+            <!-- Portfolio Item Ends -->
+          @endforeach
+
+
+
           <!-- Portfolio Item Starts -->
           <li>
             <figure>
@@ -419,8 +432,8 @@
         <nav>
           <span class="icon nav-prev"><img src="{{ asset('front/img/projects/navigation/left-arrow.png') }}"
               alt="previous"></span>
-            <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
-                alt="next"></span>
+          <span class="icon nav-next"><img src="{{ asset('front/img/projects/navigation/right-arrow.png') }}"
+              alt="next"></span>
           <span class="nav-close"><img src="{{ asset('front/img/projects/navigation/close-button.png') }}"
               alt="close"> </span>
         </nav>
