@@ -23,7 +23,7 @@
               </div>
               <div class="post-content">
                 <div class="entry-header">
-                  <h3><a href="{{ route('blog-post') }}">{{ $blog->title }}</a></h3>
+                  <h3><a href="{{ route('blog.show', ['blog' => $blog->id]) }}">{{ $blog->title }}</a></h3>
                 </div>
                 <div class="entry-content open-sans-font">
                   <p>
@@ -37,7 +37,9 @@
         @endforeach
         <!-- Article Ends -->
     </div>
-
+    <div class="mt-3">
+        {{ $blogs->links() }}
+    </div>
   </section>
   <!-- Main Content Ends -->
 @endsection
