@@ -6,8 +6,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3 d-flex justify-content-between">
                         <h4>صفحه ورود به پنل ادمین</h4>
+                        <a class="btn btn-outline-secondary" href="{{ route('home') }}">بازگشت به خانه</a>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
