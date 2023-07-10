@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/admin/panel/home', [HomeController::class, 'index'])->name('admin.panel.home');
 
-Route::prefix('admin-panel')->name('admin.panel.')->group(function () {
+Route::prefix('admin-panel')->middleware('auth')->name('admin.panel.')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');

@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'prefix' => '',
+    'prefix' => 'admin-panel',
 
     'domain' => null,
 
