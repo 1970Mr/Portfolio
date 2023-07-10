@@ -23,6 +23,11 @@
 
     body {
       font-family: "Vazir" !important;
+      background-color: #fcfcfc;
+    }
+
+    .card {
+        box-shadow: -5px -5px 50px 5px rgba(0,0,0,0.1),5px 5px 50px 5px rgba(0,0,0,0.1);
     }
   </style>
 
