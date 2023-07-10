@@ -38,8 +38,8 @@
                                 </label>
                             </div>
 
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
+                            <div class="">
+                                <button type="submit" class="btn btn-primary px-5">{{ __('Login') }}</button>
                             </div>
                         </form>
                     </div>
