@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     {
         if(User::all()->count() >= 1)
             User::truncate();
-            
+
         User::create([
             'name' => config('admin.name'),
             'email' => config('admin.email'),
