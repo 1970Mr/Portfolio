@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SkillController;
 use Illuminate\Support\Facades\Route;
@@ -79,7 +80,5 @@ Route::prefix('admin-panel')->middleware('auth')->name('admin.panel.')->group(fu
     Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blog.update');
     Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
-    Route::get('/profile', function () {
-        return view('admin.profile.profile');
-    })->name('profile');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 });
