@@ -11,8 +11,6 @@ use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SkillController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/admin/panel/home', [HomeController::class, 'index'])->name('admin.panel.home');
-
 Route::prefix('admin-panel')->middleware('auth')->name('admin.panel.')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
@@ -83,5 +81,6 @@ Route::prefix('admin-panel')->middleware('auth')->name('admin.panel.')->group(fu
     Route::prefix('/profile')->name('profile.')->group(function () {
         Route::get('/', [ProfileController::class, 'index'])->name('index');
         Route::put('/', [ProfileController::class, 'update'])->name('update');
+        Route::put('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
     });
 });
