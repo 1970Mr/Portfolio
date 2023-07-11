@@ -19,7 +19,8 @@
                     <div class="col-md-8">
                       <h6 class="fs-7 text-muted">تعداد مهارت‌ها</h6>
                       </h6>
-                      <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="18600">1
+                      <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="18600">
+                        {{ $skills['count'] }}
                       </h6>
                     </div>
                   </div>
@@ -38,7 +39,8 @@
                     <div class="col-md-8">
                       <h6 class="fs-7 text-muted">تعداد نمونه کارها</h6>
                       <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="452">
-                        16</h6>
+                        {{ $portfolios['count'] }}
+                    </h6>
                     </div>
                   </div>
                 </div>
@@ -56,7 +58,8 @@
                       <div class="col-md-8">
                         <h6 class="fs-7 text-muted">تعداد مقالات</h6>
                         </h6>
-                        <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="126500">20
+                        <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="126500">
+                            {{ $blogs['count'] }}
                         </h6>
                       </div>
                     </div>
@@ -75,7 +78,8 @@
                     <div class="col-md-8">
                       <h6 class="fs-7 text-muted">تعداد پیام‌ها</h6>
                       </h6>
-                      <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="95600">10
+                      <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="95600">
+                        {{ $messages['count'] }}
                       </h6>
                     </div>
                   </div>
