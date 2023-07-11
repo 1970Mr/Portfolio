@@ -20,6 +20,6 @@ class ProfileController extends Controller
         ]);
 
         auth()->user()->update($validated);
-        return redirect()->route('profile.edit')->with('success', 'پروفایل با موفقیت بروزرسانی شد!');
+        return back()->with('success', 'پروفایل با موفقیت بروزرسانی شد!');
     }
 }

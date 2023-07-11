@@ -17,7 +17,7 @@
           </div>
 
           <div class="card-body">
-            <form method="POST" action="{{ route('user-profile-information.update') }}" class="row justify-content-center">
+            <form method="POST" action="{{ route('admin.panel.profile.update') }}" class="row justify-content-center">
               @csrf
               @method('PUT')
 
@@ -38,8 +38,9 @@
                   name="email" value="{{ old('email', auth()->user()->email) }}" required>
 
                 @error('email')
-                  <span class="invalid-feedback" role="alert"></span>
-                  <strong>{{ $message }}</strong>
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
                 @enderror
               </div>
 

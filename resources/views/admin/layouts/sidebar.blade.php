@@ -83,8 +83,8 @@
         </a>
       </li>
 
-      <li class="sidebar-item {{ active_route('admin.panel.profile') }}">
-        <a class="sidebar-link" href="{{ route('admin.panel.profile') }}">
+      <li class="sidebar-item {{ active_route('admin.panel.profile.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.profile.index') }}">
           <i class="bi bi-person me-2"></i>
           <span>پروفایل</span>
         </a>
