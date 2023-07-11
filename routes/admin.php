@@ -80,5 +80,8 @@ Route::prefix('admin-panel')->middleware('auth')->name('admin.panel.')->group(fu
     Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blog.update');
     Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::prefix('/profile')->name('profile.')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'index'])->name('index');
+        Route::post('/profile', [ProfileController::class, 'update'])->name('update');
+    });
 });
