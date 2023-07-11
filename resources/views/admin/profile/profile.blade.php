@@ -52,43 +52,62 @@
         </div>
 
         <div class="card mt-5">
-            <div class="card-header">
-                <h3>ویرایش رمزعبور</h3>
-            </div>
-
-            <div class="card-body">
-              <form method="POST" action="{{ route('user-password.update') }}" class="row justify-content-center">
-                @csrf
-                @method('PUT')
-
-                <div class="mb-3 col-6">
-                  <label for="current_password" class="form-label">رمزعبور فعلی</label>
-                  <input id="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror"
-                    name="current_password" required>
-
-                  @error('current_password')
-                    <span class="invalid-feedback" role="alert"></span>
-                    <strong>{{ $message }}</strong>
-                  @enderror
-                </div>
-
-                <div class="mb-3 col-6">
-                  <label for="password" class="form-label">رمزعبور جدید</label>
-                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
-                    name="password" required>
-
-                  @error('password')
-                    <span class="invalid-feedback" role="alert"></span>
-                    <strong>{{ $message }}</strong>
-                  @enderror
-                </div>
-
-                <button type="submit" class="btn btn-primary w-25">
-                  ویرایش رمزعبور
-                </button>
-              </form>
-            </div>
+          <div class="card-header">
+            <h3>ویرایش رمزعبور</h3>
           </div>
+
+          <div class="card-body">
+            <form method="POST" action="{{ route('admin.panel.profile.change.password') }}"
+              class="row justify-content-center">
+              @csrf
+              @method('PUT')
+
+              <div class="col-12 row justify-content-center">
+                <div class="mb-3 col-6">
+                    <label for="current_password" class="form-label">رمزعبور فعلی</label>
+                    <input id="current_password" type="password"
+                      class="form-control @error('current_password') is-invalid @enderror" name="current_password" required>
+
+                    @error('current_password')
+                      <div class="text-danger fs-7">
+                        {{ $message }}
+                      </div>
+                    @enderror
+                  </div>
+              </div>
+
+              <div class="mb-3 col-6">
+                <label for="password" class="form-label">رمزعبور جدید</label>
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                  name="password" required>
+
+                @error('password')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
+              <div class="mb-3 col-6">
+                <label for="password_confirmation" class="form-label">تکرار رمزعبور جدید</label>
+                <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                  name="password_confirmation" required>
+
+                @error('password_confirmation')
+                  <div class="text-danger fs-7">
+                    {{ $message }}
+                  </div>
+                @enderror
+              </div>
+
+              <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary w-25">
+                    ویرایش رمزعبور
+                  </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

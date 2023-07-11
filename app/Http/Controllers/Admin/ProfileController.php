@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -26,11 +27,13 @@ class ProfileController extends Controller
     public function changePassword(Request $request)
     {
         $validated = $request->validate([
-            'current_password' => 'required|string|max:255',
-            'password' => 'required|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
+            'current_password' => 'required|min:8|current_password',
+            'password' => 'required|min:8|confirmed',
         ]);
 
-        auth()->user()->update($validated);
+        auth()->user()->update([
+            'password' => Hash::make($validated['password'])
+        ]);
         return back()->with('success', 'رمزعبور با موفقیت بروزرسانی شد!');
     }
 }
