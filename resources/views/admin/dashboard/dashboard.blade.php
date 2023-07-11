@@ -13,11 +13,11 @@
                   <div class="row g-3">
                     <div class="col-md-4">
                       <div class="stats-icon bg-purple">
-                        <i class="bi bi-people-fill"></i>
+                        <i class="bi bi-wrench-adjustable-circle mt-1"></i>
                       </div>
                     </div>
                     <div class="col-md-8">
-                      <h6 class="fs-7 text-muted">تعداد کاربران</h6>
+                      <h6 class="fs-7 text-muted">تعداد مهارت‌ها</h6>
                       </h6>
                       <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="18600">1
                       </h6>
@@ -45,6 +45,25 @@
               </div>
             </div>
             <div class="col-6 col-xl-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row g-3">
+                      <div class="col-md-4">
+                        <div class="stats-icon bg-blue">
+                          <i class="bi bi-file-earmark-richtext mt-1"></i>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h6 class="fs-7 text-muted">تعداد مقالات</h6>
+                        </h6>
+                        <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="126500">20
+                        </h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="col-6 col-xl-3">
               <div class="card">
                 <div class="card-body">
                   <div class="row g-3">
@@ -57,25 +76,6 @@
                       <h6 class="fs-7 text-muted">تعداد پیام‌ها</h6>
                       </h6>
                       <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="95600">10
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-6 col-xl-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="row g-3">
-                    <div class="col-md-4">
-                      <div class="stats-icon bg-blue">
-                        <i class="bi bi-file-earmark-richtext mt-1"></i>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <h6 class="fs-7 text-muted">تعداد پست‌ها</h6>
-                      </h6>
-                      <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="126500">20
                       </h6>
                     </div>
                   </div>
@@ -151,7 +151,7 @@
             <div class="col-xl-12">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="fw-bold mb-0">آخرین پست‌ها</h5>
+                  <h5 class="fw-bold mb-0">آخرین مقالات</h5>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
@@ -212,7 +212,7 @@
             <div class="col-xl-12">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="fw-bold mb-0">مهارت‌های من</h5>
+                  <h5 class="fw-bold mb-0">آخرین مهارت‌های ثبت شده</h5>
                   </h5>
                   </h5>
                 </div>
