@@ -22,4 +22,15 @@ class ProfileController extends Controller
         auth()->user()->update($validated);
         return back()->with('success', 'پروفایل با موفقیت بروزرسانی شد!');
     }
+
+    public function changePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'current_password' => 'required|string|max:255',
+            'password' => 'required|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/',
+        ]);
+
+        auth()->user()->update($validated);
+        return back()->with('success', 'رمزعبور با موفقیت بروزرسانی شد!');
+    }
 }
