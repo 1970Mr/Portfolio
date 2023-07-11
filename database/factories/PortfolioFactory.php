@@ -19,10 +19,10 @@ class PortfolioFactory extends Factory
     {
         return [
             'title' => fake()->title(),
-            'project_type' => fake()->text(30),
+            'project_type' => fake()->text(15),
             'customer' => fake()->name(),
             'link' => fake()->url(),
-            'technology' => fake()->text(20),
+            'technology' => fake()->text(18),
             'featured_image' => [
                 'name' => fake()->name(),
                 'relative_path' => fake()->imageUrl(),
