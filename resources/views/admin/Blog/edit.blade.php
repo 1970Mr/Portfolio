@@ -30,7 +30,7 @@
               @csrf
               @method('put')
               @foreach ($inputs as $item)
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-md-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
                   <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control"
                     id="{{ $item['name'] }}"
@@ -43,7 +43,7 @@
                 </div>
               @endforeach
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="photo" class="form-label">تصویر</label>
                 <input type="file" name="photo" class="form-control" id="photo">
                 <div class="text-info fs-7 mt-1">
@@ -56,7 +56,7 @@
                 @enderror
               </div>
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="text" class="form-label">متن</label>
                 <textarea name="text" class="form-control" id="text">{{ old('text') ? old('text') : $blog->text }}</textarea>
                 @error('text')

@@ -38,7 +38,7 @@
               @csrf
               @method('put')
               @foreach ($inputs as $item)
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-md-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
                   <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
                     value="{{ old($item['name']) ? old($item['name']) : $contact->{$item['name']} }}">
@@ -50,7 +50,7 @@
                 </div>
               @endforeach
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="description" class="form-label">توضیحات</label>
                   <textarea name="description" id="description" class="form-control" rows="3">{{ old('description') ? old('description') : $contact->description }}</textarea>
                 @error('description')

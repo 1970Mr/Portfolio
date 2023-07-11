@@ -24,7 +24,7 @@
             <form action="{{ route('admin.panel.home.store') }}" class="row justify-content-center" method="post"
               enctype="multipart/form-data">
               @csrf
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="title" class="form-label">عنوان</label>
                 <input type="text" name="title" class="form-control" id="title" value="{{ old('title') }}">
                 @error('title')
@@ -34,7 +34,7 @@
                 @enderror
               </div>
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="subTitle" class="form-label">زیرعنوان</label>
                 <input type="text" name="subTitle" class="form-control" id="subTitle" value="{{ old('subTitle') }}">
                 @error('subTitle')

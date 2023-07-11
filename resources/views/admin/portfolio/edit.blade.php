@@ -31,7 +31,7 @@
               @csrf
               @method('put')
               @foreach ($inputs as $item)
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-md-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
                   <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control"
                     id="{{ $item['name'] }}"
@@ -43,7 +43,7 @@
                   @enderror
                 </div>
               @endforeach
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="featured_image" class="form-label">تصویر شاخص</label>
                 <input type="file" name="featured_image" class="form-control" id="featured_image">
                 <div class="text-info fs-7 mt-1">
@@ -118,21 +118,21 @@
                       </div>
                     @enderror
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-md-6">
                       <label for="slider" class="form-label">تصویر</label>
                       <input type="file" name="slider[]" class="form-control" id="slider1">
                       <div class="text-info fs-7 mt-1">
                         {{ $portfolio->media_type == $mediaTypes[1] ? $portfolio->media['slider'][0]['relative_path'] : '' }}
                       </div>
                     </div>
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-md-6">
                       <label for="slider" class="form-label">تصویر</label>
                       <input type="file" name="slider[]" class="form-control" id="slider2">
                       <div class="text-info fs-7 mt-1">
                         {{ $portfolio->media_type == $mediaTypes[1] ? $portfolio->media['slider'][1]['relative_path'] : '' }}
                       </div>
                     </div>
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-md-6">
                       <label for="slider" class="form-label">تصویر</label>
                       <input type="file" name="slider[]" class="form-control" id="slider3">
                       <div class="text-info fs-7 mt-1">
@@ -150,7 +150,7 @@
                   id="tab2">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[2] }}">
 
-                  <div class="mb-3 col-6 mx-auto">
+                  <div class="mb-3 col-md-6 mx-auto">
                     <label for="video" class="form-label">ویدئو</label>
                     <input type="file" name="video" class="form-control" id="video">
                     <div class="text-info fs-7 mt-1">
@@ -172,7 +172,7 @@
                   id="tab3">
                   <input type="hidden" name="media_type" value="{{ $mediaTypes[3] }}">
 
-                  <div class="mb-3 col-6 mx-auto">
+                  <div class="mb-3 col-md-6 mx-auto">
                     <label for="video_link" class="form-label">ویدئو</label>
                     <input type="file" name="video_link" class="form-control" id="video_link">
                     <div class="text-info fs-7 mt-1">

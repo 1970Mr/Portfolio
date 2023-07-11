@@ -21,7 +21,7 @@
               @csrf
               @method('PUT')
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="name" class="form-label">نام</label>
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                   name="name" value="{{ old('name', auth()->user()->name) }}" required>
@@ -32,7 +32,7 @@
                 @enderror
               </div>
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">ایمیل</label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                   name="email" value="{{ old('email', auth()->user()->email) }}" required>
@@ -63,7 +63,7 @@
               @method('PUT')
 
               <div class="col-12 row justify-content-center">
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-md-6">
                     <label for="current_password" class="form-label">رمزعبور فعلی</label>
                     <input id="current_password" type="password"
                       class="form-control @error('current_password') is-invalid @enderror" name="current_password" required>
@@ -76,7 +76,7 @@
                   </div>
               </div>
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="password" class="form-label">رمزعبور جدید</label>
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                   name="password" required>
@@ -88,7 +88,7 @@
                 @enderror
               </div>
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="password_confirmation" class="form-label">تکرار رمزعبور جدید</label>
                 <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
                   name="password_confirmation" required>

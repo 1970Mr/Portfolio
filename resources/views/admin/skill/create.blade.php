@@ -32,7 +32,7 @@
             <form action="{{ route('admin.panel.about.skill.store') }}" class="row justify-content-center" method="post">
               @csrf
               @foreach ($inputs as $item)
-                <div class="mb-3 col-6">
+                <div class="mb-3 col-md-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
                   <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
                     value="{{ old($item['name']) }}">
