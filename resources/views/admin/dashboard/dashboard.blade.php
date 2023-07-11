@@ -205,7 +205,7 @@
               </div>
             </div>
 
-            {{-- progress bar --}}
+            {{-- skills with progress bar --}}
             <div class="col-xl-12">
               <div class="card">
                 <div class="card-header">
@@ -214,38 +214,18 @@
                   </h5>
                 </div>
                 <div class="card-body">
-                  <div class="card-item">
-                    <p class="fs-7 text-muted mt-2">لورم ایپسوم متن ساختگی</p>
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-striped progress-bar-animated bg-purple" role="progressbar"
-                        style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%
+                  @foreach ($skills['lastFiveData'] as $skill)
+                    <div class="card-item">
+                      <p class="fs-7 text-muted mt-2">{{ $skill->name }}</p>
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info"
+                          role="progressbar" style="width: {{ $skill->value }}%;" aria-valuenow="{{ $skill->value }}"
+                          aria-valuemin="0" aria-valuemax="100">
+                          {{ $skill->value }}%
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="card-item">
-                    <p class="fs-7 text-muted mt-2">لورم ایپسوم متن ساختگی</p>
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-striped progress-bar-animated bg-blue" role="progressbar"
-                        style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-item">
-                    <p class="fs-7 text-muted mt-2">لورم ایپسوم متن ساختگی</p>
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-striped progress-bar-animated bg-green" role="progressbar"
-                        style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">66%
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-item">
-                    <p class="fs-7 text-muted mt-2">لورم ایپسوم متن ساختگی</p>
-                    <div class="progress">
-                      <div class="progress-bar progress-bar-striped progress-bar-animated bg-red" role="progressbar"
-                        style="width: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%
-                      </div>
-                    </div>
-                  </div>
+                  @endforeach
                 </div>
               </div>
             </div>
