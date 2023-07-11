@@ -79,5 +79,3 @@
 @endsection
 <x-alert type='success'></x-alert>
 <x-alert type='error'></x-alert>
-
-@endpush

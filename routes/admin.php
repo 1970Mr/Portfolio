@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PortfolioController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -12,9 +13,7 @@ use App\Http\Controllers\Admin\SkillController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin-panel')->middleware('auth')->name('admin.panel.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/home/create', [HomeController::class, 'create'])->name('home.create');
