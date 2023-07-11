@@ -26,7 +26,7 @@
                   <tr>
                     <th>#</th>
                     <th>عنوان</th>
-                    <th>نوع پروژه</th>
+                    <th style="min-width: 5rem">نوع پروژه</th>
                     <th>مشتری</th>
                     <th>لینک پروژه</th>
                     <th>تکنولوژی</th>

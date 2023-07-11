@@ -34,7 +34,7 @@ class DashboardController extends Controller
 
         return [
             'count' => $dataCount,
-            'lastFive' => $lastFiveData,
+            'lastFiveData' => $lastFiveData,
         ];
     }
 }

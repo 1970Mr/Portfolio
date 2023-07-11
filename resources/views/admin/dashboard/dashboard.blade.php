@@ -108,13 +108,15 @@
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($messages['lastFive'] as $item)
+                        @foreach ($messages['lastFiveData'] as $message)
                           <tr>
-                            <td class="text-muted">{{ $item->name }}</td>
-                            <td class="text-muted">{{ $item->email }}</td>
-                            <td class="text-muted">{{ $item->subject }}</td>
-                            <td class="text-muted" style="min-width: 9rem;">{{ Illuminate\Support\Str::limit($item->message, 40) }}</td>
-                            <td class="text-muted text-center text-md-start" style="min-width: 7.2rem;">{{ $item->is_read }}
+                            <td class="text-muted">{{ $message->name }}</td>
+                            <td class="text-muted">{{ $message->email }}</td>
+                            <td class="text-muted">{{ $message->subject }}</td>
+                            <td class="text-muted" style="min-width: 9rem;">
+                              {{ Illuminate\Support\Str::limit($message->message, 40) }}</td>
+                            <td class="text-muted text-center text-md-start" style="min-width: 7.2rem;">
+                              {{ $message->is_read }}
                             </td>
                           </tr>
                         @endforeach
@@ -136,49 +138,29 @@
                     <table class="table table-hover align-middle">
                       <thead>
                         <tr>
-                          <th>تصویر</th>
-                          <th>نام کاربری</th>
-                          <th>کامنت</th>
+                          <th>عنوان</th>
+                          <th style="min-width: 5rem">نوع پروژه</th>
+                          <th>مشتری</th>
+                          <th>لینک پروژه</th>
+                          <th>تکنولوژی</th>
+                          <th style="min-width: 77px;">نوع رسانه</th>
+                          <th>تصویر شاخص</th>
+                          <th>وضعیت</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            <img width="50" class="img-fluid rounded-circle" src="{{ asset('admin/images/4.jpg') }}">
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم متن ساختگی با تولید سادگی
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <img width="50" class="img-fluid rounded-circle" src="{{ asset('admin/images/5.jpg') }}">
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                            است.
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <img width="50" class="img-fluid rounded-circle" src="{{ asset('admin/images/7.jpg') }}">
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت.
-                          </td>
-                        </tr>
-
+                        @foreach ($portfolios['lastFiveData'] as $portfolio)
+                          <tr>
+                            <td class="text-muted">{{ $portfolio->title }}</td>
+                            <td class="text-muted">{{ $portfolio->project_type }}</td>
+                            <td class="text-muted">{{ $portfolio->customer }}</td>
+                            <td class="text-muted">{{ $portfolio->link }}</td>
+                            <td class="text-muted">{{ $portfolio->technology }}</td>
+                            <td class="text-muted">{{ $portfolio->media_type }}</td>
+                            <td class="text-muted">{{ $portfolio->featured_image['relative_path'] }}</td>
+                            <td class="text-muted">{{ $portfolio->status }}</td>
+                          </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
