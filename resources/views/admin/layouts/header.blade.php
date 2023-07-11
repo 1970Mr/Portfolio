@@ -1,6 +1,11 @@
 @php
-  $mobilePhoto = App\Models\Home::where('status', true)->first()->photo['mobile']['relative_path'];
+  $user = App\Models\Home::where('status', true)->first();
+  $mobilePhoto = null;
+  if ($user) {
+      $mobilePhoto = $user->photo['mobile']['relative_path'];
+  }
   $unreadMessagesCount = App\Models\Message::where('is_read', false)->count();
+
 @endphp
 
 <header class="header d-flex justify-content-between p-3 align-items-center">
@@ -34,10 +39,14 @@
 
     <div class="dropdown" style="cursor: pointer;">
       <div class="dropdown-toggle profile d-flex align-items-center " data-bs-toggle="dropdown">
-        <img width="45" class="img-fluid rounded-circle me-2" src="{{ asset($mobilePhoto) }}" alt="">
+        @if ($mobilePhoto)
+          <img width="45" class="img-fluid rounded-circle me-2" src="{{ asset($mobilePhoto) }}" alt="">
+        @else
+          <i class="bi bi-person-circle fs-2 me-2"></i>
+        @endif
         <div>
-          <h6 class="fs-6 fw-bold text-gray-600 mb-0">رسول مرشدی</h6>
-          <p class="fs-8 text-gray-600 mb-0">سوپر ادمین</p>
+          <h6 class="fs-6 fw-bold text-gray-600 mb-0">{{ config('admin.fa-name') }}</h6>
+          <p class="fs-8 text-gray-600 mb-0">مالک سایت</p>
         </div>
       </div>
       <ul class="dropdown-menu">
