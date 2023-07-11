@@ -25,7 +25,7 @@
               enctype="multipart/form-data">
               @csrf
               @method('put')
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="title" class="form-label">عنوان</label>
                 <input type="text" name="title" class="form-control" id="title" value="{{ old('title') ? old('title') : $home->title }}">
                 @error('title')
@@ -35,7 +35,7 @@
                 @enderror
               </div>
 
-              <div class="mb-3 col-6">
+              <div class="mb-3 col-md-6">
                 <label for="subTitle" class="form-label">زیرعنوان</label>
                 <input type="text" name="subTitle" class="form-control" id="subTitle" value="{{ old('subTitle') ? old('subTitle') : $home->sub_title }}">
                 @error('subTitle')
