@@ -80,6 +80,6 @@ Route::prefix('admin-panel')->middleware('auth')->name('admin.panel.')->group(fu
     Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
     Route::get('/profile', function () {
-        return view('admin.profile');
+        return view('admin.profile.profile');
     })->name('profile');
 });
