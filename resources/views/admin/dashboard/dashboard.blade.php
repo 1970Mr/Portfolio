@@ -113,7 +113,7 @@
                             <td class="text-muted">{{ $message->name }}</td>
                             <td class="text-muted">{{ $message->email }}</td>
                             <td class="text-muted">{{ $message->subject }}</td>
-                            <td class="text-muted" style="min-width: 9rem;">
+                            <td class="text-muted" style="min-width: 12rem;">
                               {{ Illuminate\Support\Str::limit($message->message, 40) }}</td>
                             <td class="text-muted text-center text-md-start" style="min-width: 7.2rem;">
                               {{ $message->is_read }}
@@ -132,6 +132,43 @@
               <div class="card">
                 <div class="card-header">
                   <h5 class="fw-bold mb-0">آخرین مقالات</h5>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                      <thead>
+                        <tr>
+                          <th>عنوان</th>
+                          <th>متن</th>
+                          <th>نویسنده</th>
+                          <th style="min-width: 6rem">کلمات کلیدی</th>
+                          <th>تصویر</th>
+                          <th>وضعیت</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($blogs['lastFiveData'] as $blog)
+                          <tr>
+                            <td class="text-muted">{{ $blog->title }}</td>
+                            <td class="text-muted" style="min-width: 12rem">{{ str()->limit($blog->text, 40) }}</td>
+                            <td class="text-muted">{{ $blog->author }}</td>
+                            <td class="text-muted">{{ $blog->keywords }}</td>
+                            <td class="text-muted">{{ $blog->photo['relative_path'] }}</td>
+                            <td class="text-muted">{{ $blog->status }}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {{-- portfolios --}}
+            <div class="col-xl-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="fw-bold mb-0">آخرین نمونه کارها</h5>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">

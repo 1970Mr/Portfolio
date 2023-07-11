@@ -39,7 +39,7 @@
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td class="text-muted">{{ $item->title }}</td>
-                      <td class="text-muted">{{ str()->limit($item->text, 40) }}</td>
+                      <td class="text-muted" style="min-width: 12rem">{{ str()->limit($item->text, 40) }}</td>
                       <td class="text-muted">{{ $item->author }}</td>
                       <td class="text-muted">{{ $item->keywords }}</td>
                       <td class="text-muted">{{ $item->photo['relative_path'] }}</td>
