@@ -71,7 +71,7 @@
                 @endforeach
 
                 <div class="col-12">
-                  <textarea name="message" placeholder="پیام شما"></textarea>
+                  <textarea name="message" placeholder="پیام شما">{{ old('message') }}</textarea>
                   @error('message')
                     <div class="text-danger small">
                       {{ $message }}
@@ -118,6 +118,6 @@
     .small{
         font-size: 85%;
     }
-    
+
   </style>
 @endpush

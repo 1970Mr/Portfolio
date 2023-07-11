@@ -40,32 +40,32 @@
                       <h6 class="fs-7 text-muted">تعداد نمونه کارها</h6>
                       <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="452">
                         {{ $portfolios['count'] }}
-                    </h6>
+                      </h6>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-6 col-xl-3">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row g-3">
-                      <div class="col-md-4">
-                        <div class="stats-icon bg-blue">
-                          <i class="bi bi-file-earmark-richtext mt-1"></i>
-                        </div>
+              <div class="card">
+                <div class="card-body">
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <div class="stats-icon bg-blue">
+                        <i class="bi bi-file-earmark-richtext mt-1"></i>
                       </div>
-                      <div class="col-md-8">
-                        <h6 class="fs-7 text-muted">تعداد مقالات</h6>
-                        </h6>
-                        <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="126500">
-                            {{ $blogs['count'] }}
-                        </h6>
-                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <h6 class="fs-7 text-muted">تعداد مقالات</h6>
+                      </h6>
+                      <h6 class="fw-bold mb-0 purecounter" data-purecounter-start="0" data-purecounter-end="126500">
+                        {{ $blogs['count'] }}
+                      </h6>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
             <div class="col-6 col-xl-3">
               <div class="card">
                 <div class="card-body">
@@ -88,7 +88,6 @@
             </div>
           </div>
 
-
           <div class="row g-3 mt-4">
             {{-- contact --}}
             <div class="col-xl-12">
@@ -101,49 +100,24 @@
                     <table class="table table-hover align-middle">
                       <thead>
                         <tr>
-                          <th>تصویر</th>
-                          <th>نام کاربری</th>
-                          <th>کامنت</th>
+                          <th>نام</th>
+                          <th>ایمیل</th>
+                          <th>موضوع</th>
+                          <th>پیام</th>
+                          <th>وضعیت خواندن</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>
-                            <img width="50" class="img-fluid rounded-circle" src="{{ asset('admin/images/4.jpg') }}">
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم متن ساختگی با تولید سادگی
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <img width="50" class="img-fluid rounded-circle" src="{{ asset('admin/images/5.jpg') }}">
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                            است.
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <img width="50" class="img-fluid rounded-circle" src="{{ asset('admin/images/7.jpg') }}">
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم
-                          </td>
-                          <td class="text-muted">
-                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت.
-                          </td>
-                        </tr>
-
+                        @foreach ($messages['lastFive'] as $item)
+                          <tr>
+                            <td class="text-muted">{{ $item->name }}</td>
+                            <td class="text-muted">{{ $item->email }}</td>
+                            <td class="text-muted">{{ $item->subject }}</td>
+                            <td class="text-muted" style="min-width: 9rem;">{{ Illuminate\Support\Str::limit($item->message, 40) }}</td>
+                            <td class="text-muted text-center text-md-start" style="min-width: 7.2rem;">{{ $item->is_read }}
+                            </td>
+                          </tr>
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -151,7 +125,7 @@
               </div>
             </div>
 
-            {{-- posts --}}
+            {{-- blogs --}}
             <div class="col-xl-12">
               <div class="card">
                 <div class="card-header">
