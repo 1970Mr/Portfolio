@@ -41,8 +41,8 @@
                       <td class="text-muted">{{ $item->name }}</td>
                       <td class="text-muted">{{ $item->email }}</td>
                       <td class="text-muted">{{ $item->subject }}</td>
-                      <td class="text-muted">{{ Illuminate\Support\Str::limit($item->message, 40) }}</td>
-                      <td class="text-muted" style="min-width: 7.2rem; text-align: center;">{{ $item->is_read }}</td>
+                      <td class="text-muted" style="min-width: 9rem;">{{ Illuminate\Support\Str::limit($item->message, 40) }}</td>
+                      <td class="text-muted text-center text-md-start" style="min-width: 7.2rem;">{{ $item->is_read }}</td>
 
                       <td>
                         <div class="dropdown">
