@@ -11,4 +11,15 @@ class ProfileController extends Controller
     {
         return view('admin.profile.profile');
     }
+
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . auth()->id(),
+        ]);
+
+        auth()->user()->update($validated);
+        return redirect()->route('profile.edit')->with('success', 'پروفایل با موفقیت بروزرسانی شد!');
+    }
 }
