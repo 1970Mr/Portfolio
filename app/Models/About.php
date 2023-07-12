@@ -16,25 +16,11 @@ class About extends Model
 		'created_at',
 	];
 
-    protected function github(): Attribute
+    protected function resumeFile(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => json_decode($value, true),
 			set: fn ($value) => json_encode($value),
-        );
-    }
-
-    protected function githubUsername(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->github['username'],
-        );
-    }
-
-    protected function githubUrl(): Attribute
-    {
-        return Attribute::make(
-            get: fn () => $this->github['url'],
         );
     }
 
