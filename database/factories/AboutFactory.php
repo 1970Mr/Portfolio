@@ -25,14 +25,15 @@ class AboutFactory extends Factory
             'address' => fake()->address(),
             'phone_number' => fake()->phoneNumber(),
             'email' => fake()->email(),
-            'github' => [
-                'username' => fake()->name(),
-                'url' => fake()->url()
-            ],
+            'github' => fake()->name(),
             'language' => fake()->languageCode(),
             'experiences' => fake()->numberBetween(1, 10),
             'projects' => fake()->numberBetween(10, 100),
             'awards' => fake()->numberBetween(0, 10),
+            'resume_file' => [
+                'name' => fake()->name(),
+                'relative_path' => fake()->filePath(),
+            ],
             'status' => fake()->numberBetween(0, 1),
         ];
     }
