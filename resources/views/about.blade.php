@@ -55,7 +55,7 @@
                   </span> </li>
                 <li> <span class="title">گیت‌هاب :</span> <span
                     class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">
-                    <a target="_blank" href="{{ 'https://'.$aboutData->github }}">{{ $aboutData->github }}</a>
+                    <a target="_blank" href="{{ 'https://' . $aboutData->github }}">{{ $aboutData->github }}</a>
                   </span> </li>
                 <li> <span class="title">زبان :</span> <span
                     class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->language }}</span>
@@ -63,7 +63,7 @@
               </ul>
             </div>
             <div class="col-12 mt-3">
-              <a class="button" href="#">
+              <a class="button" href="{{ route('download', ['file' => $aboutData->resume_file['relative_path']]) }}">
                 <span class="button-text">دانلود رزومه</span>
                 <span class="button-icon fa fa-download"></span>
               </a>
@@ -169,6 +169,7 @@
   </section>
   <!-- Main Content Ends -->
 @endsection
+<x-alert type='error'></x-alert>
 
 @push('styles')
   <style>
