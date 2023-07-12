@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,4 @@ Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
 
-Route::get('/blog-post', function () {
-  return view('blog-post');
-})->name('blog-post');
+Route::get('/download/{file}', [DownloadController::class, 'download'])->name('download');
