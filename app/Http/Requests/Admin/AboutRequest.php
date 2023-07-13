@@ -6,6 +6,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AboutRequest extends FormRequest
 {
+    private $isRequired = '';
+
+    public function __construct()
+    {
+        $this->isRequired = 'required';
+        if (strtolower(request()->get('_method')) == 'put') {
+            $this->isRequired = 'nullable';
+        }
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -37,7 +47,7 @@ class AboutRequest extends FormRequest
             'experiences' => 'required|numeric',
             'projects' => 'required|numeric',
             'awards' => 'required|numeric',
-            'resume_file' => 'required|file|mimes:pdf,txt,doc,docx|max:3072',
+            'resume_file' => "{$this->isRequired}|file|mimes:pdf,txt,doc,docx|max:3072",
             'status' => 'nullable',
         ];
     }
