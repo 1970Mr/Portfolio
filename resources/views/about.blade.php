@@ -63,7 +63,7 @@
               </ul>
             </div>
             <div class="col-12 mt-3">
-              <a class="button" href="{{ route('download', ['file' => $aboutData->resume_file['relative_path']]) }}">
+              <a class="button" href="{{ route('download', ['file' => base64_encode($aboutData->resume_file['relative_path']) ]) }}">
                 <span class="button-text">دانلود رزومه</span>
                 <span class="button-icon fa fa-download"></span>
               </a>
