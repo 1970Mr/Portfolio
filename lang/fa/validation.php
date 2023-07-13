@@ -237,5 +237,10 @@ return [
         'keywords'                 => "کلمات کلیدی",
         'response'                 => "پاسخ",
         'featured_image'           => "تصویر شاخص",
+        'resume_file'              => "فایل رزومه",
+        'experiences'              => "تجربه‌ها",
+        'projects'                 => "پروژه‌ها",
+        'awards'                   => "جایزه‌ها",
+        'status'                   => "وضعیت",
     ],
 ];

@@ -26,9 +26,10 @@ class About extends Model
 
     public function __get($key)
     {
-        if ($key == 'phoneNumber')
-            return parent::getAttribute(str()->snake($key));
-        return parent::getAttribute($key);
+        // if ($key == 'phoneNumber')
+        //     return parent::getAttribute(str()->snake($key));
+        // return parent::getAttribute($key);
+        return parent::getAttribute(str()->snake($key));
     }
 
     public function __set($key, $value)
