@@ -8,13 +8,14 @@
       ['name' => 'country', 'title' => 'ملیت', 'type' => 'text'],
       ['name' => 'job', 'title' => 'شغل', 'type' => 'text'],
       ['name' => 'address', 'title' => 'آدرس', 'type' => 'text'],
-      ['name' => 'phoneNumber', 'title' => 'شماره تماس', 'type' => 'text'],
+      ['name' => 'phone_number', 'title' => 'شماره تماس', 'type' => 'text'],
       ['name' => 'email', 'title' => 'ایمیل', 'type' => 'email'],
       ['name' => 'github', 'title' => 'نام کاربری گیت‌هاب', 'type' => 'text'],
       ['name' => 'language', 'title' => 'زبان', 'type' => 'text'],
       ['name' => 'experiences', 'title' => 'تجربه‌ها', 'type' => 'number'],
       ['name' => 'projects', 'title' => 'پروژه‌ها', 'type' => 'number'],
       ['name' => 'awards', 'title' => 'جایزه‌ها', 'type' => 'number'],
+      ['name' => 'resume_file', 'title' => 'فایل رزومه', 'type' => 'file'],
   ];
 @endphp
 
@@ -39,7 +40,7 @@
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.personal.store') }}" class="row justify-content-center" method="post">
+            <form action="{{ route('admin.panel.about.personal.store') }}" class="row justify-content-center" method="post" enctype="multipart/form-data">
               @csrf
               @foreach ($names as $item)
                 <div class="mb-3 col-md-6">

@@ -30,27 +30,15 @@ class AboutRequest extends FormRequest
             'country' => 'required',
             'job' => 'required',
             'address' => 'required',
-            'phoneNumber' => 'required',
+            'phone_number' => 'required',
             'email' => 'required|email',
             'github' => 'required',
             'language' => 'required',
             'experiences' => 'required|numeric',
             'projects' => 'required|numeric',
             'awards' => 'required|numeric',
+            'resume_file' => 'required|file|mimes:pdf,txt,doc,docx|max:3072',
             'status' => 'nullable',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'phoneNumber.required' => 'فیلد شماره تماس الزامی است.',
-            'githubUsername.required' => 'فیلد نام کاربری گیت‌هاب الزامی است.',
-            'githubUrl.required' => 'فیلد آدرس گیت‌هاب الزامی است.',
-            'experiences.required' => 'فیلد تجربه‌ها الزامی است.',
-            'projects.required' => 'فیلد پروژه‌ها الزامی است.',
-            'awards.required' => 'فیلد جایزه‌ها الزامی است.',
-            'status.required' => 'فیلد وضعیت الزامی است.',
         ];
     }
 }

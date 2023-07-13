@@ -38,24 +38,13 @@ class AboutController extends Controller
 	public function store(AboutRequest $request)
 	{
 		$status = $request->has('status');
-
-		About::create([
-			'name' => $request->name,
-			'family' => $request->family,
-			'age' => $request->age,
-			'country' => $request->country,
-			'job' => $request->job,
-			'address' => $request->address,
-			'phone_number' => $request->phoneNumber,
-			'email' => $request->email,
-			'github' => $request->github,
-			'language' => $request->language,
-			'experiences' => $request->experiences,
-			'projects' => $request->projects,
-			'awards' => $request->awards,
+        $data = [
+            ...$request->all(),
+            'resume_file' => file_upload($request->resume_file, 'files'),
 			'status' => $status,
-		]);
-
+        ];
+		About::create($data);
+        
 		return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
 	}
 
