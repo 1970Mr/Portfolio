@@ -48,10 +48,7 @@ class AboutController extends Controller
 			'address' => $request->address,
 			'phone_number' => $request->phoneNumber,
 			'email' => $request->email,
-			'github' => [
-				'username' => $request->githubUsername,
-				'url' => $request->githubUrl
-			],
+			'github' => $request->github,
 			'language' => $request->language,
 			'experiences' => $request->experiences,
 			'projects' => $request->projects,
