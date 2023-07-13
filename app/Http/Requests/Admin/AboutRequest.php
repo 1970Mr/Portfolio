@@ -31,12 +31,12 @@ class AboutRequest extends FormRequest
             'job' => 'required',
             'address' => 'required',
             'phoneNumber' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
             'github' => 'required',
             'language' => 'required',
-            'experiences' => 'required',
-            'projects' => 'required',
-            'awards' => 'required',
+            'experiences' => 'required|numeric',
+            'projects' => 'required|numeric',
+            'awards' => 'required|numeric',
             'status' => 'nullable',
         ];
     }
