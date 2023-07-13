@@ -50,12 +50,12 @@
                       <td class="text-muted">{{ $item->family }}</td>
                       <td class="text-muted">{{ $item->age }}</td>
                       <td class="text-muted">{{ $item->country }}</td>
-                      <td class="text-muted">{{ $item->job }}</td>
-                      <td class="text-muted">{{ $item->address }}</td>
+                      <td class="text-muted mw-10">{{ $item->job }}</td>
+                      <td class="text-muted mw-10">{{ $item->address }}</td>
                       <td class="text-muted">{{ $item->phone_number }}</td>
                       <td class="text-muted">{{ $item->email }}</td>
-                      <td class="text-muted">{{ $item->github['url'] }}</td>
-                      <td class="text-muted">{{ $item->language }}</td>
+                      <td class="text-muted">{{ $item->github }}</td>
+                      <td class="text-muted mw-10">{{ $item->language }}</td>
                       <td class="text-muted">{{ $item->experiences }}</td>
                       <td class="text-muted">{{ $item->projects }}</td>
                       <td class="text-muted">{{ $item->awards }}</td>
@@ -104,6 +104,9 @@
 <style>
     .family {
         white-space: nowrap;
+    }
+    .mw-10 {
+        min-width: 10rem;
     }
 </style>
 @endpush
