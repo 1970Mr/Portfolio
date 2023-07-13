@@ -5,96 +5,64 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AboutRequest;
 use App\Models\About;
-use Illuminate\Contracts\View\View;
 
 class AboutController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return View
-	 */
-	public function index()
-	{
-		$aboutsData = About::orderBy('created_at', 'desc')->paginate(5);
-		return view('admin.about.about', compact('aboutsData'));
-	}
+    public function index()
+    {
+        $aboutsData = About::orderBy('created_at', 'desc')->paginate(5);
+        return view('admin.about.about', compact('aboutsData'));
+    }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return View
-	 */
-	public function create()
-	{
-		return view('admin.about.create');
-	}
+    public function create()
+    {
+        return view('admin.about.create');
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 */
-	public function store(AboutRequest $request)
-	{
-		$status = $request->has('status');
+    public function store(AboutRequest $request)
+    {
         $data = [
             ...$request->all(),
             'resume_file' => file_upload($request->resume_file, 'files'),
-			'status' => $status,
+            'status' => $request->has('status'),
         ];
-		About::create($data);
-        
-		return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
-	}
+        About::create($data);
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 */
-	public function edit($id)
-	{
-		$aboutDetails = About::findOrFail($id);
-		return view('admin.about.edit', compact('aboutDetails'));
-	}
+        return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(AboutRequest $request, About $about)
-	{
-        $data['github'] = [
-            'username' => $request->githubUsername,
-            'url' => $request->githubUrl
+    public function edit($id)
+    {
+        $aboutDetails = About::findOrFail($id);
+        return view('admin.about.edit', compact('aboutDetails'));
+    }
+
+    public function update(AboutRequest $request, About $about)
+    {
+        $data = [
+            ...$request->all(),
+            'status' => $request->has('status'),
         ];
-		$data['status'] = $request->has('status');
-        $data = [...$request->all(), ...$data];
+        if ($request->has('resume_file')) {
+            file_delete(public_path(
+                $about->resume_file['relative_path']
+            ));
+            $data['resume_file'] = file_upload($request->resume_file, 'files');
+        }
+        $about->updateOrFail($data);
 
+        return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+    }
 
-		$about->updateOrFail($data);
+    public function destroy($id)
+    {
+        try {
+            $aboutDetails = About::findOrfail($id);
+            $aboutDetails->delete();
 
-		return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 */
-	public function destroy($id)
-	{
-		try {
-			$aboutDetails = About::findOrfail($id);
-			$aboutDetails->delete();
-
-			return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
-		} catch (\Exception $e) {
-			return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
-		}
-	}
+            return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'عملیات حذف با موفقیت انجام نشد']);
+        }
+    }
 }
