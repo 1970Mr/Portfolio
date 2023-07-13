@@ -35,6 +35,7 @@
                     <th>ایمیل</th>
                     <th>گیت‌هاب</th>
                     <th>زبان</th>
+                    <th>فایل رزومه</th>
                     <th>تجربه</th>
                     <th>پروژه</th>
                     <th>جایزه</th>
@@ -56,6 +57,7 @@
                       <td class="text-muted">{{ $item->email }}</td>
                       <td class="text-muted">{{ $item->github }}</td>
                       <td class="text-muted mw-10">{{ $item->language }}</td>
+                      <td class="text-muted">{{ $item->resume_file['relative_path'] }}</td>
                       <td class="text-muted">{{ $item->experiences }}</td>
                       <td class="text-muted">{{ $item->projects }}</td>
                       <td class="text-muted">{{ $item->awards }}</td>
