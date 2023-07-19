@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Blog;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,13 @@ class BlogFactory extends Factory
      */
     public function definition()
     {
+        Blog::count() > 0 && Blog::truncate();
+
         return [
-            'title' => fake()->title(),
-            'text' => fake()->text(500),
+            'title' => trim(fake()->text(10), '.'),
+            'text' => fake()->text(1000),
             'author' => fake()->name(),
-            'keywords' => fake()->text(15),
+            'keywords' => trim(fake()->text(8), '.') . ', ' . trim(fake()->text(8), '.'),
             'photo' => [
                 'name' => fake()->name(),
                 'relative_path' => fake()->imageUrl()

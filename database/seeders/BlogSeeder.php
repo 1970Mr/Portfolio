@@ -18,7 +18,8 @@ class BlogSeeder extends Seeder
             'photo' => [
                 'name' => 'blog.jpg',
                 'relative_path' => 'seeder/images/blog/blog.jpg',
-            ]
+            ],
+            'status' => true
         ]);
     }
 }

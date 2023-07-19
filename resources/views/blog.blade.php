@@ -23,7 +23,7 @@
               </div>
               <div class="post-content">
                 <div class="entry-header">
-                  <h3><a href="{{ route('blog.show', ['blog' => $blog->id]) }}">{{ $blog->title }}</a></h3>
+                  <h3><a class="d-block" href="{{ route('blog.show', ['blog' => $blog->id]) }}">{{ $blog->title }}</a></h3>
                 </div>
                 <div class="entry-content open-sans-font">
                   <p>
