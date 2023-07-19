@@ -6,10 +6,10 @@
     <div class="color-block d-none d-lg-block"></div>
     <div class="row home-details-container align-items-center">
       <div class="col-lg-4 bg position-fixed d-none d-lg-block"></div>
-      <div class="col-12 col-lg-8 offset-lg-4 home-details text-left text-sm-center text-lg-left">
+      <div class="col-12 col-lg-8 offset-lg-4 home-details text-center text-lg-left">
         <div>
           <img src="{{ asset($homeData->photo['mobile']['relative_path']) }}"
-            class="img-fluid main-img-mobile d-none d-sm-block d-lg-none" alt="my picture" />
+            class="img-fluid main-img-mobile d-block d-lg-none" alt="my picture" />
           <h1 class="text-uppercase poppins-font">{{ $homeData->title }}</h1><span>{{ $homeData->sub_title }}</span></span>
           </h1>
           <p class="open-sans-font">{{ $homeData->description }}</p>
