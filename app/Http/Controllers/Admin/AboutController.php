@@ -57,7 +57,7 @@ class AboutController extends Controller
     public function destroy($id)
     {
         try {
-            $about = About::findOrfail($id);
+            $about = About::findOrFail($id);
             file_delete(public_path(
                 $about->resume_file['relative_path']
             ));
