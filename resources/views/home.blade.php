@@ -10,7 +10,8 @@
         <div>
           <img src="{{ asset($homeData->photo['mobile']['relative_path']) }}"
             class="img-fluid main-img-mobile d-none d-sm-block d-lg-none" alt="my picture" />
-          <h1 class="text-uppercase poppins-font">{{ $homeData->title }}</h1><span>{{ $homeData->sub_title }}</span></span></h1>
+          <h1 class="text-uppercase poppins-font">{{ $homeData->title }}</h1><span>{{ $homeData->sub_title }}</span></span>
+          </h1>
           <p class="open-sans-font">{{ $homeData->description }}</p>
           <a class="button" href="{{ route('about') }}">
             <span class="button-text">اطلاعات بیشتر درباره من...</span>
@@ -27,6 +28,10 @@
   <style>
     .home .bg {
       background-image: url({{ asset($homeData->photo['relative_path']) }});
+    }
+
+    .main-img-mobile {
+      object-fit: cover;
     }
   </style>
 @endpush
