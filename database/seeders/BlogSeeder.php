@@ -14,6 +14,11 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-        Blog::factory(10)->create();
+        Blog::factory(10)->create([
+            'photo' => [
+                'name' => 'blog',
+                'relative_path' => asset(public_path('seeder/blog/blog.jpg')),
+            ]
+        ]);
     }
 }
