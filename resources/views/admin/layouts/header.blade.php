@@ -40,7 +40,8 @@
     <div class="dropdown" style="cursor: pointer;">
       <div class="dropdown-toggle profile d-flex align-items-center " data-bs-toggle="dropdown">
         @if ($mobilePhoto)
-          <img width="45" class="img-fluid rounded-circle me-2" src="{{ asset($mobilePhoto) }}" alt="">
+          <img width="45" class="img-fluid rounded-circle me-2 img-mobile" src="{{ asset($mobilePhoto) }}"
+            alt="">
         @else
           <i class="bi bi-person-circle fs-2 me-2"></i>
         @endif
@@ -73,3 +74,11 @@
     </div>
   </div>
 </header>
+
+@push('styles')
+  <style>
+    .img-mobile {
+      object-fit: cover;
+    }
+  </style>
+@endpush
