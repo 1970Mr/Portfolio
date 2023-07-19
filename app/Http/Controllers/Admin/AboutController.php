@@ -23,7 +23,7 @@ class AboutController extends Controller
     {
         $data = [
             ...$request->all(),
-            'resume_file' => file_upload($request->resume_file, 'files'),
+            'resume_file' => file_upload($request->resume_file, 'files/about'),
             'status' => $request->has('status'),
         ];
         About::create($data);
@@ -47,7 +47,7 @@ class AboutController extends Controller
             file_delete(public_path(
                 $about->resume_file['relative_path']
             ));
-            $data['resume_file'] = file_upload($request->resume_file, 'files');
+            $data['resume_file'] = file_upload($request->resume_file, 'files/about');
         }
         $about->updateOrFail($data);
 
