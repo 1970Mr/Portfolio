@@ -16,7 +16,7 @@
   </div>
 
   <div class="d-flex align-items-center">
-    <div class="dropdown mx-4" style="cursor: pointer;">
+    <div class="dropdown mx-4" style="cursor: pointer; margin-bottom: -5px;">
       <div class="dropdown-toggle" data-bs-toggle="dropdown">
         <span class="position-absolute top-0 end-50 translate-middle badge rounded-pill bg-red">
           {{ $unreadMessagesCount }}
@@ -41,7 +41,7 @@
       <div class="dropdown-toggle profile d-flex align-items-center " data-bs-toggle="dropdown">
         @if ($mobilePhoto)
           <img width="45" class="img-fluid rounded-circle me-2 img-mobile" src="{{ asset($mobilePhoto) }}"
-            alt="">
+            alt="" style="object-fit: cover; width: 45px; height: 45px;">
         @else
           <i class="bi bi-person-circle fs-2 me-2"></i>
         @endif
@@ -79,6 +79,8 @@
   <style>
     .img-mobile {
       object-fit: cover;
+      width: 45px;
+      height: 45px !important;
     }
   </style>
 @endpush
