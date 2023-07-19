@@ -32,6 +32,10 @@ class AboutSeeder extends Seeder
             'experiences' => '3',
             'projects' => '26',
             'awards' => '0',
+            'resume_file' => [
+                'name' => 'resume.pdf',
+                'relative_path' => 'seeder/images/about/resume.pdf'
+            ],
             'status' => '1',
         ]);
 
