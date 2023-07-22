@@ -93,13 +93,17 @@ function add_https_if_needed($url)
     }
 }
 
-function disableAllStatus($model, $status, $id)
+function disableAllStatus($model, $status, $id, $update=false)
 {
     if ($status)
         return $model::where('status', true)->where('id', '!=', $id)->update(['status' => false]);
+    // If only the row is active in the update, it is disabled
+    if ($update && $model::where('status', true)->count() <= 1)
+        return $model::first()->update(['status' => true]);
 }
+
 function cantDisable($model)
 {
-    if($model::where('status', true)->count() >= 1)
+    if($model::where('status', true)->count() <= 1)
         return back()->with(['error' => 'در صورتی که هیچ وضعیت دیگری فعال نباشد، نمی‌توانید وضعیت ردیف انتخاب شده را غیرفغال کنید!']);
 }
