@@ -73,6 +73,9 @@ class HomeController extends Controller
             $data = $this->updateMobilePhoto($request, $data, $home);
         }
 
+        if(!$data['status'])
+            return cantDisable(Home::class);
+
         $home->updateOrFail($data);
         disableAllStatus(Home::class, $data['status'], $home->id);
         return to_route('admin.panel.home')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);

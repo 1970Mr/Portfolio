@@ -3,6 +3,7 @@
 // $special_route for error time (for when route want variables)
 
 use App\Services\Aparat\AparatHandler;
+use Illuminate\Database\Eloquent\Model;
 
 function active_route($route, $exactly = false)
 {
@@ -95,5 +96,10 @@ function add_https_if_needed($url)
 function disableAllStatus($model, $status, $id)
 {
     if ($status)
-        $model::where('status', true)->where('id', '!=', $id)->update(['status' => false]);
+        return $model::where('status', true)->where('id', '!=', $id)->update(['status' => false]);
+}
+function cantDisable($model)
+{
+    if($model::where('status', true)->count() >= 1)
+        return back()->with(['error' => 'در صورتی که هیچ وضعیت دیگری فعال نباشد، نمی‌توانید وضعیت ردیف انتخاب شده را غیرفغال کنید!']);
 }
