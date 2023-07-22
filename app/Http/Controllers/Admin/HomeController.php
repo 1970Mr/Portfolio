@@ -42,7 +42,7 @@ class HomeController extends Controller
             ],
             'status' => $status,
         ]);
-        $this->disableAll($status, $home->id);
+        $this->disableAllStatus($status, $home->id);
         return to_route('admin.panel.home')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
@@ -74,7 +74,7 @@ class HomeController extends Controller
         }
 
         $home->updateOrFail($data);
-        $this->disableAll($data['status'], $home->id);
+        $this->disableAllStatus($data['status'], $home->id);
         return to_route('admin.panel.home')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
@@ -135,7 +135,7 @@ class HomeController extends Controller
         ];
     }
 
-    private function disableAll($status, $id)
+    private function disableAllStatus($status, $id)
     {
         if ($status)
             Home::where('status', true)->where('id', '!=', $id)->update(['status' => false]);
