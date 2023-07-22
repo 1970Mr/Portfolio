@@ -27,9 +27,8 @@ class HomeController extends Controller
         $mobilePhotoInfo = image_upload(file: $request->file('mobilePhoto'), destinationPath: 'images/home/mobile');
 
         $status = $request->has('status');
-        $this->disableAll($status);
 
-        Home::create([
+        $home = Home::create([
             'title' => $request->title,
             'sub_title' => $request->subTitle,
             'description' => $request->description,
@@ -43,6 +42,7 @@ class HomeController extends Controller
             ],
             'status' => $status,
         ]);
+        $this->disableAll($status, $home->id);
 
         return to_route('admin.panel.home')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
@@ -135,9 +135,9 @@ class HomeController extends Controller
         ];
     }
 
-    private function disableAll($status)
+    private function disableAll($status, $id)
     {
         if ($status)
-            Home::where('status', true)->update(['status' => false]);
+            Home::where('status', true)->where('id', '!=', $id)->update(['status' => false]);
     }
 }
