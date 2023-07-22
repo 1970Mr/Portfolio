@@ -43,7 +43,6 @@ class HomeController extends Controller
             'status' => $status,
         ]);
         $this->disableAll($status, $home->id);
-
         return to_route('admin.panel.home')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
@@ -75,6 +74,7 @@ class HomeController extends Controller
         }
 
         $home->updateOrFail($data);
+        $this->disableAll($data['status'], $home->id);
         return to_route('admin.panel.home')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
