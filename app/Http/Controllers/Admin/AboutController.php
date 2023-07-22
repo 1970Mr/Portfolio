@@ -26,8 +26,8 @@ class AboutController extends Controller
             'resume_file' => file_upload($request->resume_file, 'files/about'),
             'status' => $request->has('status'),
         ];
-        About::create($data);
-
+        $about = About::create($data);
+        disableAllStatus(About::class, $request->has('status'), $about->id);
         return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
@@ -50,7 +50,7 @@ class AboutController extends Controller
             $data['resume_file'] = file_upload($request->resume_file, 'files/about');
         }
         $about->updateOrFail($data);
-
+        disableAllStatus(About::class, $request->has('status'), $about->id, true);
         return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
