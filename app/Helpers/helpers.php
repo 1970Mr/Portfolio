@@ -9,12 +9,12 @@ function active_route($route, $exactly = false)
     $route = route($route);
 
     if ($exactly) {
-        if  ( $route == url()->current() ) return 'active';
+        if ($route == url()->current()) return 'active';
         return;
     }
 
     $route = str_replace('/', '\/', $route);
-    if  ( preg_match("/$route/", url()->current()) ) return 'active';
+    if (preg_match("/$route/", url()->current())) return 'active';
 }
 
 function text_limitation($text, $limit = 50)
@@ -78,14 +78,22 @@ function file_delete($path)
     //   }
 }
 
-function aparat() : AparatHandler {
+function aparat(): AparatHandler
+{
     return new AparatHandler;
 }
 
-function add_https_if_needed($url) {
+function add_https_if_needed($url)
+{
     if (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0) {
         return $url;
     } else {
         return 'https://' . $url;
     }
+}
+
+function disableAllStatus($model, $status, $id)
+{
+    if ($status)
+        $model::where('status', true)->where('id', '!=', $id)->update(['status' => false]);
 }
