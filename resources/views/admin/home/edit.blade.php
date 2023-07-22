@@ -100,4 +100,3 @@
     </div>
   </div>
 @endsection
-<x-alert type='error'></x-alert>
