@@ -37,7 +37,7 @@ class ContactController extends Controller
     {
         $request['status'] = $request->has('status');
         $contact->updateOrFail($request->all());
-
+        disableAllStatus(Contact::class, $request->has('status'), $contact->id, true);
 		return to_route('admin.panel.contact.details')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
