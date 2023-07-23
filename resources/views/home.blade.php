@@ -1,4 +1,4 @@
-@extends('layouts.app', ['my_class' => 'home'])
+@extends('layouts.app', ['title' => 'خانه', 'my_class' => 'home'])
 
 @section('content')
   <!-- Main Content Starts -->
