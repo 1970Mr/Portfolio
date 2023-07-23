@@ -23,8 +23,8 @@ class ContactController extends Controller
     {
         $request['status'] = $request->has('status');
 
-        Contact::create($request->all());
-
+        $contact = Contact::create($request->all());
+        disableAllStatus(Contact::class, $request->has('status'), $contact->id);
 		return to_route('admin.panel.contact.details')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
