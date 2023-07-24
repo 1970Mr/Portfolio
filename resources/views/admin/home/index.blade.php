@@ -41,7 +41,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($homesData as $item)
+                  @foreach ($homes as $item)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td class="text-muted">{{ $item->title }}</td>
@@ -95,7 +95,7 @@
               </ul>
             </nav> --}}
 
-            {{ $homesData->links() }}
+            {{ $homes->links() }}
           </div>
         </div>
       </div>
