@@ -6,7 +6,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'خانه' => route('admin.panel.home'),
+            'خانه' => route('admin.panel.home.index'),
             'ویرایش' => '',
             ]"></x-breadcrumbs>
       </div>
@@ -15,7 +15,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>ویرایش خانه</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.home') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.home.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
