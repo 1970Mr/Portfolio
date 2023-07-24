@@ -43,7 +43,7 @@ class HomeController extends Controller
             'status' => $status,
         ]);
         disableAllStatus(Home::class, $status, $home->id);
-        return to_route('admin.panel.home')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+        return to_route('admin.panel.home.index')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(Home $home)
@@ -75,7 +75,7 @@ class HomeController extends Controller
 
         $home->updateOrFail($data);
         disableAllStatus(Home::class, $data['status'], $home->id, true);
-        return to_route('admin.panel.home')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+        return to_route('admin.panel.home.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Home $home)
