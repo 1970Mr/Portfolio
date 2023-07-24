@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\HomeRequest;
 use App\Http\Requests\Admin\HomeUpdateRequest;
 use App\Models\Home;
-use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $homesData = Home::orderBy('created_at', 'desc')->paginate(10);
-        return view('admin.home.index', compact('homesData'));
+        $homes = Home::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.home.index', compact('homes'));
     }
 
     public function create()
@@ -53,24 +52,17 @@ class HomeController extends Controller
 
     public function update(HomeUpdateRequest $request, Home $home)
     {
-        $data = $this->initialUpdateData($home);
+        $data = array_filter($request->all(), function ($value) {
+            return $value !== null;
+        });
         $data['status'] = $request->has('status');
 
-        if ($request->has('title')) {
-            $data['title'] = $request->title;
-        }
-        if ($request->has('sub_title')) {
-            $data['sub_title'] = $request->subTitle;
-        }
-        if ($request->has('description')) {
-            $data['description'] = $request->description;
-        }
-
+        $data['photo'] = $this->initialPhotoDataUpdate($home);
         if ($request->has('photo')) {
-            $data = $this->updatePhoto($request, $data, $home);
+            $data['photo'] = $this->updatePhoto($request, $data['photo'], $home);
         }
         if ($request->has('mobilePhoto')) {
-            $data = $this->updateMobilePhoto($request, $data, $home);
+            $data['photo'] = $this->updateMobilePhoto($request, $data['photo'], $home);
         }
 
         $home->updateOrFail($data);
@@ -94,43 +86,40 @@ class HomeController extends Controller
     }
 
     // photo upload for update data
-    private function updatePhoto($request, $data, $home)
+    private function updatePhoto($request, $photoData, $home)
     {
         $file = $request->file('photo');
         $destinationPath = public_path('images/home');
         $photoInfo = image_upload($file, $destinationPath);
-        $data['photo']['name'] = $photoInfo['name'];
-        $data['photo']['relative_path'] = $photoInfo['relative_path'];
-
+        $photoData['name'] = $photoInfo['name'];
+        $photoData['relative_path'] = $photoInfo['relative_path'];
         $imagePath = public_path($home->photo['relative_path']);
         image_delete($imagePath);
-        return $data;
+        return $photoData;
     }
 
     // mobilePhoto upload for update data
-    private function updateMobilePhoto($request, $data, $home)
+    private function updateMobilePhoto($request, $photoData, $home)
     {
         $mobilePhoto = $request->file('mobilePhoto');
         $destinationPathMobile = public_path('images/home/mobile');
         $mobilePhotoInfo = image_upload($mobilePhoto, $destinationPathMobile);
-        $data['photo']['mobile']['name'] = $mobilePhotoInfo['name'];
-        $data['photo']['mobile']['relative_path'] = $mobilePhotoInfo['relative_path'];
+        $photoData['mobile']['name'] = $mobilePhotoInfo['name'];
+        $photoData['mobile']['relative_path'] = $mobilePhotoInfo['relative_path'];
 
         $mobileImagePath = public_path($home->photo['mobile']['relative_path']);
         image_delete($mobileImagePath);
-        return $data;
+        return $photoData;
     }
 
-    private function initialUpdateData($home)
+    private function initialPhotoDataUpdate($home)
     {
         return [
-            'photo' => [
-                'name' => $home->photo['name'],
-                'relative_path' => $home->photo['relative_path'],
-                'mobile' => [
-                    'name' => $home->photo['mobile']['name'],
-                    'relative_path' => $home->photo['mobile']['relative_path'],
-                ],
+            'name' => $home->photo['name'],
+            'relative_path' => $home->photo['relative_path'],
+            'mobile' => [
+                'name' => $home->photo['mobile']['name'],
+                'relative_path' => $home->photo['mobile']['relative_path'],
             ],
         ];
     }
