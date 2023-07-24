@@ -12,8 +12,8 @@
         </a>
       </li>
 
-      <li class="sidebar-item {{ active_route('admin.panel.home') }}">
-        <a class="sidebar-link" href="{{ route('admin.panel.home') }}">
+      <li class="sidebar-item {{ active_route('admin.panel.home.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.home.index') }}">
           <i class="me-2 bi bi-house-door"></i>
           <span>خانه</span>
         </a>
