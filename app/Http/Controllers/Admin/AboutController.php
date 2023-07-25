@@ -28,7 +28,7 @@ class AboutController extends Controller
         ];
         $about = About::create($data);
         disableAllStatus(About::class, $request->has('status'), $about->id);
-        return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+        return to_route('admin.panel.about.personal.index')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(About $about)
@@ -51,7 +51,7 @@ class AboutController extends Controller
         }
         $about->updateOrFail($data);
         disableAllStatus(About::class, $request->has('status'), $about->id, true);
-        return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+        return to_route('admin.panel.about.personal.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy($id)
