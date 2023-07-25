@@ -54,10 +54,9 @@ class AboutController extends Controller
         return to_route('admin.panel.about.personal.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
-    public function destroy($id)
+    public function destroy(About $about)
     {
         try {
-            $about = About::findOrFail($id);
             file_delete(public_path(
                 $about->resume_file['relative_path']
             ));
