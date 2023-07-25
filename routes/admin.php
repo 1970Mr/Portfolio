@@ -24,12 +24,22 @@ Route::prefix('home')->name('home.')->controller(HomeController::class)->group(f
 });
 
 Route::prefix('about')->name('about.')->group(function () {
-    Route::get('/personal', [AboutController::class, 'index'])->name('personal');
-    Route::get('/personal/create', [AboutController::class, 'create'])->name('personal.create');
-    Route::post('/personal', [AboutController::class, 'store'])->name('personal.store');
-    Route::get('/personal/edit/{id}', [AboutController::class, 'edit'])->name('personal.edit');
-    Route::put('/personal/{about}', [AboutController::class, 'update'])->name('personal.update');
-    Route::delete('/personal/{id}', [AboutController::class, 'destroy'])->name('personal.destroy');
+    Route::get('/', fn () => to_route('admin.panel.about.personal.index'))->name('index');
+
+    Route::prefix('personal')->name('personal.')->controller(AboutController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/edit/{about}', 'edit')->name('edit');
+        Route::put('/{about}', 'update')->name('update');
+        Route::delete('/{about}', 'destroy')->name('destroy');
+    });
+    // Route::get('/personal', [AboutController::class, 'index'])->name('personal');
+    // Route::get('/personal/create', [AboutController::class, 'create'])->name('personal.create');
+    // Route::post('/personal', [AboutController::class, 'store'])->name('personal.store');
+    // Route::get('/personal/edit/{id}', [AboutController::class, 'edit'])->name('personal.edit');
+    // Route::put('/personal/{about}', [AboutController::class, 'update'])->name('personal.update');
+    // Route::delete('/personal/{id}', [AboutController::class, 'destroy'])->name('personal.destroy');
 
     Route::get('/skill', [SkillController::class, 'index'])->name('skill');
     Route::get('/skill/create', [SkillController::class, 'create'])->name('skill.create');
@@ -45,7 +55,6 @@ Route::prefix('about')->name('about.')->group(function () {
     Route::put('/qualification/{qualification}', [QualificationController::class, 'update'])->name('qualification.update');
     Route::delete('/qualification/{qualification}', [QualificationController::class, 'destroy'])->name('qualification.destroy');
 });
-Route::get('/about', fn () => to_route('admin.panel.about.personal'))->name('about');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
 Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
