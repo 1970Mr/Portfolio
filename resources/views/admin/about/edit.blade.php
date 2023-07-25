@@ -25,7 +25,7 @@
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.personal.update', ['about' => $aboutDetails->id]) }}"
+            <form action="{{ route('admin.panel.about.personal.update', ['about' => $about->id]) }}"
               class="row justify-content-center" method="post" enctype="multipart/form-data">
               @csrf
               @method('put')
@@ -34,7 +34,7 @@
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
                   <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control"
                     id="{{ $item['name'] }}"
-                    value="{{ old($item['name']) ? old($item['name']) : $aboutDetails->{$item['name']} }}">
+                    value="{{ old($item['name']) ? old($item['name']) : $about->{$item['name']} }}">
                   @error($item['name'])
                     <div class="text-danger fs-7">
                       {{ $message }}
@@ -46,7 +46,7 @@
                 <label for="resume_file" class="form-label">فایل رزومه</label>
                 <input type="file" name="resume_file" class="form-control" id="resume_file">
                 <div class="text-info fs-7">
-                  {{ $aboutDetails->resume_file['relative_path'] }}
+                  {{ $about->resume_file['relative_path'] }}
                 </div>
                 @error('resume_file')
                   <div class="text-danger fs-7">
@@ -57,7 +57,7 @@
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                  {{ old('status') || (!request()->old() && $aboutDetails->status == 1) ? 'checked' : '' }}>
+                  {{ old('status') || (!request()->old() && $about->status == 1) ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')
