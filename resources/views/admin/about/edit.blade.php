@@ -10,7 +10,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'اطلاعات شخصی' => route('admin.panel.about.personal'),
+            'اطلاعات شخصی' => route('admin.panel.about.personal.index'),
             'ویرایش' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>ویرایش اطلاعات شخصی</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.personal') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.personal.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
