@@ -10,8 +10,8 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $aboutsData = About::orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.about.about', compact('aboutsData'));
+        $abouts = About::orderBy('created_at', 'desc')->paginate(5);
+        return view('admin.about.about', compact('abouts'));
     }
 
     public function create()

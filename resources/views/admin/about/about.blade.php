@@ -44,7 +44,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($aboutsData as $item)
+                  @foreach ($abouts as $item)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td class="text-muted">{{ $item->name }}</td>
@@ -91,7 +91,7 @@
             </div>
 
             <div class="mt-3">
-                {{ $aboutsData->links() }}
+                {{ $abouts->links() }}
             </div>
           </div>
         </div>
