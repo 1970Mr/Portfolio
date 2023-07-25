@@ -31,10 +31,10 @@ class AboutController extends Controller
         return to_route('admin.panel.about.personal')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
-    public function edit($id)
+    public function edit(About $about)
     {
-        $aboutDetails = About::findOrFail($id);
-        return view('admin.about.edit', compact('aboutDetails'));
+        // $aboutDetails = About::findOrFail($id);
+        return view('admin.about.edit', compact('about'));
     }
 
     public function update(AboutRequest $request, About $about)
