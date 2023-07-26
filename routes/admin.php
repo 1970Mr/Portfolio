@@ -35,7 +35,7 @@ Route::prefix('about')->name('about.')->group(function () {
         Route::delete('/{about}', 'destroy')->name('destroy');
     });
 
-    Route::resource('skills', AboutController::class)->except('show');
+    Route::resource('skills', SkillController::class)->except('show');
 
     // Route::prefix('skills')->name('skills.')->controller(AboutController::class)->group(function () {
     //     Route::get('/', 'index')->name('index');

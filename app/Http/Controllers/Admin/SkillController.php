@@ -24,7 +24,7 @@ class SkillController extends Controller
     {
         $request['status'] = $request->has('status');
         Skill::create($request->all());
-		return to_route('admin.panel.about.skill')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+		return to_route('admin.panel.about.skill.index')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(Skill $skill)
@@ -36,7 +36,7 @@ class SkillController extends Controller
     {
         $request['status'] = $request->has('status');
         $skill->updateOrFail($request->all());
-		return to_route('admin.panel.about.skill')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+		return to_route('admin.panel.about.skill.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Skill $skill)
