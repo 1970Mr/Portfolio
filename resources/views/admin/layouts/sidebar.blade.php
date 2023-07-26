@@ -32,8 +32,8 @@
               <span>اطلاعات شخصی</span>
             </a>
           </li>
-          <li class="submenu-item {{ active_route('admin.panel.about.skill') }}">
-            <a class="sidebar-link" href="{{ route('admin.panel.about.skill') }}">
+          <li class="submenu-item {{ active_route('admin.panel.about.skills.index') }}">
+            <a class="sidebar-link" href="{{ route('admin.panel.about.skills.index') }}">
               <i class="bi bi-wrench-adjustable-circle me-2"></i>
               <span>مهارت‌های من</span>
             </a>
