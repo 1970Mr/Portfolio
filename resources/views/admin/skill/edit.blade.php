@@ -14,7 +14,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'مهارت‌های من' => route('admin.panel.about.skill'),
+            'مهارت‌های من' => route('admin.panel.about.skill.index'),
             'ویرایش' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -23,7 +23,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>ویرایش مهارت‌</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skill') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skill.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
