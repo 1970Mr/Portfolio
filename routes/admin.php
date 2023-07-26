@@ -34,19 +34,24 @@ Route::prefix('about')->name('about.')->group(function () {
         Route::put('/{about}', 'update')->name('update');
         Route::delete('/{about}', 'destroy')->name('destroy');
     });
-    // Route::get('/personal', [AboutController::class, 'index'])->name('personal');
-    // Route::get('/personal/create', [AboutController::class, 'create'])->name('personal.create');
-    // Route::post('/personal', [AboutController::class, 'store'])->name('personal.store');
-    // Route::get('/personal/edit/{id}', [AboutController::class, 'edit'])->name('personal.edit');
-    // Route::put('/personal/{about}', [AboutController::class, 'update'])->name('personal.update');
-    // Route::delete('/personal/{id}', [AboutController::class, 'destroy'])->name('personal.destroy');
 
-    Route::get('/skill', [SkillController::class, 'index'])->name('skill');
-    Route::get('/skill/create', [SkillController::class, 'create'])->name('skill.create');
-    Route::post('/skill', [SkillController::class, 'store'])->name('skill.store');
-    Route::get('/skill/edit/{skill}', [SkillController::class, 'edit'])->name('skill.edit');
-    Route::put('/skill/{skill}', [SkillController::class, 'update'])->name('skill.update');
-    Route::delete('/skill/{skill}', [SkillController::class, 'destroy'])->name('skill.destroy');
+    Route::resource('skills', AboutController::class)->except('show');
+
+    // Route::prefix('skills')->name('skills.')->controller(AboutController::class)->group(function () {
+    //     Route::get('/', 'index')->name('index');
+    //     Route::get('/create', 'create')->name('create');
+    //     Route::post('/', 'store')->name('store');
+    //     Route::get('/edit/{about}', 'edit')->name('edit');
+    //     Route::put('/{about}', 'update')->name('update');
+    //     Route::delete('/{about}', 'destroy')->name('destroy');
+    // });
+
+    // Route::get('/skill', [SkillController::class, 'index'])->name('skill');
+    // Route::get('/skill/create', [SkillController::class, 'create'])->name('skill.create');
+    // Route::post('/skill', [SkillController::class, 'store'])->name('skill.store');
+    // Route::get('/skill/edit/{skill}', [SkillController::class, 'edit'])->name('skill.edit');
+    // Route::put('/skill/{skill}', [SkillController::class, 'update'])->name('skill.update');
+    // Route::delete('/skill/{skill}', [SkillController::class, 'destroy'])->name('skill.destroy');
 
     Route::get('/qualification', [QualificationController::class, 'index'])->name('qualification');
     Route::get('/qualification/create', [QualificationController::class, 'create'])->name('qualification.create');
