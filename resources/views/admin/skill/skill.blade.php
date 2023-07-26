@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>مهارت‌های من</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skill.create') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.skills.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>
             </a>
@@ -48,10 +48,10 @@
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.about.skill.edit', ['skill' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.about.skills.edit', ['skill' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.about.skill.destroy', ['skill' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.about.skills.destroy', ['skill' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
