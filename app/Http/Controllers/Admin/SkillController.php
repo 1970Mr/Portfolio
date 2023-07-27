@@ -12,7 +12,7 @@ class SkillController extends Controller
     public function index()
     {
         $skillsData = Skill::orderBy('created_at', 'desc')->paginate(5);
-		return view('admin.skill.skill', compact('skillsData'));
+		return view('admin.skill.index', compact('skillsData'));
     }
 
     public function create()
