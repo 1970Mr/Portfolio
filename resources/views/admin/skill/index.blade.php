@@ -33,7 +33,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($skillsData as $item)
+                  @foreach ($skills as $item)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td class="text-muted">{{ $item->name }}</td>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="mt-3">
-                {{ $skillsData->links() }}
+                {{ $skills->links() }}
             </div>
           </div>
         </div>
