@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SkillRequest;
 use App\Models\Skill;
-use Illuminate\Http\Request;
 
 class SkillController extends Controller
 {
     public function index()
     {
-        $skillsData = Skill::orderBy('created_at', 'desc')->paginate(5);
-		return view('admin.skill.index', compact('skillsData'));
+        $skills = Skill::orderBy('created_at', 'desc')->paginate(5);
+		return view('admin.skill.index', compact('skills'));
     }
 
     public function create()
