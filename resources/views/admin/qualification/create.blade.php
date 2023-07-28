@@ -10,7 +10,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'تجربه و تحصیلات من' => route('admin.panel.about.qualification'),
+            'تجربه و تحصیلات من' => route('admin.panel.about.qualifications.index'),
             'ایجاد' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>ایجاد تجربه و تحصیلات</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualification') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualifications.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
