@@ -38,7 +38,7 @@ class QualificationController extends Controller
         $request['status'] = $request->has('status');
         $qualification->updateOrFail($request->all());
 
-		return to_route('admin.panel.about.qualification')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+		return to_route('admin.panel.about.qualifications.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Qualification $qualification)
