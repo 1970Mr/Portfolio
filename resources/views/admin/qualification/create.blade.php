@@ -25,7 +25,7 @@
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.qualification.store') }}" class="row justify-content-center"
+            <form action="{{ route('admin.panel.about.qualifications.store') }}" class="row justify-content-center"
               method="post">
               @csrf
               @foreach ($inputs as $item)
