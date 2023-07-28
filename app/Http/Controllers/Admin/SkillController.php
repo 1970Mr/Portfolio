@@ -35,7 +35,7 @@ class SkillController extends Controller
     {
         $request['status'] = $request->has('status');
         $skill->updateOrFail($request->all());
-		return to_route('admin.panel.about.skill.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+		return to_route('admin.panel.about.skills.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Skill $skill)
