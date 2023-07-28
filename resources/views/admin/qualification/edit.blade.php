@@ -10,7 +10,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'تجربه و تحصیلات من' => route('admin.panel.about.qualification'),
+            'تجربه و تحصیلات من' => route('admin.panel.about.qualifications.index'),
             'ویرایش' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -19,13 +19,13 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>ویرایش تجربه و تحصیلات</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualification') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualifications.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.qualification.update', $qualification->id) }}"
+            <form action="{{ route('admin.panel.about.qualifications.update', $qualification->id) }}"
               class="row justify-content-center" method="post">
               @csrf
               @method('put')
