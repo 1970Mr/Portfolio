@@ -11,7 +11,7 @@ class QualificationController extends Controller
     public function index()
     {
         $qualifications = Qualification::orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.qualification.qualification', compact('qualifications'));
+        return view('admin.qualification.index', compact('qualifications'));
     }
 
     public function create()
