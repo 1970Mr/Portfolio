@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>تجربه و تحصیلات من</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualification.create') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.about.qualifications.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>
             </a>
@@ -50,10 +50,10 @@
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.about.qualification.edit', ['qualification' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.about.qualifications.edit', ['qualification' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.about.qualification.destroy', ['qualification' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.about.qualifications.destroy', ['qualification' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
