@@ -37,12 +37,14 @@ Route::prefix('about')->name('about.')->group(function () {
 
     Route::resource('skills', SkillController::class)->except('show');
 
-    Route::get('/qualification', [QualificationController::class, 'index'])->name('qualification');
-    Route::get('/qualification/create', [QualificationController::class, 'create'])->name('qualification.create');
-    Route::post('/qualification', [QualificationController::class, 'store'])->name('qualification.store');
-    Route::get('/qualification/edit/{qualification}', [QualificationController::class, 'edit'])->name('qualification.edit');
-    Route::put('/qualification/{qualification}', [QualificationController::class, 'update'])->name('qualification.update');
-    Route::delete('/qualification/{qualification}', [QualificationController::class, 'destroy'])->name('qualification.destroy');
+    Route::resource('qualifications', QualificationController::class)->except('show');
+
+    // Route::get('/qualification', [QualificationController::class, 'index'])->name('qualification');
+    // Route::get('/qualification/create', [QualificationController::class, 'create'])->name('qualification.create');
+    // Route::post('/qualification', [QualificationController::class, 'store'])->name('qualification.store');
+    // Route::get('/qualification/edit/{qualification}', [QualificationController::class, 'edit'])->name('qualification.edit');
+    // Route::put('/qualification/{qualification}', [QualificationController::class, 'update'])->name('qualification.update');
+    // Route::delete('/qualification/{qualification}', [QualificationController::class, 'destroy'])->name('qualification.destroy');
 });
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
