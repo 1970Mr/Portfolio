@@ -23,7 +23,7 @@ class SkillController extends Controller
     {
         $request['status'] = $request->has('status');
         Skill::create($request->all());
-		return to_route('admin.panel.about.skill.index')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+		return to_route('admin.panel.about.skills.index')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(Skill $skill)
