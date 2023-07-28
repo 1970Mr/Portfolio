@@ -24,7 +24,7 @@ class QualificationController extends Controller
     {
         $request['status'] = $request->has('status');
         Qualification::create($request->all());
-        return to_route('admin.panel.about.qualifications')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+        return to_route('admin.panel.about.qualifications.index')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(Qualification $qualification)
