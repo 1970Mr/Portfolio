@@ -233,6 +233,7 @@
   </div>
 @endsection
 <x-alert type='error'></x-alert>
+<x-alert type='success'></x-alert>
 
 @push('scripts')
   <script>
