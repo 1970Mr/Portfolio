@@ -40,7 +40,7 @@ Route::prefix('about')->name('about.')->group(function () {
     Route::resource('qualifications', QualificationController::class)->except('show');
 });
 
-Route::resource('portfolios', QualificationController::class)->except('show');
+Route::resource('portfolios', PortfolioController::class)->except('show');
 
 // Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
 // Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
