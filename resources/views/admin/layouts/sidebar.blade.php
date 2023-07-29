@@ -47,8 +47,8 @@
         </ul>
       </li>
 
-      <li class="sidebar-item {{ active_route('admin.panel.portfolio') }}">
-        <a class="sidebar-link" href="{{ route('admin.panel.portfolio') }}">
+      <li class="sidebar-item {{ active_route('admin.panel.portfolios.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.portfolios.index') }}">
           <i class="bi bi-diagram-3 me-2"></i>
           <span>نمونه کار</span>
         </a>
