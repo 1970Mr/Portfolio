@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>نمونه کار</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.portfolio.create') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.portfolios.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>
             </a>
@@ -56,10 +56,10 @@
                           </button>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.portfolio.edit', ['portfolio' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.portfolios.edit', ['portfolio' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.portfolio.destroy', ['portfolio' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.portfolios.destroy', ['portfolio' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
