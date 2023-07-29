@@ -10,7 +10,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'نمونه کار' => route('admin.panel.portfolio'),
+            'نمونه کار' => route('admin.panel.portfolios.index'),
             'ویرایش' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -19,14 +19,14 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>ویرایش نمونه کار</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.portfolio') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.portfolios.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
 
           <div class="card-body">
-            <form enctype="multipart/form-data" action="{{ route('admin.panel.portfolio.update', $portfolio->id) }}"
+            <form enctype="multipart/form-data" action="{{ route('admin.panel.portfolios.update', $portfolio->id) }}"
               class="row justify-content-center" method="post">
               @csrf
               @method('put')
@@ -220,7 +220,7 @@
             </form>
             {{-- For delete all media --}}
             @if (!is_null($portfolio->media))
-              <form action="{{ route('admin.panel.portfolio.destroy.media', ['portfolio' => $portfolio->id]) }}"
+              <form action="{{ route('admin.panel.portfolios.destroy.media', ['portfolio' => $portfolio->id]) }}"
                 method="post" id="destroy-media-form">
                 @csrf
                 @method('delete')
