@@ -74,7 +74,7 @@ class PortfolioController extends Controller
         if ($this->checkFileUpload($request, $inputs))
             return back()->with(['error' => 'عملیات آپلود فایل با موفقیت انجام نشد'])->withInput();
         $portfolio->updateOrFail($inputs);
-        return to_route('admin.panel.portfolio')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+        return to_route('admin.panel.portfolios.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Portfolio $portfolio)
