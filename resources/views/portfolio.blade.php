@@ -108,7 +108,7 @@
                   <div id="slider{{ $parentIteration }}" class="carousel slide portfolio-slider" data-ride="carousel"
                     data-interval="false">
                     <ol class="carousel-indicators">
-                      @foreach ($portfolio->media as $media)
+                      @foreach ($portfolio->media['slider'] as $media)
                         <li data-target="#slider{{ $parentIteration }}" data-slide-to="{{ $loop->index }}"
                           class="{{ $loop->index == 0 ? 'active' : '' }}"></li>
                       @endforeach
