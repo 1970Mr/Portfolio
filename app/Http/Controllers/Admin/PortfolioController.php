@@ -91,7 +91,8 @@ class PortfolioController extends Controller
     {
         $this->deleteAnyMedia($portfolio);
         $portfolio->updateOrFail(['media_type' => 'image', 'media' => null]);
-        return to_route('admin.panel.portfolio')->with(['success' => 'عملیات حذف رسانه‌های نمونه‌کار موردنظر، با موفقیت انجام شد!']);
+        // return to_route('admin.panel.portfolios.index')->with(['success' => 'عملیات حذف رسانه‌های نمونه‌کار موردنظر، با موفقیت انجام شد!']);
+        return back()->with(['success' => 'عملیات حذف رسانه‌های نمونه‌کار موردنظر، با موفقیت انجام شد!']);
     }
 
     private function deleteAnyMedia($portfolio)
