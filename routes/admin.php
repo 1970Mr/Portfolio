@@ -40,13 +40,15 @@ Route::prefix('about')->name('about.')->group(function () {
     Route::resource('qualifications', QualificationController::class)->except('show');
 });
 
-Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
-Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
-Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store');
-Route::get('/portfolio/edit/{portfolio}', [PortfolioController::class, 'edit'])->name('portfolio.edit');
-Route::put('/portfolio/{portfolio}', [PortfolioController::class, 'update'])->name('portfolio.update');
-Route::delete('/portfolio/{portfolio}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');
-Route::delete('/portfolio/media/{portfolio}', [PortfolioController::class, 'destroyMedia'])->name('portfolio.destroy.media');
+Route::resource('portfolios', QualificationController::class)->except('show');
+
+// Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio');
+// Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
+// Route::post('/portfolio', [PortfolioController::class, 'store'])->name('portfolio.store');
+// Route::get('/portfolio/edit/{portfolio}', [PortfolioController::class, 'edit'])->name('portfolio.edit');
+// Route::put('/portfolio/{portfolio}', [PortfolioController::class, 'update'])->name('portfolio.update');
+// Route::delete('/portfolio/{portfolio}', [PortfolioController::class, 'destroy'])->name('portfolio.destroy');
+// Route::delete('/portfolio/media/{portfolio}', [PortfolioController::class, 'destroyMedia'])->name('portfolio.destroy.media');
 
 Route::prefix('contact')->name('contact.')->group(function () {
     Route::get('/details', [ContactController::class, 'index'])->name('details');
