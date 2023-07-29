@@ -10,7 +10,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'نمونه کار' => route('admin.panel.portfolio'),
+            'نمونه کار' => route('admin.panel.portfolios.index'),
             'ایجاد' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -19,14 +19,14 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>ایجاد نمونه کار</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.portfolio') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.portfolios.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
 
           <div class="card-body">
-            <form enctype="multipart/form-data" action="{{ route('admin.panel.portfolio.store') }}"
+            <form enctype="multipart/form-data" action="{{ route('admin.panel.portfolios.store') }}"
               class="row justify-content-center" method="post">
               @csrf
               @foreach ($inputs as $item)
