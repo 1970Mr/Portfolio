@@ -6,7 +6,7 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'پیام‌های من' => route('admin.panel.contact.message'),
+            'پیام‌های من' => route('admin.panel.contact.messages.index'),
             'نمایش پیام' => '',
         ]"></x-breadcrumbs>
       </div>
@@ -15,7 +15,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>پیام کاربر - موضوع: {{ $message->subject }}</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.contact.message') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.contact.messages.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
