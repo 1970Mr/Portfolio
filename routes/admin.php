@@ -44,20 +44,15 @@ Route::resource('portfolios', PortfolioController::class)->except('show');
 Route::delete('/portfolios/media/{portfolio}', [PortfolioController::class, 'destroyMedia'])->name('portfolios.destroy.media');
 
 Route::prefix('contact')->name('contact.')->group(function () {
-    // Route::get('/details', [ContactController::class, 'index'])->name('details');
-    // Route::get('/details/create', [ContactController::class, 'create'])->name('details.create');
-    // Route::post('/details', [ContactController::class, 'store'])->name('details.store');
-    // Route::get('/details/edit/{contact}', [ContactController::class, 'edit'])->name('details.edit');
-    // Route::put('/details/{contact}', [ContactController::class, 'update'])->name('details.update');
-    // Route::delete('/details/{contact}', [ContactController::class, 'destroy'])->name('details.destroy');
     Route::get('/', fn () => to_route('admin.panel.contact.details.index'))->name('index');
-    Route::resource('details', ContactController::class)->except('show')->parameters(['detail' => 'contact']);
+    Route::resource('details', ContactController::class)->except('show');
 
-    Route::get('/messages', [MessageController::class, 'index'])->name('message');
-    Route::post('/messages', [MessageController::class, 'store'])->name('message.store');
-    Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
+    // Route::get('/messages', [MessageController::class, 'index'])->name('message');
+    // Route::post('/messages', [MessageController::class, 'store'])->name('message.store');
+    // Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
+    // Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
+    Route::resource('messages', MessageController::class)->except(['edit', 'update']);
     Route::put('/messages/send-response/{message}', [MessageController::class, 'sendResponse'])->name('message.send.response');
-    Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
 });
 
 Route::get('/blogs', [BlogController::class, 'index'])->name('blog');

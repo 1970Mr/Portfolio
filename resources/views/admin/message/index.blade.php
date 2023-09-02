@@ -15,9 +15,9 @@
           <div class="card-header d-flex justify-content-between">
             <h3>پیام‌های من</h3>
             <div>
-              <a href="{{ route('admin.panel.contact.message', ['is_read' => true]) }}" class="btn btn-light-primary">پیام‌های خوانده شده</a>
-              <a href="{{ route('admin.panel.contact.message', ['is_read' => false]) }}" class="btn btn-light-primary">پیام‌های خوانده نشده</a>
-              <a href="{{ route('admin.panel.contact.message') }}" class="btn btn-light-primary">همه پیام‌ها</a>
+              <a href="{{ route('admin.panel.contact.messages.index', ['is_read' => true]) }}" class="btn btn-light-primary">پیام‌های خوانده شده</a>
+              <a href="{{ route('admin.panel.contact.messages.index', ['is_read' => false]) }}" class="btn btn-light-primary">پیام‌های خوانده نشده</a>
+              <a href="{{ route('admin.panel.contact.messages.index') }}" class="btn btn-light-primary">همه پیام‌ها</a>
             </div>
           </div>
           <div class="card-body">
@@ -51,10 +51,10 @@
                           </button>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.contact.message.show', ['message' => $item->id]) }}">نمایش</a>
+                                href="{{ route('admin.panel.contact.messages.show', ['message' => $item->id]) }}">نمایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.contact.message.destroy', ['message' => $item->id]) }}"
+                              <form action="{{ route('admin.panel.contact.messages.destroy', ['message' => $item->id]) }}"
                                 method="post" id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')

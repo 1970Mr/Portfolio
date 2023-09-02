@@ -24,15 +24,15 @@
         <i class="bi bi-envelope fs-4 text-gray-600"></i>
       </div>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.message', ['is_read' => false]) }}">
+        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.messages.index', ['is_read' => false]) }}">
             مشاهده پیام‌های خوانده نشده
             <span class="badge rounded-pill bg-red ms-2">
               {{ $unreadMessagesCount }}
             </span>
           </a></li>
-        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.message', ['is_read' => true]) }}"> مشاهده
+        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.messages.index', ['is_read' => true]) }}"> مشاهده
             پیام‌های خوانده شده </a></li>
-        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.message') }}"> مشاهده همه پیام‌ها </a>
+        <li><a class="dropdown-item fs-7" href="{{ route('admin.panel.contact.messages.index') }}"> مشاهده همه پیام‌ها </a>
         </li>
       </ul>
     </div>

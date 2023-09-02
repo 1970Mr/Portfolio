@@ -67,8 +67,8 @@
               <span>راه‌های ارتباطی</span>
             </a>
           </li>
-          <li class="submenu-item {{ active_route('admin.panel.contact.message') }}">
-            <a class="sidebar-link" href="{{ route('admin.panel.contact.message') }}">
+          <li class="submenu-item {{ active_route('admin.panel.contact.messages.index') }}">
+            <a class="sidebar-link" href="{{ route('admin.panel.contact.messages.index') }}">
               <i class="bi bi-envelope me-2"></i>
               <span>پیام‌های من</span>
             </a>
