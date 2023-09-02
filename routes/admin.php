@@ -51,7 +51,7 @@ Route::prefix('contact')->name('contact.')->group(function () {
     // Route::post('/messages', [MessageController::class, 'store'])->name('message.store');
     // Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
     // Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
-    Route::resource('messages', MessageController::class)->except(['edit', 'update']);
+    Route::resource('messages', MessageController::class)->except(['edit', 'update', 'create']);
     Route::put('/messages/send-response/{message}', [MessageController::class, 'sendResponse'])->name('message.send.response');
 });
 
