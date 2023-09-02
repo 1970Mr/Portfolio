@@ -16,14 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Home
-Route::prefix('home')->name('home.')->controller(HomeController::class)->group(function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
-    Route::post('/', 'store')->name('store');
-    Route::get('/edit/{home}', 'edit')->name('edit');
-    Route::put('/{home}', 'update')->name('update');
-    Route::delete('/{home}', 'destroy')->name('destroy');
-});
+Route::resource('home', HomeController::class)->except('show');
 
 // About
 Route::prefix('about')->name('about.')->group(function () {
