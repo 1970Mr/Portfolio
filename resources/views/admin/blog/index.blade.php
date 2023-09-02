@@ -14,7 +14,7 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <h3>مقالات</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.blog.create') }}">
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.blogs.create') }}">
               ایجاد
               <i class="bi bi-plus-circle"></i>
             </a>
@@ -52,10 +52,10 @@
                           </button>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.blog.edit', ['blog' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.blogs.edit', ['blog' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.blog.destroy', ['blog' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.blogs.destroy', ['blog' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')

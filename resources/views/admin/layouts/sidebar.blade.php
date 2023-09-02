@@ -76,8 +76,8 @@
         </ul>
       </li>
 
-      <li class="sidebar-item {{ active_route('admin.panel.blog') }}">
-        <a class="sidebar-link" href="{{ route('admin.panel.blog') }}">
+      <li class="sidebar-item {{ active_route('admin.panel.blogs.index') }}">
+        <a class="sidebar-link" href="{{ route('admin.panel.blogs.index') }}">
           <i class="bi bi-file-earmark-richtext me-2"></i>
           <span>مقالات</span>
         </a>

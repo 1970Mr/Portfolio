@@ -12,8 +12,10 @@ use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\SkillController;
 use Illuminate\Support\Facades\Route;
 
+// Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// Home
 Route::prefix('home')->name('home.')->controller(HomeController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
@@ -23,6 +25,7 @@ Route::prefix('home')->name('home.')->controller(HomeController::class)->group(f
     Route::delete('/{home}', 'destroy')->name('destroy');
 });
 
+// About
 Route::prefix('about')->name('about.')->group(function () {
     Route::get('/', fn () => to_route('admin.panel.about.personal.index'))->name('index');
 
@@ -40,9 +43,11 @@ Route::prefix('about')->name('about.')->group(function () {
     Route::resource('qualifications', QualificationController::class)->except('show');
 });
 
+// Portfolios
 Route::resource('portfolios', PortfolioController::class)->except('show');
 Route::delete('/portfolios/media/{portfolio}', [PortfolioController::class, 'destroyMedia'])->name('portfolios.destroy.media');
 
+// Contact
 Route::prefix('contact')->name('contact.')->group(function () {
     Route::get('/', fn () => to_route('admin.panel.contact.details.index'))->name('index');
     Route::resource('details', ContactController::class)->except('show');
@@ -51,15 +56,12 @@ Route::prefix('contact')->name('contact.')->group(function () {
     Route::put('/messages/send-response/{message}', [MessageController::class, 'sendResponse'])->name('message.send.response');
 });
 
-Route::get('/blogs', [BlogController::class, 'index'])->name('blog');
-Route::get('/blogs/create', [BlogController::class, 'create'])->name('blog.create');
-Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
-Route::get('/blogs/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
-Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blog.update');
-Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
+// Blogs
+Route::resource('/blogs', BlogController::class)->except('show');
 
-Route::prefix('/profile')->name('profile.')->group(function () {
-    Route::get('/', [ProfileController::class, 'index'])->name('index');
-    Route::put('/', [ProfileController::class, 'update'])->name('update');
-    Route::put('/change-password', [ProfileController::class, 'changePassword'])->name('change.password');
+// Profile
+Route::prefix('/profile')->name('profile.')->controller(ProfileController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::put('/', 'update')->name('update');
+    Route::put('/change-password', 'changePassword')->name('change.password');
 });
