@@ -51,7 +51,7 @@
     <p style="white-space: pre-wrap;">{{ $content }}</p>
 
     <div class="center">
-		<a href="{{ route('admin.panel.contact.message.show', ['message' => $messageID]) }}">لینک پیام کاربر</a>
+		<a href="{{ route('admin.panel.contact.messages.show', ['message' => $messageID]) }}">لینک پیام کاربر</a>
 	</div>
   </div>
 </body>

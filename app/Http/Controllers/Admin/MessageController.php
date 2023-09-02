@@ -46,6 +46,8 @@ class MessageController extends Controller
 
     public function sendResponse(Message $message, Request $request)
     {
+        ini_set('max_execution_time', 600);
+
         $data = $request->validate([
             'response' => 'required',
         ]);

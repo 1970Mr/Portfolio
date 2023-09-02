@@ -54,7 +54,7 @@
         <!-- Left Side Ends -->
         <!-- Contact Form Starts -->
         <div class="col-12 col-lg-8">
-          <form class="contactform" method="post" action="{{ route('admin.panel.contact.message.store') }}">
+          <form class="contactform" method="post" action="{{ route('admin.panel.contact.messages.store') }}">
             @csrf
             <div class="contactform">
               <div class="row">

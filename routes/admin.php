@@ -47,10 +47,6 @@ Route::prefix('contact')->name('contact.')->group(function () {
     Route::get('/', fn () => to_route('admin.panel.contact.details.index'))->name('index');
     Route::resource('details', ContactController::class)->except('show');
 
-    // Route::get('/messages', [MessageController::class, 'index'])->name('message');
-    // Route::post('/messages', [MessageController::class, 'store'])->name('message.store');
-    // Route::get('/messages/{message}', [MessageController::class, 'show'])->name('message.show');
-    // Route::delete('/messages/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
     Route::resource('messages', MessageController::class)->except(['edit', 'update', 'create']);
     Route::put('/messages/send-response/{message}', [MessageController::class, 'sendResponse'])->name('message.send.response');
 });
