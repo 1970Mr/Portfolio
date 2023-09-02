@@ -25,7 +25,7 @@
             </a>
           </div>
           <div class="card-body">
-            <form action="{{ route('admin.panel.about.personal.update', ['about' => $about->id]) }}"
+            <form action="{{ route('admin.panel.about.personal.update', ['personal' => $about->id]) }}"
               class="row justify-content-center" method="post" enctype="multipart/form-data">
               @csrf
               @method('put')

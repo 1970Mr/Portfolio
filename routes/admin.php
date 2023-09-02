@@ -22,14 +22,7 @@ Route::resource('home', HomeController::class)->except('show');
 Route::prefix('about')->name('about.')->group(function () {
     Route::get('/', fn () => to_route('admin.panel.about.personal.index'))->name('index');
 
-    Route::prefix('personal')->name('personal.')->controller(AboutController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/create', 'create')->name('create');
-        Route::post('/', 'store')->name('store');
-        Route::get('/edit/{about}', 'edit')->name('edit');
-        Route::put('/{about}', 'update')->name('update');
-        Route::delete('/{about}', 'destroy')->name('destroy');
-    });
+    Route::resource('personal', AboutController::class)->except('show');
 
     Route::resource('skills', SkillController::class)->except('show');
 
@@ -43,6 +36,7 @@ Route::delete('/portfolios/media/{portfolio}', [PortfolioController::class, 'des
 // Contact
 Route::prefix('contact')->name('contact.')->group(function () {
     Route::get('/', fn () => to_route('admin.panel.contact.details.index'))->name('index');
+
     Route::resource('details', ContactController::class)->except('show');
 
     Route::resource('messages', MessageController::class)->except(['edit', 'update', 'create']);

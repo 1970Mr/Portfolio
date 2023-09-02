@@ -40,6 +40,10 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('detail', function ($value) {
             return \App\Models\Contact::where('id', $value)->first();
         });
+        
+        Route::bind('personal', function ($value) {
+            return \App\Models\About::where('id', $value)->first();
+        });
     }
 
     /**

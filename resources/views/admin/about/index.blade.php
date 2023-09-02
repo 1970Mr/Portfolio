@@ -70,10 +70,10 @@
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.about.personal.edit', ['about' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.about.personal.edit', ['personal' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.about.personal.destroy', ['about' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.about.personal.destroy', ['personal' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
