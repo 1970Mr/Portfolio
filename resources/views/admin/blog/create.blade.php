@@ -1,7 +1,11 @@
 @extends('admin.layouts.app', ['title' => 'مقالات | ایجاد'])
 
 @php
-  $inputs = [['name' => 'title', 'title' => 'عنوان', 'type' => 'text'], ['name' => 'author', 'title' => 'نویسنده', 'type' => 'text'], ['name' => 'keywords', 'title' => 'کلمات کلیدی', 'type' => 'text']];
+  $inputs = [
+      ['name' => 'title', 'title' => 'عنوان', 'type' => 'text'],
+      ['name' => 'author', 'title' => 'نویسنده', 'type' => 'text'],
+      ['name' => 'keywords', 'title' => 'کلمات کلیدی', 'type' => 'text'],
+  ];
 @endphp
 
 @section('content')
@@ -10,31 +14,28 @@
       <div class="row">
         <x-breadcrumbs :routes="[
             'پنل ادمین' => route('admin.panel.dashboard'),
-            'مقالات' => route('admin.panel.blog'),
-            'ویرایش' => '',
+            'مقالات' => route('admin.panel.blogs.index'),
+            'ایجاد' => '',
         ]"></x-breadcrumbs>
       </div>
 
       <div class="row">
         <div class="card">
           <div class="card-header d-flex justify-content-between">
-            <h3>ویرایش مقاله</h3>
-            <a class="btn btn-light-primary" href="{{ route('admin.panel.blog') }}">
+            <h3>ایجاد مقاله</h3>
+            <a class="btn btn-light-primary" href="{{ route('admin.panel.blogs.index') }}">
               بازگشت
               <i class="bi bi-arrow-90deg-left"></i>
             </a>
           </div>
-          <div class="card-body">
-            <form enctype="multipart/form-data" action="{{ route('admin.panel.blog.update', $blog->id) }}"
-              class="row justify-content-center" method="post">
+          <div class="card-body justify-content-center">
+            <form enctype="multipart/form-data" action="{{ route('admin.panel.blogs.store') }}" class="row justify-content-center" method="post">
               @csrf
-              @method('put')
               @foreach ($inputs as $item)
                 <div class="mb-3 col-md-6">
                   <label for="{{ $item['name'] }}" class="form-label">{{ $item['title'] }}</label>
-                  <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control"
-                    id="{{ $item['name'] }}"
-                    value="{{ old($item['name']) ? old($item['name']) : $blog->{$item['name']} }}">
+                  <input type="{{ $item['type'] }}" name="{{ $item['name'] }}" class="form-control" id="{{ $item['name'] }}"
+                    value="{{ old($item['name']) }}">
                   @error($item['name'])
                     <div class="text-danger fs-7">
                       {{ $message }}
@@ -46,9 +47,6 @@
               <div class="mb-3 col-md-6">
                 <label for="photo" class="form-label">تصویر</label>
                 <input type="file" name="photo" class="form-control" id="photo">
-                <div class="text-info fs-7 mt-1">
-                  {{ $blog->photo['relative_path'] }}
-                </div>
                 @error('photo')
                   <div class="text-danger fs-7">
                     {{ $message }}
@@ -58,7 +56,7 @@
 
               <div class="mb-3 col-md-6">
                 <label for="text" class="form-label">متن</label>
-                <textarea name="text" class="form-control" id="text">{{ old('text') ? old('text') : $blog->text }}</textarea>
+                <textarea name="text" class="form-control" id="text"></textarea>
                 @error('text')
                   <div class="text-danger fs-7">
                     {{ $message }}
@@ -68,7 +66,7 @@
 
               <div class="mb-3 form-check d-flex justify-content-center">
                 <input type="checkbox" name="status" class="form-check-input me-2" id="status"
-                  {{ old('status') || (!request()->old() && $blog->status == 1) ? 'checked' : '' }}>
+                  {{ old('status') ? 'checked' : '' }}>
                 <label class="form-check-label" for="status">وضعیت</label>
               </div>
               @error('status')

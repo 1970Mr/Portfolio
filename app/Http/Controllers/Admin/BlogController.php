@@ -11,7 +11,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.blog.blog', compact('blogs'));
+        return view('admin.blog.index', compact('blogs'));
     }
 
     public function create()
@@ -26,7 +26,7 @@ class BlogController extends Controller
         $data['photo'] = $this->photoUpload($request);
         Blog::create($data);
 
-        return to_route('admin.panel.blog')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
+        return to_route('admin.panel.blogs.index')->with(['success' => 'عملیات ایجاد با موفقیت انجام شد']);
     }
 
     public function edit(Blog $blog)
@@ -44,14 +44,14 @@ class BlogController extends Controller
         }
 
         $blog->updateOrFail($data);
-        return to_route('admin.panel.blog')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
+        return to_route('admin.panel.blogs.index')->with(['success' => 'عملیات ویرایش با موفقیت انجام شد']);
     }
 
     public function destroy(Blog $blog)
     {
         $this->photoDelete($blog);
         $blog->delete();
-        return redirect()->back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
+        return back()->with(['success' => 'عملیات حذف با موفقیت انجام شد']);
     }
 
     private function photoUpload($request)
@@ -65,7 +65,7 @@ class BlogController extends Controller
             $path = public_path($blog->photo['relative_path']);
             file_delete($path);
         } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
+            return back()->with(['error' => 'عملیات با موفقیت انجام نشد']);
         }
     }
 }
