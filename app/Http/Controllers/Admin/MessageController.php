@@ -21,7 +21,7 @@ class MessageController extends Controller
             $messages = Message::where('is_read', false)->orderBy('created_at', 'desc')->paginate(5)->withQueryString();
         else
             $messages = Message::orderBy('created_at', 'desc')->paginate(5)->withQueryString();
-		return view('admin.message.message', compact('messages'));
+		return view('admin.message.index', compact('messages'));
     }
 
     public function store(MessageRequest $request)
