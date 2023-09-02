@@ -42,8 +42,8 @@
                   @foreach ($contacts as $item)
                     <tr>
                       <td>{{ $loop->iteration }}</td>
-                      <td class="text-muted">{{ $item->title }}</td>
-                      <td class="text-muted">{{ Illuminate\Support\Str::limit($item->description, 40) }}</td>
+                      <td class="text-muted" style="min-width: 8rem">{{ $item->title }}</td>
+                      <td class="text-muted" style="min-width: 15rem">{{ Illuminate\Support\Str::limit($item->description, 40) }}</td>
                       <td class="text-muted">{{ $item->email }}</td>
                       <td class="text-muted">{{ $item->phone_number }}</td>
                       <td class="text-muted">{{ $item->telegram }}</td>
@@ -60,10 +60,10 @@
                           </button>
                           <ul class="dropdown-menu">
                             <li><a class="dropdown-item"
-                                href="{{ route('admin.panel.contact.details.edit', ['contact' => $item->id]) }}">ویرایش</a>
+                                href="{{ route('admin.panel.contact.details.edit', ['detail' => $item->id]) }}">ویرایش</a>
                             </li>
                             <li>
-                              <form action="{{ route('admin.panel.contact.details.destroy', ['contact' => $item->id]) }}" method="post"
+                              <form action="{{ route('admin.panel.contact.details.destroy', ['detail' => $item->id]) }}" method="post"
                                 id="form-{{ $loop->iteration }}">
                                 @csrf
                                 @method('delete')
