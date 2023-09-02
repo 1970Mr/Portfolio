@@ -34,9 +34,19 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
-            $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            // $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
+            // return Limit::perMinute(5)->by($throttleKey);
 
-            return Limit::perMinute(5)->by($throttleKey);
+            // Customize the throttle key based on both IP and input
+            $inputThrottleKey = Str::transliterate(Str::lower($request->input(Fortify::username())));
+            $ipThrottleKey = $request->ip();
+
+            // Define rate limits for IP and input separately
+            $ipLimit = Limit::perMinute(3)->by($ipThrottleKey);
+            $inputLimit = Limit::perMinute(3)->by($inputThrottleKey);
+
+            // Combine the rate limits with different keys
+            return [$ipLimit, $inputLimit];
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
