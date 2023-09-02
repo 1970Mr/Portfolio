@@ -8,6 +8,7 @@
 
 	function stop_videos() {
 		var video = document.getElementById("video");
+        if (!video) return;
 		if (video.paused !== true && video.ended !== true) {
 			video.pause();
 		}
