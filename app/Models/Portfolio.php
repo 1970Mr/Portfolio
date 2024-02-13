@@ -45,15 +45,9 @@ class Portfolio extends Model
 
         $media = ['type' => $this->media_type];
         if ($this->media_type == 'image') {
-            return [
-                ...$media,
-                'image' => $this->featured_image
-            ];
+            return array_merge($media, ['image' => $this->featured_image]);
         }
-        return [
-            ...$media,
-            ...json_decode($value, true),
-        ];
+        return array_merge($media, json_decode($value, true));
     }
 
     protected function featuredImage(): Attribute
