@@ -1,0 +1,22 @@
+[
+    {
+        "name": "رسول",
+        "family": "مرشدی",
+        "age": "23",
+        "country": "ایران",
+        "job": "طراح و توسعه دهنده سایت",
+        "address": "خوزستان، اهواز",
+        "phone_number": "+989387908594",
+        "email": "rasoolmorshedi10@gmail.com",
+        "github": "github-1970",
+        "language": "فارسی، بختیاری (لری)",
+        "experiences": "3",
+        "projects": "26",
+        "awards": "0",
+        "resume_file": {
+            "name": "resume.pdf",
+            "relative_path": "seeder/images/about/resume.pdf"
+        },
+        "status": "1"
+    }
+]
