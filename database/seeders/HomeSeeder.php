@@ -15,21 +15,9 @@ class HomeSeeder extends Seeder
      */
     public function run()
     {
-        Home::factory()->create([
-            'title' => 'رسول مرشدی هستم',
-            'sub_title' => 'توسعه دهنده سایت',
-            'description' => 'من یک طراح وب و توسعه دهنده مقدماتی تونسی هستم و در ساخت تجربه های دوستانه و تمیز و کاربر پسند تمرکز دارم ، من علاقه زیادی به ساخت نرم افزار عالی دارم که زندگی اطرافیانم را بهبود می بخشد.',
-            'photo' => [
-                'name' => 'person.jpg',
-                'relative_path' => 'seeder/images/home/person.jpg',
-                'mobile' => [
-                    'name' => 'person-mobile.jpg',
-                    'relative_path' => 'seeder/images/home/mobile/person-mobile.jpg',
-                ],
-            ],
-            'status' => true,
-        ]);
-
+        $json_data = file_get_contents('database/seeders/json_data/home.json');
+        $homes = json_decode($json_data, true);
+        Home::factory()->createMany($homes);
         Home::factory(10)->state(['status' => false])->create();
     }
 }
