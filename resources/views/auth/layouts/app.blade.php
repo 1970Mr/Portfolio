@@ -12,12 +12,12 @@
   <style>
     @font-face {
       font-family: "Vazir";
-      src: url("{{ asset('admin/fonts/Vazir.eot') }}");
+      src: url("{{ asset('admin-assets/fonts/Vazir.eot') }}");
       /* IE9 Compat Modes */
-      src: url("{{ asset('admin/fonts/Vazir.eot?#iefix') }}") format("embedded-opentype"),
-        url("{{ asset('admin/fonts/Vazir.woff2') }}") format("woff2"),
-        url("{{ asset('admin/fonts/Vazir.woff') }}") format("woff"),
-        url("{{ asset('admin/fonts/Vazir.ttf') }}") format("truetype");
+      src: url("{{ asset('admin-assets/fonts/Vazir.eot?#iefix') }}") format("embedded-opentype"),
+        url("{{ asset('admin-assets/fonts/Vazir.woff2') }}") format("woff2"),
+        url("{{ asset('admin-assets/fonts/Vazir.woff') }}") format("woff"),
+        url("{{ asset('admin-assets/fonts/Vazir.ttf') }}") format("truetype");
       /* Safari, Android, iOS */
     }
 
