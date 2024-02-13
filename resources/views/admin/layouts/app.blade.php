@@ -15,7 +15,7 @@
 
   {{-- <link rel="stylesheet" href="https://kit.fontawesome.com/f0f0c5351e.css" crossorigin="anonymous"> --}}
 
-  <link rel="stylesheet" href="{{ asset('admin/css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin-assets/css/main.css') }}">
 
   @stack('styles')
 
@@ -44,7 +44,7 @@
     <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script> --}}
-  <script src="{{ asset('admin/js/alpineComponents.js') }}"></script>
+  <script src="{{ asset('admin-assets/js/alpineComponents.js') }}"></script>
   <script src="{{ asset('build/assets/app-575acb37.js') }}"></script>
   @include('sweetalert::alert')
 
