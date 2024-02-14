@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => config('admin.name'),
+            'local_name' => config('admin.local-name'),
             'email' => config('admin.email'),
             'password' => Hash::make(config('admin.password')),
         ]);

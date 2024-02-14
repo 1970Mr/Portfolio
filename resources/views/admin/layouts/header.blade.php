@@ -46,7 +46,7 @@
           <i class="bi bi-person-circle fs-2 me-2"></i>
         @endif
         <div>
-          <h6 class="fs-6 fw-bold text-gray-600 mb-0">{{ config('admin.fa-name') }}</h6>
+          <h6 class="fs-6 fw-bold text-gray-600 mb-0">{{ config('admin.local-name') }}</h6>
           <p class="fs-8 text-gray-600 mb-0">مالک سایت</p>
         </div>
       </div>

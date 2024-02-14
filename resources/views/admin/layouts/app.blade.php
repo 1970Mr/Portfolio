@@ -19,7 +19,7 @@
 
   @stack('styles')
 
-  <title>{{ config('admin.fa-name') . ' | ادمین' . (isset($title) && !empty($title) ? " | $title" : '') }}</title>
+  <title>{{ config('admin.local-name') . ' | ادمین' . (isset($title) && !empty($title) ? " | $title" : '') }}</title>
 </head>
 
 <body>
