@@ -1,49 +1,61 @@
 [
     {
         "name": "php",
-        "value": 90,
+        "value": 100,
         "category": "programming",
         "status": 1
     },
     {
         "name": "laravel",
-        "value": 90,
+        "value": 100,
         "category": "programming",
         "status": 1
     },
     {
         "name": "html",
-        "value": 90,
+        "value": 100,
         "category": "programming",
         "status": 1
     },
     {
         "name": "css",
-        "value": 90,
+        "value": 100,
         "category": "programming",
         "status": 1
     },
     {
         "name": "js",
-        "value": 80,
-        "category": "programming",
-        "status": 1
-    },
-    {
-        "name": "bootstrap",
         "value": 90,
         "category": "programming",
         "status": 1
     },
     {
+        "name": "vue",
+        "value": 70,
+        "category": "programming",
+        "status": 1
+    },
+    {
+        "name": "inertia",
+        "value": 90,
+        "category": "programming",
+        "status": 1
+    },
+    {
+        "name": "bootstrap",
+        "value": 100,
+        "category": "programming",
+        "status": 1
+    },
+    {
         "name": "tailwind",
-        "value": 50,
+        "value": 90,
         "category": "programming",
         "status": 1
     },
     {
         "name": "wordpress",
-        "value": 70,
+        "value": 50,
         "category": "programming",
         "status": 1
     },
@@ -79,7 +91,7 @@
     },
     {
         "name": "git",
-        "value": 90,
+        "value": 100,
         "category": "devops",
         "status": 1
     }

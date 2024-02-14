@@ -18,6 +18,6 @@ class SkillSeeder extends Seeder
         $json_data = file_get_contents('database/seeders/json_data/skills.json');
         $skills = json_decode($json_data, true);
         Skill::factory()->createMany($skills);
-        Skill::factory(10)->state(['status' => false])->create();
+//        Skill::factory(10)->state(['status' => false])->create();
     }
 }

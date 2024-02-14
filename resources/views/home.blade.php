@@ -10,7 +10,7 @@
         <div>
           <img src="{{ asset($homeData->photo['mobile']['relative_path']) }}"
             class="img-fluid main-img-mobile d-block d-lg-none" alt="my picture" />
-          <h1 class="text-uppercase poppins-font">{{ $homeData->title }}</h1><span>{{ $homeData->sub_title }}</span></span>
+          <h1 class="text-uppercase poppins-font">{{ $homeData->title }}</h1><span class="text-muted">{{ $homeData->sub_title }}</span></span>
           </h1>
           <p class="open-sans-font">{{ $homeData->description }}</p>
           <a class="button" href="{{ route('about') }}">

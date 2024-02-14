@@ -18,6 +18,6 @@ class QualificationSeeder extends Seeder
         $json_data = file_get_contents('database/seeders/json_data/qualifications.json');
         $qualifications = json_decode($json_data, true);
         Qualification::factory()->createMany($qualifications);
-        Qualification::factory(10)->state(['status' => 0])->create();
+//        Qualification::factory(10)->state(['status' => 0])->create();
     }
 }

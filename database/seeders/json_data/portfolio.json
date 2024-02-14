@@ -4,7 +4,7 @@
         "project_type": "طراحی و توسعه سایت",
         "customer": "خودم",
         "link": "rasmor.ir",
-        "technology": "php, laravel",
+        "technology": "PHP, Laravel",
         "featured_image": {
             "name": "portfolio.jpg",
             "relative_path": "seeder/images/portfolio/portfolio.jpg"
@@ -18,10 +18,24 @@
         "project_type": "طراحی سایت",
         "customer": "یکی از آشنایان",
         "link": "mohebnews.com",
-        "technology": "wordpress",
+        "technology": "Wordpress",
         "featured_image": {
             "name": "portfolio2.jpg",
             "relative_path": "seeder/images/portfolio/portfolio2.jpg"
+        },
+        "media_type": "image",
+        "media": null,
+        "status": true
+    },
+    {
+        "title": "سایت ToDo",
+        "project_type": "طراحی و توسعه سایت",
+        "customer": "عمومی",
+        "link": "todo-app.com",
+        "technology": "Laravel, Vue, Tailwind",
+        "featured_image": {
+            "name": "portfolio.jpg",
+            "relative_path": "seeder/images/portfolio/portfolio.jpg"
         },
         "media_type": "image",
         "media": null,

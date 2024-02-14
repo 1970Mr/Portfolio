@@ -18,6 +18,6 @@ class HomeSeeder extends Seeder
         $json_data = file_get_contents('database/seeders/json_data/home.json');
         $homes = json_decode($json_data, true);
         Home::factory()->createMany($homes);
-        Home::factory(10)->state(['status' => false])->create();
+//        Home::factory(10)->state(['status' => false])->create();
     }
 }

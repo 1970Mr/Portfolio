@@ -18,6 +18,6 @@ class AboutSeeder extends Seeder
         $json_data = file_get_contents('database/seeders/json_data/about.json');
         $abouts = json_decode($json_data, true);
         About::factory()->createMAny($abouts);
-        About::factory(10)->state(['status' => false])->create();
+//        About::factory(10)->state(['status' => false])->create();
     }
 }
