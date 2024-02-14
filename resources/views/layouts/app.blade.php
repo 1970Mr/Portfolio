@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{{ config('admin.fa-name') . (isset($title) && !empty($title) ? " | $title" : '') }}</title>
+  <title>{{ config('admin.local-name') . (isset($title) && !empty($title) ? " | $title" : '') }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Template Google Fonts -->

@@ -22,7 +22,7 @@ class AdminHasMessage extends Notification
         public $content = null,
     ) {
         $this->subject = $this->subject ?? 'پیام جدید دارید';
-        $this->greeting = $this->greeting ?? 'سلام ' . config('admin.fa-name') . ' عزیز، امیدوارم حالت خوب باشه!';
+        $this->greeting = $this->greeting ?? 'سلام ' . config('admin.local-name') . ' عزیز، امیدوارم حالت خوب باشه!';
         $this->content = $this->content ?? 'شما یک پیام جدید دارید!';
     }
 

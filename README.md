@@ -68,7 +68,7 @@ In the `.env` file, you should configure the following important settings:
 - **MAIL_ENCRYPTION**: Mail encryption (e.g., tls).
 - **MAIL_FROM_ADDRESS**: Default email address for outgoing mail.
 - **MAIL_FROM_NAME**: Default name for outgoing mail.
-- **ADMIN_FA_NAME**: Your admin persian name.
+- **ADMIN_LOCAL_NAME**: Your admin local name.
 - **ADMIN_NAME**: Your admin username.
 - **ADMIN_PASSWORD**: Your admin password.
 - **ADMIN_EMAIL**: Your admin email.
