@@ -52,7 +52,7 @@
       </div>
       <ul class="dropdown-menu">
         <li>
-          <a class="dropdown-item fs-7" href="#">
+          <a class="dropdown-item fs-7" href="{{ route('admin.panel.profile.index') }}">
             <i class="bi bi-person fs-5 me-1"></i>
             پروفایل
           </a>

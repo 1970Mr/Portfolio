@@ -32,6 +32,18 @@
                 @enderror
               </div>
 
+                <div class="mb-3 col-md-6">
+                    <label for="local_name" class="form-label">نام نمایشی</label>
+                    <input id="local_name" type="text" class="form-control @error('local_name') is-invalid @enderror"
+                           name="local_name" value="{{ old('local_name', auth()->user()->local_name) }}" required>
+
+                    @error('local_name')
+                    <span class="invalid-feedback" role="alert"></span>
+                    <strong>{{ $message }}</strong>
+                    @enderror
+                </div>
+
+                <div class="col-12 row justify-content-center">
               <div class="mb-3 col-md-6">
                 <label for="email" class="form-label">ایمیل</label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -43,7 +55,7 @@
                   </div>
                 @enderror
               </div>
-
+                </div>
               <button type="submit" class="btn btn-primary w-25">
                 ویرایش پروفایل
               </button>
