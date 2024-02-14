@@ -50,9 +50,6 @@ To install and run this project locally, follow these steps:
 In the `.env` file, you should configure the following important settings:
 
 - **APP_NAME**: The name of the application.
-- **APP_ENV**: The application environment (e.g., local, production).
-- **APP_KEY**: A secure random key for encryption.
-- **APP_DEBUG**: Set to `true` for debugging mode.
 - **APP_URL**: The URL of your application.
 - **DB_CONNECTION**: Database connection (e.g., mysql).
 - **DB_HOST**: Database host (e.g., 127.0.0.1).
