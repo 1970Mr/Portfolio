@@ -9,13 +9,13 @@
         "phone_number": "+989387908594",
         "email": "rasoolmorshedi10@gmail.com",
         "github": "github-1970",
-        "language": "فارسی، بختیاری (لری)",
+        "language": "فارسی، بختیاری (لری)، مقداری انگلیسی",
         "experiences": "3",
         "projects": "26",
-        "awards": "0",
+        "awards": "1",
         "resume_file": {
             "name": "resume.pdf",
-            "relative_path": "seeder/images/about/resume.pdf"
+            "relative_path": "seeder/files/about/resume.pdf"
         },
         "status": "1"
     }

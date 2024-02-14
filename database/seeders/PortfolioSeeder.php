@@ -18,6 +18,6 @@ class PortfolioSeeder extends Seeder
         $json_data = file_get_contents('database/seeders/json_data/portfolio.json');
         $portfolios = json_decode($json_data, true);
         Portfolio::factory()->createMany($portfolios);
-        Portfolio::factory(10)->state(['status' => false])->create();
+//        Portfolio::factory(10)->state(['status' => false])->create();
     }
 }
