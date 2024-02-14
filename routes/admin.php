@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', static fn () => to_route('admin.panel.dashboard'));
 
 // Home
 Route::resource('home', HomeController::class)->except('show');
