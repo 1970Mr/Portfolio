@@ -1,7 +1,5 @@
 <?php
 
-// $special_route for error time (for when route want variables)
-
 use App\Services\Aparat\AparatHandler;
 use Illuminate\Database\Eloquent\Model;
 
@@ -70,13 +68,6 @@ function file_upload($file, $destinationPath)
 function file_delete($path)
 {
     if (file_exists($path)) unlink($path);
-
-    //   try {
-    //     if (!file_exists($path)) throw new Exception('Not Implemented');
-    //     unlink($path);
-    //   } catch (Exception $e) {
-    //     return abort(501, $e->getMessage());
-    //   }
 }
 
 function aparat(): AparatHandler

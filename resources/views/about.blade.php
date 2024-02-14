@@ -55,7 +55,7 @@
                   </span> </li>
                 <li> <span class="title">گیت‌هاب :</span> <span
                     class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">
-                    <a target="_blank" href="{{ 'https://' . $aboutData->github }}">{{ $aboutData->github }}</a>
+                    <a target="_blank" href="{{ 'https://github.com/' . $aboutData->github }}">{{ $aboutData->github }}</a>
                   </span> </li>
                 <li> <span class="title">زبان :</span> <span
                     class="value d-block d-sm-inline-block d-lg-block d-xl-inline-block">{{ $aboutData->language }}</span>
