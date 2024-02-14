@@ -126,43 +126,47 @@
           <h3 class="text-uppercase pb-5 mb-0 text-left text-sm-center custom-title ft-wt-600">تجربه <span>&</span>
             تحصیلات </h3>
         </div>
-        <div class="col-lg-6 m-15px-tb">
-          <div class="resume-box">
-            <ul>
+        <div class="w-100 m-15px-tb">
+          <div class="resume-box w-100">
+            <ul class="row">
               @foreach ($qualifications as $qualification)
-                @if ($qualification->type == 'experience')
-                  <li>
-                    <div class="icon">
-                      <i class="fa fa-briefcase"></i>
-                    </div>
+                  <li class="col-lg-6 m-15px-tb">
+                      @if ($qualification->type == 'education')
+                          <div class="icon">
+                              <i class="fa fa-graduation-cap"></i>
+                          </div>
+                      @else
+                          <div class="icon">
+                              <i class="fa fa-briefcase"></i>
+                          </div>
+                      @endif
                     <span class="time open-sans-font text-uppercase">{{ $qualification->period }}</span>
                     <h5 class="poppins-font text-uppercase">{{ $qualification->title }}</h5>
                     <p class="open-sans-font">{{ $qualification->descriptions }}</p>
                   </li>
-                @endif
               @endforeach
             </ul>
           </div>
         </div>
 
-        <div class="col-lg-6 m-15px-tb">
-          <div class="resume-box">
-            <ul>
-              @foreach ($qualifications as $qualification)
-                @if ($qualification->type == 'education')
-                  <li>
-                    <div class="icon">
-                      <i class="fa fa-graduation-cap"></i>
-                    </div>
-                    <span class="time open-sans-font text-uppercase">{{ $qualification->period }}</span>
-                    <h5 class="poppins-font text-uppercase">{{ $qualification->title }}</h5>
-                    <p class="open-sans-font">{{ $qualification->descriptions }}</p>
-                  </li>
-                @endif
-              @endforeach
-            </ul>
-          </div>
-        </div>
+{{--        <div class="col-lg-6 m-15px-tb">--}}
+{{--          <div class="resume-box">--}}
+{{--            <ul>--}}
+{{--              @foreach ($qualifications as $qualification)--}}
+{{--                @if ($qualification->type == 'education')--}}
+{{--                  <li>--}}
+{{--                    <div class="icon">--}}
+{{--                      <i class="fa fa-graduation-cap"></i>--}}
+{{--                    </div>--}}
+{{--                    <span class="time open-sans-font text-uppercase">{{ $qualification->period }}</span>--}}
+{{--                    <h5 class="poppins-font text-uppercase">{{ $qualification->title }}</h5>--}}
+{{--                    <p class="open-sans-font">{{ $qualification->descriptions }}</p>--}}
+{{--                  </li>--}}
+{{--                @endif--}}
+{{--              @endforeach--}}
+{{--            </ul>--}}
+{{--          </div>--}}
+{{--        </div>--}}
       </div>
       <!-- Experience & Education Ends -->
     </div>
