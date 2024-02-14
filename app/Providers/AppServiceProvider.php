@@ -29,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
 
         try {
-            config()->set('admin.local-name', User::first()->local_name);
+            $local_name = auth()->hasUser() ? auth()->user()->local_name : User::first()->local_name;
+            config()->set('admin.local-name', $local_name);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
         }
