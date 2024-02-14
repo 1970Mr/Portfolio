@@ -54,6 +54,12 @@
         "status": 1
     },
     {
+        "name": "python",
+        "value": 50,
+        "category": "programming",
+        "status": 1
+    },
+    {
         "name": "wordpress",
         "value": 50,
         "category": "programming",
