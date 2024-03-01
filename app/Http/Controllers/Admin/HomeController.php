@@ -56,6 +56,7 @@ class HomeController extends Controller
             return $value !== null;
         });
         $data['status'] = $request->has('status');
+        $data['sub_title'] = $request->subTitle;
 
         $data['photo'] = $this->initialPhotoDataUpdate($home);
         if ($request->has('photo')) {
