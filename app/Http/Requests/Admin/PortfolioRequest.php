@@ -66,11 +66,7 @@ class PortfolioRequest extends FormRequest
     private function sliderRules()
     {
         session()->flash('media.slider', true);
-        // When update
-        if ($this->isRequired == 'nullable')
-            $this->rules['slider'] = "nullable";
-        else
-            $this->rules['slider'] = "nullable|array|min:3";
+        $this->rules['slider'] = "nullable|array|min:3";
         return $this->rules['slider.*'] = 'file|image|max:4096';
     }
 
@@ -78,21 +74,11 @@ class PortfolioRequest extends FormRequest
     {
         session()->flash('media.video', true);
         return $this->rules['video'] = "nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
-        // mkv            video/x-matroska
-        // flv            video/x-flv
-        // mp4            video/mp4
-        // m3u8           application/x-mpegURL
-        // ts             video/MP2T
-        // 3gp            video/3gpp
-        // mov            video/quicktime
-        // avi            video/x-msvideo
-        // wmv            video/x-ms-wmv
     }
 
     private function videoLinkRules()
     {
         session()->flash('media.video_link', true);
-        // return $this->rules['video_link'] = "{$this->isRequired}|url";
         return $this->rules['video_link'] = "nullable|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,video/x-ms-wmv,video/x-msvideo,video/x-flv,video/x-matroska|max:30720";
     }
 }
