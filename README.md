@@ -69,8 +69,8 @@ In the `.env` file, you should configure the following important settings:
 - **ADMIN_NAME**: Your admin username.
 - **ADMIN_PASSWORD**: Your admin password.
 - **ADMIN_EMAIL**: Your admin email.
-- **APARAT_USERNAME**: Your aparat username.
-- **APARAT_PASSWORD**: Your aparat password.
+- **APARAT_USERNAME**: Your aparat username. (optional)
+- **APARAT_PASSWORD**: Your aparat password. (optional)
 
 You can access the admin panel at [http://127.0.0.1:8000/admin-panel](http://127.0.0.1:8000/admin-panel).
 
