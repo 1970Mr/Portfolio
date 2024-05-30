@@ -35,7 +35,7 @@ The backend of this portfolio website is powered by Laravel, a PHP web applicati
 ## Installation
 To install and run this project locally, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/yourusername/portfolio.git`
+1. Clone the repository: `git clone https://github.com/1970Mr/portfolio.git`
 2. Change into the project directory: `cd portfolio`
 3. Install Composer dependencies: `composer install`
 4. Install NPM dependencies: `npm install`
