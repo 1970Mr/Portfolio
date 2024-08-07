@@ -76,10 +76,6 @@ You can access the admin panel at [http://127.0.0.1:8000/admin-panel](http://127
 
 **Note**: This project is for portfolio and backend purposes only. The frontend section of the site, is not owned by me but has been modified for demonstration.
 
-## Screenshots
-
-> This section will be completed soon...
-
 ## Contribution
 Contributions are welcome! If you have suggestions or found issues, please create an issue or send a pull request.
 
