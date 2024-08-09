@@ -80,5 +80,5 @@ You can access the admin panel at [http://127.0.0.1:8000/admin-panel](http://127
 Contributions are welcome! If you have suggestions or found issues, please create an issue or send a pull request.
 
 ## License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source and available under the [MIT License](LICENSE.md).
 
